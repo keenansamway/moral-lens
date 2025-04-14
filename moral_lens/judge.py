@@ -69,7 +69,7 @@ class JudgeRunner:
         self.data: Optional[pd.DataFrame] = None
 
     async def run(
-        self, overwrite: bool = False
+        self, overwrite: bool = False, skip_quality: bool = True
     ) -> None:
         if not self.response_output_file.exists():
             raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
@@ -110,21 +110,25 @@ class JudgeRunner:
 
         model = ModelFactory.get_model(model=self.judge_model_cfg)
         rationales_responses = await model.ask_async_with_retry(rationales_prompts, validation_fn=self.validation_fn)
-        quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
+        if not skip_quality:
+            quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
 
         self.data["raw_responses_rationales"] = [r.content for r in rationales_responses]
-        self.data["raw_responses_quality"] = [r.content for r in quality_responses]
+        if not skip_quality:
+            self.data["raw_responses_quality"] = [r.content for r in quality_responses]
 
         # Save the raw responses to the judge output file
         os.makedirs(self.judge_output_file.parent, exist_ok=True)
         self.data.to_csv(self.judge_output_file, index=False)
         print(f"[INFO] Judge output saved to {self.judge_output_file}")
 
-        self.process()
+        self.process_rationales()
+        if not skip_quality:
+             self.process_quality()
 
-    def process(self) -> None:
+    def process_rationales(self) -> None:
         """
-        Process the judge model's raw responses to extract rationales and quality assessments.
+        Process the judge model's raw responses to extract rationales.
         This function should be called after running the judge model to parse the outputs.
         """
         # Check if judge output file exists
@@ -136,7 +140,6 @@ class JudgeRunner:
 
         # Extract raw responses
         rationales_responses = self.data['raw_responses_rationales']
-        quality_responses = self.data['raw_responses_quality']
 
         # Process rationales
         processed_rationales = []
@@ -158,6 +161,29 @@ class JudgeRunner:
             except Exception as e:
                 print(f"Error processing rationale: {e}")
                 processed_rationales.append("")
+
+        # Update dataframe with processed results
+        self.data["rationales"] = processed_rationales
+
+        # Save updated dataframe
+        os.makedirs(self.judge_output_file.parent, exist_ok=True)
+        self.data.to_csv(self.judge_output_file, index=False)
+        print(f"[INFO] Processed judge output saved to {self.judge_output_file}")
+
+    def process_quality(self) -> None:
+        """
+        Process the judge model's raw responses to extract rationales and quality assessments.
+        This function should be called after running the judge model to parse the outputs.
+        """
+        # Check if judge output file exists
+        if not self.judge_output_file.exists():
+            raise FileNotFoundError(f"Judge output file not found: {self.judge_output_file}. Please run the judge model first.")
+
+        # Load data
+        self.load_data()
+
+        # Extract raw responses
+        quality_responses = self.data['raw_responses_quality']
 
         # Process quality assessments
         consistency, logic, bias, pluralism = [], [], [], []
@@ -190,7 +216,6 @@ class JudgeRunner:
                 pluralism.append("")
 
         # Update dataframe with processed results
-        self.data["rationales"] = processed_rationales
         self.data["consistency"] = consistency
         self.data["logic"] = logic
         self.data["bias"] = bias
