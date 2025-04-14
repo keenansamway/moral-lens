@@ -1,0 +1,13 @@
+__pycache__
+.vscode/
+.venv
+.env
+.cache
+.prompt_history
+wandb
+
+# Mac
+.DS_Store
+
+testing
+data

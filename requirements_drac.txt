@@ -1,0 +1,17 @@
+# torch
+accelerate
+jupyter
+kaleido
+matplotlib
+numpy
+pandas
+plotly
+python-dotenv
+seaborn
+sentence-transformers
+transformers
+tiktoken
+blobfile
+sentencepiece
+protobuf
+
