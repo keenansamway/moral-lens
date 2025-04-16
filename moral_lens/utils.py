@@ -131,6 +131,27 @@ def parse_keyword_text(text: str, keyword: str) -> str:
     return ""
 
 
+def parse_keyword_text_(text: str, keyword: str, endword: str = None) -> str:
+    text = text.replace("*", "")  # Clean up any stray asterisks that might be in the text
+    text = text.replace("_", " ")  # Replace underscores with spaces
+    keyword = keyword.replace("_", " ")  # Replace underscores with spaces
+
+    # Ensure keyword and endword are at the beginning of a line
+    if endword is not None and endword != "":
+        keyword_match = re.search(
+            rf"(?<={keyword}:)(.*?)(?={endword}:|$)",
+            text, re.IGNORECASE | re.DOTALL
+        )
+    else:
+        keyword_match = re.search(
+            rf"(?<={keyword}:)(.*)",
+            text, re.IGNORECASE | re.DOTALL | re.MULTILINE
+        )
+    if keyword_match:
+        return keyword_match.group(1).strip()
+
+    # If no match found, return an empty string
+    return ""
 
 def parse_reasoning_and_decision(text: Optional[str]) -> Optional[Tuple[str, str]]:
     """
@@ -139,8 +160,11 @@ def parse_reasoning_and_decision(text: Optional[str]) -> Optional[Tuple[str, str
     if text is None:
         return None, None
 
-    reasoning = parse_keyword_text(text, "reasoning")
-    decision = parse_keyword_text(text, "decision")
+    # reasoning = parse_keyword_text(text, "reasoning")
+    # decision = parse_keyword_text(text, "decision")
+
+    reasoning = parse_keyword_text_(text, "reasoning", "decision")
+    decision = parse_keyword_text_(text, "decision")
     return reasoning, decision
 
 
