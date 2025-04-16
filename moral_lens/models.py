@@ -462,7 +462,6 @@ class HuggingFaceModel(BaseModel):
         """
         # Delete model and tokenizer references
         if hasattr(self, 'model'):
-            self.model.to("cpu")
             del self.model
         if hasattr(self, 'tokenizer'):
             del self.tokenizer
