@@ -119,7 +119,7 @@ class DilemmaRunner:
                 "phenomenon_category": self.choices_df['phenomenon_category'],
                 "category1": self.choices_df['category1'],
                 "category2": self.choices_df['category2'],
-                "decision_model_id": self.model_cfg.model_id,
+                "decision_model_id": self.model_cfg.save_id,
                 "decision_temperature": self.model_cfg.temperature,
                 "attempt_count": [0] * len(self.choices_df),
                 "thinking": [""] * len(self.choices_df),
