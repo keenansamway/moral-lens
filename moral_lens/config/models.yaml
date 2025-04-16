@@ -18,6 +18,22 @@ gpt-4o-2024-08-06:
   provider: openai
   release_date: 2024-08-06
 
+# GPT-4.1 models
+gpt-4.1-2025-04-14:
+  model_name: GPT-4.1
+  provider: openai
+  release_date: 2025-04-14
+
+gpt-4.1-mini-2025-04-14:
+  model_name: GPT-4.1 mini
+  provider: openai
+  release_date: 2025-04-14
+
+gpt-4.1-nano-2025-04-14:
+  model_name: GPT-4.1 nano
+  provider: openai
+  release_date: 2025-04-14
+
 # oX models
 o1-mini-2024-09-12:
   model_name: o1-mini
