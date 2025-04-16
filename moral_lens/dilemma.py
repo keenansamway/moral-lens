@@ -90,7 +90,7 @@ class DilemmaRunner:
 
 
     async def run(
-        self, overwrite: bool = False
+        self, overwrite: bool = False, batch_size: int = 1
     ) -> None:
         # Check if the output file exists
         file_exists = self.output_file.exists()
@@ -174,7 +174,8 @@ class DilemmaRunner:
         model = ModelFactory.get_model(model=self.model_cfg)
 
         if self.model_cfg.provider == Provider.huggingface:
-            responses = model.ask_batch_with_retry(prompts, validation_fn=is_valid_response)
+            responses = model.ask_batch_with_retry(prompts, validation_fn=is_valid_response, batch_size=batch_size)
+            model.unload()
         else:
             responses = await model.ask_async_with_retry(prompts, validation_fn=is_valid_response)
 

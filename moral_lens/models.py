@@ -104,73 +104,6 @@ class BaseModel(ABC):
         """
         pass
 
-    def ask_batch(
-        self,
-        prompts: List[Prompt],
-        validation_fn: Optional[Any] = None,
-    ) -> List[LLMResponse]:
-        """
-        Synchronous method to send multiple prompts and receive a list of responses.
-        """
-        # Simple batch processing without retries
-        responses = [self.ask(prompt) for prompt in tqdm(prompts, desc="Processing prompts", ascii=True)]
-        return responses
-
-    def ask_batch_with_retry(
-        self,
-        prompts: List[Prompt],
-        validation_fn: Optional[Any] = None
-    ) -> List[LLMResponse]:
-        """
-        Synchronous method to send multiple prompts with retry logic.
-        Args:
-            prompts (List[Prompt]): List of prompts to send.
-            validation_fn (Optional[Any]): Custom validation function to validate responses.
-
-        Returns:
-            List[LLMResponse]: A list of valid LLM responses for the provided prompts.
-        """
-        results = [None] * len(prompts)
-        attempts = 0
-        pbar = tqdm(total=len(prompts), desc="Valid responses received", ascii=True)
-
-        # Continue processing until all prompts are handled or max retries are exhausted
-        while attempts < MAX_RETRIES and sum(1 for x in results if x is not None) < len(prompts):
-            # Process each prompt that hasn't been successfully handled yet
-            for i, result in enumerate(results):
-                if result is None:
-                    try:
-                        response = self.ask(prompts[i])
-                        if validation_fn and not validation_fn(response):
-                            continue
-
-                        response.attempts = attempts + 1
-                        results[i] = response
-                        pbar.update(1)
-                    except Exception:
-                        # If there's an exception, we'll retry in the next attempt
-                        pass
-
-            attempts += 1
-
-            if self.temperature == 0.0:
-                # If the temperature is 0, we can break early
-                break
-
-        # Fill in any remaining None entries with empty responses
-        for i, res in enumerate(results):
-            if res is None:
-                results[i] = LLMResponse(
-                    model_id=self.model_id,
-                    completion="",
-                    content="",
-                    attempts=MAX_RETRIES,
-                )
-
-        pbar.close()
-        return results
-
-
     async def ask_async(
         self,
         prompt: Prompt,
@@ -594,6 +527,100 @@ class HuggingFaceModel(BaseModel):
         )
 
         return response_obj
+
+
+    def ask_batch(self, prompts: List[Prompt]) -> List[LLMResponse]:
+        messages_list = [p.openai_format() for p in prompts]
+        inputs = self.tokenizer.apply_chat_template(
+            messages_list,
+            return_tensors="pt",
+            padding=True,
+            add_generation_prompt=True,
+            return_dict=False,
+            tokenize=True
+        ).to(self.model.device)
+
+        if self.temperature == 0.0:
+            outputs = self.model.generate(
+                inputs,
+                max_new_tokens=self.max_completion_tokens,
+                do_sample=False,
+                temperature=None,
+                top_p=None,
+                top_k=None,
+            )
+        else:
+            outputs = self.model.generate(
+                inputs,
+                max_new_tokens=self.max_completion_tokens,
+                do_sample=True,
+                temperature=self.temperature,
+            )
+
+        decoded = self.tokenizer.batch_decode(
+            outputs[:, inputs.shape[1]:],
+            skip_special_tokens=True,
+        )
+
+        return [
+            LLMResponse(
+                model_id=self.model_id,
+                completion=decoded[i],
+                content=decoded[i].strip(),
+                thinking_content="",
+                two_choices=list(p.messages[-1].content.split('"')[1::2]),
+            )
+            for i, p in enumerate(prompts)
+        ]
+
+
+    def ask_batch_with_retry(
+        self,
+        prompts: List[Prompt],
+        validation_fn: Optional[Any] = None,
+        batch_size: int = 1
+    ) -> List[LLMResponse]:
+        results = [None] * len(prompts)
+        attempts = 0
+        pbar = tqdm(total=len(prompts), desc="Valid responses received", ascii=True)
+
+        while attempts < MAX_RETRIES and sum(1 for x in results if x is not None) < len(prompts):
+            to_retry_indices = [i for i, r in enumerate(results) if r is None]
+
+            # Process prompts in batches
+            for i in range(0, len(to_retry_indices), batch_size):
+                batch_indices = to_retry_indices[i:i + batch_size]
+                batch_prompts = [prompts[idx] for idx in batch_indices]
+
+                try:
+                    batch_responses = self.ask_batch(batch_prompts)
+                except Exception:
+                    continue
+
+                for rel_idx, abs_idx in enumerate(batch_indices):
+                    response = batch_responses[rel_idx]
+                    if validation_fn and not validation_fn(response):
+                        continue
+                    response.attempts = attempts + 1
+                    results[abs_idx] = response
+                    pbar.update(1)
+
+            attempts += 1
+            if self.temperature == 0.0:
+                break
+
+        # Fill in any missing results
+        for i, res in enumerate(results):
+            if res is None:
+                results[i] = LLMResponse(
+                    model_id=self.model_id,
+                    completion="",
+                    content="",
+                    attempts=MAX_RETRIES,
+                )
+
+        pbar.close()
+        return results
 
 
 class ModelFactory:
