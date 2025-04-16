@@ -674,14 +674,14 @@ def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml"
     if model_data is None:
         # Fallback looking for model name as the last part of a path
         for key, value in yaml_obj.items():
-            if key.split("/")[-1] == model_id:
+            if key.split("/")[-1] == model_id.split("/")[-1]: # e.g., `google/gemma-3-27b-it` vs `path/to/gemma-3-27b-it`
                 model_data = value
                 break
     if model_data is None:
         raise ValueError(f"Model '{model_id}' not found in the YAML configuration.")
 
-    save_id = model_id.split("/")[-1]  # e.g., `google/gemma-3-27b-it` to `gemma-3-27b-it`
-    model_id = model_id.split(":")[0]  # e.g., `o3-mini-2025-01-31:high` to `o3-mini-2025-01-31`
+    save_id = model_id.split("/")[-1]  # e.g., `google/gemma-3-27b-it` or `path/to/gemma-3-27b-it` --> `gemma-3-27b-it`
+    model_id = model_id.split(":")[0]  # e.g., `o3-mini-2025-01-31:high` --> `o3-mini-2025-01-31`
 
     cfg = ModelConfig(
         model_id=model_id,
