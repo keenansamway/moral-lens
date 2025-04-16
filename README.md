@@ -7,26 +7,24 @@
 
 ![Figure 1](assets/figure1.png)
 
-## Installation (local)
+## Installation
 Install locally for API usage and data evaluation.
 ```bash
 git clone https://github.com/keenansamway/moral-lens.git
 cd moral-lens
 ```
 
-Run the setup file.
+Run the setup script to create a virtual environment and install dependencies.
 ```bash
+# Install locally for general use.
 bash setup.sh
+
+# OR Install on DRAC for HuggingFace model inference (no API packages).
+# Note that this can take a few minutes to run.
+bash setup_DRAC.sh
 ```
 
 Activate the virtual environment.
 ```bash
 source .venv/bin/activate
-```
-
-
-## Installation (Compute Canada/DRAC)
-Install on DRAC for HuggingFace model inference.
-```bash
-bash setup_DRAC.sh
 ```
