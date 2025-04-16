@@ -107,25 +107,17 @@ class DilemmaRunner:
 
             rows_to_process = empty_rows
 
-        elif file_exists and overwrite:
-            # Load existing data and process all rows
-            self.load_data()
-            rows_to_process = list(range(len(self.data)))
-
         else:
-            # File doesn't exist, create from scratch
-            two_choices = self.choices_df['two_choices'].str.split('; ').to_list()
-
             # Initialize the dataframe with all rows
             self.data = pd.DataFrame({
                 "id": self.choices_df['id'],
-                "system_prompt": [self.system_prompt_template] * len(self.choices_df),
+                "system_prompt": [""] * len(self.choices_df),
                 "dilemma_prompt": [""] * len(self.choices_df),
                 "two_choices": self.choices_df['two_choices'],
-                "two_choices_set": self.choices_df['two_choices_unordered_set'].to_list(),
-                "phenomenon_category": self.choices_df['phenomenon_category'].to_list(),
-                "category1": self.choices_df['category1'].to_list(),
-                "category2": self.choices_df['category2'].to_list(),
+                "two_choices_set": self.choices_df['two_choices_unordered_set'],
+                "phenomenon_category": self.choices_df['phenomenon_category'],
+                "category1": self.choices_df['category1'],
+                "category2": self.choices_df['category2'],
                 "decision_model_id": self.model_cfg.model_id,
                 "decision_temperature": self.model_cfg.temperature,
                 "attempt_count": [0] * len(self.choices_df),
@@ -135,28 +127,24 @@ class DilemmaRunner:
 
             rows_to_process = list(range(len(self.data)))
 
+        two_choices = self.choices_df['two_choices'].str.split('; ').to_list()
+
         # Prepare prompts for rows to process
         prompts = []
         processed_indices = []
 
         for idx in rows_to_process:
-            if file_exists:
-                # Use existing prompts from loaded data
-                system_prompt = self.data.loc[idx, 'system_prompt']
-                dilemma_prompt = self.data.loc[idx, 'dilemma_prompt']
-            else:
-                # Create new prompts
-                choice1, choice2 = two_choices[idx]
-                if not isinstance(choice1, str) or not isinstance(choice2, str):
-                    print(f"Skipping invalid choices at index {idx}: {two_choices[idx]}")
-                    continue
+            choice1, choice2 = two_choices[idx]
+            if not isinstance(choice1, str) or not isinstance(choice2, str):
+                print(f"Skipping invalid choices at index {idx}: {two_choices[idx]}")
+                continue
 
-                system_prompt = self.system_prompt_template
-                dilemma_prompt = self.dilemma_template.format(choice1=choice1, choice2=choice2)
+            system_prompt = self.system_prompt_template
+            dilemma_prompt = self.dilemma_template.format(choice1=choice1, choice2=choice2)
 
-                # Update the dataframe with the prompts
-                self.data.loc[idx, 'system_prompt'] = system_prompt
-                self.data.loc[idx, 'dilemma_prompt'] = dilemma_prompt
+            # Update the dataframe with the prompts
+            self.data.loc[idx, 'system_prompt'] = system_prompt
+            self.data.loc[idx, 'dilemma_prompt'] = dilemma_prompt
 
             messages = [
                 ChatMessage(role=MessageRole.system, content=system_prompt),
