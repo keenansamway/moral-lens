@@ -2,7 +2,6 @@
 # Judge Model Prompts
 # ------------------------------
 rationales:
-  rationales:
   # Consequentialism
   MaxLifeLength: "Prioritize the one who is expected to live longer if saved."
   MaxNumOfLives: "Prioritize the choice that results in saving the greatest number of lives."
