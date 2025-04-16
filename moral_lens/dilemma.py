@@ -51,6 +51,7 @@ class DilemmaRunner:
         results_dir: str = "data/results",
         choices_filename: str = "choices.csv",
         override_decision_temperature: Optional[float] = None,
+        batch_size: int = 1,
     ):
         # Setup the path configuration
         path_config = PathConfig(results_dir=results_dir)
@@ -87,10 +88,10 @@ class DilemmaRunner:
         self.system_prompt_template = system_prompts['detailed']
 
         self.data: Optional[pd.DataFrame] = None
-
+        self.batch_size = batch_size
 
     async def run(
-        self, overwrite: bool = False, batch_size: int = 1
+        self, overwrite: bool = False
     ) -> None:
         # Check if the output file exists
         file_exists = self.output_file.exists()
@@ -162,7 +163,7 @@ class DilemmaRunner:
         model = ModelFactory.get_model(model=self.model_cfg)
 
         if self.model_cfg.provider == Provider.huggingface:
-            responses = model.ask_batch_with_retry(prompts, validation_fn=is_valid_response, batch_size=batch_size)
+            responses = model.ask_batch_with_retry(prompts, validation_fn=is_valid_response, batch_size=self.batch_size)
             model.unload()
         else:
             responses = await model.ask_async_with_retry(prompts, validation_fn=is_valid_response)
