@@ -70,5 +70,5 @@ python scripts/model_runner.py \
     --decision_run_name $run_name \
     --results_dir $SLURM_TMPDIR/workspace/data \
     --temperature $temperature \
-    --batch_size $batch_size \
+    --batch_size $batch_size
 echo "✅ Finished running model_runner.py"

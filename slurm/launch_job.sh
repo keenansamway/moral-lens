@@ -5,7 +5,7 @@
 
 #SBATCH --time=0-3:00:00
 #SBATCH --gpus-per-node=2
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
 
 # Override echo to include timestamp
