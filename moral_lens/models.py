@@ -45,7 +45,7 @@ print(APIKEYS.summary())  # Ensure API keys are loaded and print summary
 
 SEED = 42
 
-MAX_RETRIES = 5
+MAX_RETRIES = 10
 
 RATE_LIMITS = {
     "openai":       RateLimitConfig(concurrency=100, max_rate=50, period=1),
@@ -183,7 +183,7 @@ class BaseModel(ABC):
                     model_id=self.model_id,
                     completion="",
                     content="",
-                    attempts=MAX_RETRIES,
+                    attempts=MAX_RETRIES if self.temperature > 0 else 1,
                 )
 
         pbar.close()
