@@ -81,6 +81,7 @@ source $SLURM_TMPDIR/workspace/.venv/bin/activate
 cd $SLURM_TMPDIR/workspace
 python scripts/model_runner.py --model_id $model_path --decision_run_name "s1" --results_dir $results_dir --temperature 0.7 --batch_size 32
 ```
+(Use `srun --jobid <job_id> --pty nvidia-smi` to check the GPU usage.)
 
 6. After the script finishes, copy the results back to your home directory:
 ```bash
