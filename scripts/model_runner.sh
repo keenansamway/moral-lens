@@ -47,10 +47,10 @@ cleanup() {
     echo "🧹 Job is finishing. Start clearning up..."
     if [ -d "$SLURM_TMPDIR/workspace/data" ]; then
         echo "📍 Results found in $SLURM_TMPDIR/workspace/data"
-        echo "📦 Copying results to $source_repo/data/$SLURM_JOB_ID..."
+        echo "📦 Copying results to $source_repo/data/${SLURM_JOB_ID}_${SLURM_JOB_NAME}..."
         mkdir -p $source_repo/data
-        cp -r $SLURM_TMPDIR/workspace/data $source_repo/data/$SLURM_JOB_ID
-        echo "✅ Copied results to $source_repo/data/$SLURM_JOB_ID"
+        cp -r $SLURM_TMPDIR/workspace/data/ "$source_repo/data/${SLURM_JOB_ID}_${SLURM_JOB_NAME}"
+        echo "✅ Copied results to $source_repo/data/${SLURM_JOB_ID}_${SLURM_JOB_NAME}"
     else
         echo "❌ No results found in $SLURM_TMPDIR/workspace/data"
     fi

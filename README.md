@@ -73,7 +73,7 @@ model_path=$SLURM_TMPDIR/models/$save_id
 4. Load the necessary modules and activate the virtual environment:
 ```bash
 module load python/3.11 cuda cudnn
-source $SLURM_TMPDIR/workspace/.venv/bin/activate
+source $source_repo/.venv/bin/activate
 ```
 
 5. Run the model inference script:
@@ -86,7 +86,7 @@ python scripts/model_runner.py --model_id $model_path --decision_run_name "s1" -
 6. After the script finishes, copy the results back to your home directory:
 ```bash
 mkdir -p $source_repo/data
-cp -r $SLURM_TMPDIR/workspace/data/ $source_repo/data/$SLURM_JOB_ID/
+cp -r $SLURM_TMPDIR/workspace/data/ "$source_repo/data/${SLURM_JOB_ID}_${SLURM_JOB_NAME}"
 ```
 
 After dialing in the necessary resources, we can submit an `sbatch` job.
