@@ -26,8 +26,8 @@ class ApiConfig:
 
 @dataclass
 class RateLimitConfig:
-    concurrency: int = 10
-    max_rate: int = 5
+    num_concurrent: int = 1
+    max_rate: int = 1
     period: int = 1
 
 @dataclass
@@ -38,6 +38,7 @@ class ModelConfig:
     model_name: str
     provider: str
     release_date: datetime.date
+    developer: str
 
     reasoning_model: bool
     accepts_system_message: bool
@@ -45,6 +46,10 @@ class ModelConfig:
     max_completion_tokens: int
     provider_routing: str
     reasoning_effort: str
+
+    num_concurrent: int = None
+    max_rate: int = None
+    time_period: int = None
 
     # function to convert the model configuration to a dictionary for kwargs
     def to_dict(self) -> Dict[str, Optional[Any]]:

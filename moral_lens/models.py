@@ -48,10 +48,10 @@ SEED = 42
 MAX_RETRIES = 10
 
 RATE_LIMITS = {
-    "openai":       RateLimitConfig(concurrency=100, max_rate=50, period=1),
-    "anthropic":    RateLimitConfig(concurrency=10, max_rate=50, period=60),
-    "gemini":       RateLimitConfig(concurrency=500, max_rate=500, period=60),
-    "openrouter":   RateLimitConfig(concurrency=10, max_rate=5, period=1),
+    "openai":       RateLimitConfig(num_concurrent=50, max_rate=20, period=1),
+    "anthropic":    RateLimitConfig(num_concurrent=10, max_rate=50, period=60),
+    "gemini":       RateLimitConfig(num_concurrent=100, max_rate=50, period=1),
+    "openrouter":   RateLimitConfig(num_concurrent=20, max_rate=10, period=1),
     "huggingface":  None, # HuggingFace does not require rate limiting
 }
 
@@ -77,7 +77,7 @@ class BaseModel(ABC):
         accepts_system_message: bool = True,
         provider_routing: Optional[List[str]] = None,
         reasoning_effort: Optional[str] = None,
-        rate_limits: Optional[RateLimitConfig] = None,
+        rate_limits: RateLimitConfig = RateLimitConfig(1, 1, 1),
         **kwargs,
     ):
         self.model_id = model_id
@@ -88,10 +88,11 @@ class BaseModel(ABC):
         self.provider_routing = provider_routing
         self.reasoning_effort = reasoning_effort
 
-        if rate_limits:
-            self.concurrency_limit = rate_limits.concurrency
-            self.max_rate = rate_limits.max_rate
-            self.time_period = rate_limits.period
+        # Default rate limits
+        self.num_concurrent = rate_limits.num_concurrent
+        self.max_rate = rate_limits.max_rate
+        self.time_period = rate_limits.period
+
 
 
     @abstractmethod
@@ -132,13 +133,13 @@ class BaseModel(ABC):
         attempts = 0
         pbar = tqdm(total=len(prompts), desc="Valid responses received", ascii=True)
 
-        if self.max_rate > self.concurrency_limit:
-            self.max_rate = self.concurrency_limit
+        # if self.max_rate > self.num_concurrent:
+        #     self.max_rate = self.num_concurrent
 
         # Ensure there are max concurency_limit tasks running at any time
-        sem = asyncio.Semaphore(self.concurrency_limit)
+        sem = asyncio.Semaphore(self.num_concurrent)
 
-        # Ensure there are max concurrency_limit requests in any 1 second time period
+        # Ensure there are max num_concurrent requests in any 1 second time period
         limiter = AsyncLimiter(max_rate=self.max_rate, time_period=self.time_period)
 
         async def process_with_semaphore(
@@ -646,7 +647,14 @@ class ModelFactory:
         provider = model.provider.lower()
         model_kwargs = model.to_dict()
 
-        rate_limits = RATE_LIMITS.get(provider)
+        rate_limits: RateLimitConfig = RATE_LIMITS.get(provider)
+
+        if model_kwargs.get('num_concurrent', None):
+            rate_limits.num_concurrent = model_kwargs['num_concurrent']
+        if model_kwargs.get('max_rate', None):
+            rate_limits.max_rate = model_kwargs['max_rate']
+        if model_kwargs.get('time_period', None):
+            rate_limits.period = model_kwargs['time_period']
 
         if provider == "openai":
             return OpenAIModel(**model_kwargs, rate_limits=rate_limits)
@@ -661,7 +669,7 @@ class ModelFactory:
             return OpenRouterModel(**model_kwargs, rate_limits=rate_limits)
 
         elif provider == "huggingface":
-            return HuggingFaceModel(**model_kwargs, rate_limits=rate_limits)
+            return HuggingFaceModel(**model_kwargs)
         else:
             raise ValueError(
                 "Provider must be one of: openai, anthropic, gemini, openrouter, huggingface."
@@ -715,12 +723,17 @@ def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml"
         model_name=model_data['model_name'],
         provider=model_data['provider'],
         release_date=model_data['release_date'],
+        developer=model_data['developer'],
 
         reasoning_model=model_data.get('reasoning_model', MODEL_DEFAULTS['reasoning_model']),
         accepts_system_message=model_data.get('accepts_system_message', MODEL_DEFAULTS['accepts_system_message']),
         temperature=model_data.get('temperature', MODEL_DEFAULTS['temperature']),
         max_completion_tokens=model_data.get('max_completion_tokens', MODEL_DEFAULTS['max_completion_tokens']),
         provider_routing=model_data.get('provider_routing', None),
-        reasoning_effort=model_data.get('reasoning_effort', None)
+        reasoning_effort=model_data.get('reasoning_effort', None),
+
+        num_concurrent=model_data.get('num_concurrent', None),
+        max_rate=model_data.get('max_rate', None),
+        time_period=model_data.get('time_period', None),
     )
     return cfg
