@@ -49,8 +49,6 @@ class JudgeRunner:
             run_name=judge_run_name,
             dataset_name=dataset_name,
         )
-        if self.judge_output_file.exists():
-            print(f"Output file already exists at {self.judge_output_file}. Use `overwrite=True` in .run() to overwrite it.")
 
         # Load the judge template and system prompts
         judge_template_path = path_config.get_file("prompts_judge.yaml" if not judge_cot else "prompts_judge_cot.yaml")
@@ -68,23 +66,27 @@ class JudgeRunner:
 
         self.data: Optional[pd.DataFrame] = None
 
-    async def run(
-        self, overwrite: bool = False, skip_quality: bool = True
-    ) -> None:
+    async def run_rationales(self, overwrite: bool = False) -> None:
+        """Run the judge model to evaluate rationales for the decisions."""
         if not self.response_output_file.exists():
             raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
 
-        if self.judge_output_file.exists() and not overwrite:
-            print(f"Output file already exists at {self.judge_output_file}. Use `overwrite=True` to overwrite it.")
+        if self.judge_output_file.exists() and "raw_responses_rationales" in pd.read_csv(self.judge_output_file, keep_default_na=False).columns and not overwrite:
+            print(f"Rationales classification already exists in {self.judge_output_file}. Use `overwrite=True` to overwrite them.")
             return
 
         # Load data
         self.load_data()
 
         rationales_prompts = []
-        quality_prompts = []
+        skipped_indices = []
 
-        for _, row in self.data.iterrows():
+        for idx, row in self.data.iterrows():
+            # Skip rows with empty reasoning
+            if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
+                skipped_indices.append(idx)
+                continue
+
             scenario = re.search(
                 r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
                 row['dilemma_prompt'], re.DOTALL
@@ -94,14 +96,66 @@ class JudgeRunner:
 
             rationale_str = "\n".join([f'- "{k}": {v}' for k, v in self.rationales.items()])
             rationale_prompt = self.rational_classification_template.format(
-                scenario=scenario, reasoning=reasoning, decision=decision, rationales=rationale_str)
-            quality_prompt = self.quality_evaluation_template.format(
-                scenario=scenario, reasoning=reasoning, decision=decision)
+            scenario=scenario, reasoning=reasoning, decision=decision, rationales=rationale_str)
 
             rationales_prompts.append(Prompt([
                 ChatMessage(role=MessageRole.system, content=self.system_prompts['rationales']),
                 ChatMessage(role=MessageRole.user, content=rationale_prompt)
             ]))
+
+        model = ModelFactory.get_model(model=self.judge_model_cfg)
+        rationales_responses = await model.ask_async_with_retry(rationales_prompts, validation_fn=self.validation_fn)
+
+        # Create a list with empty strings for skipped rows
+        all_responses = []
+        response_idx = 0
+
+        for idx in range(len(self.data)):
+            if idx in skipped_indices:
+                all_responses.append("")
+            else:
+                all_responses.append(rationales_responses[response_idx].content)
+                response_idx += 1
+
+        self.data["raw_responses_rationales"] = all_responses
+
+        # Save the raw responses to the judge output file
+        os.makedirs(self.judge_output_file.parent, exist_ok=True)
+        self.data.to_csv(self.judge_output_file, index=False)
+        print(f"[INFO] Judge rationales output saved to {self.judge_output_file}")
+
+        self.process_rationales()
+
+    async def run_quality(self, overwrite: bool = False) -> None:
+        """Run the judge model to evaluate quality of the decisions."""
+        if not self.response_output_file.exists():
+            raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
+
+        if self.judge_output_file.exists() and "raw_responses_quality" in pd.read_csv(self.judge_output_file, keep_default_na=False).columns and not overwrite:
+            print(f"Quality evaluation outputs already exist in {self.judge_output_file}. Use `overwrite=True` to overwrite them.")
+            return
+
+        # Load data
+        self.load_data()
+
+        quality_prompts = []
+        skipped_indices = []
+
+        for idx, row in self.data.iterrows():
+            # Skip rows with empty reasoning
+            if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
+                skipped_indices.append(idx)
+                continue
+
+            scenario = re.search(
+                r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
+                row['dilemma_prompt'], re.DOTALL
+            ).group(1).strip()
+            reasoning = row['reasoning']
+            decision = row['decision']
+
+            quality_prompt = self.quality_evaluation_template.format(
+            scenario=scenario, reasoning=reasoning, decision=decision)
 
             quality_prompts.append(Prompt([
                 ChatMessage(role=MessageRole.system, content=self.system_prompts['quality']),
@@ -109,22 +163,33 @@ class JudgeRunner:
             ]))
 
         model = ModelFactory.get_model(model=self.judge_model_cfg)
-        rationales_responses = await model.ask_async_with_retry(rationales_prompts, validation_fn=self.validation_fn)
-        if not skip_quality:
-            quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
+        quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
 
-        self.data["raw_responses_rationales"] = [r.content for r in rationales_responses]
-        if not skip_quality:
-            self.data["raw_responses_quality"] = [r.content for r in quality_responses]
+        # Create a list with empty strings for skipped rows
+        all_responses = []
+        response_idx = 0
+
+        for idx in range(len(self.data)):
+            if idx in skipped_indices:
+                all_responses.append("")
+            else:
+                all_responses.append(quality_responses[response_idx].content)
+                response_idx += 1
+
+        self.data["raw_responses_quality"] = all_responses
 
         # Save the raw responses to the judge output file
         os.makedirs(self.judge_output_file.parent, exist_ok=True)
         self.data.to_csv(self.judge_output_file, index=False)
-        print(f"[INFO] Judge output saved to {self.judge_output_file}")
+        print(f"[INFO] Judge quality output saved to {self.judge_output_file}")
 
-        self.process_rationales()
+        self.process_quality()
+
+    async def run(self, overwrite: bool = False, skip_quality: bool = True) -> None:
+        """Run both rationales and quality evaluations based on the skip_quality parameter."""
+        await self.run_rationales(overwrite=overwrite)
         if not skip_quality:
-             self.process_quality()
+            await self.run_quality(overwrite=overwrite)
 
     def process_rationales(self) -> None:
         """
@@ -140,14 +205,19 @@ class JudgeRunner:
 
         # Extract raw responses
         rationales_responses = self.data['raw_responses_rationales']
+        dilemma_responses = self.data['raw_response']
 
         # Process rationales
         processed_rationales = []
-        for response in rationales_responses:
+        for i, response in enumerate(rationales_responses):
             try:
                 # Skip empty or None responses
-                if not response or pd.isna(response):
-                    processed_rationales.append("")
+                if not response or pd.isna(response) or response.strip() == "":
+                    processed_rationales.append("Refusal")
+                    continue
+
+                if not dilemma_responses[i] or dilemma_responses[i] == "":
+                    processed_rationales.append("Refusal")
                     continue
 
                 rationale = parse_keyword_text(response, "rationales")
@@ -191,7 +261,7 @@ class JudgeRunner:
         for i, response in enumerate(quality_responses):
             try:
                 # Skip empty or None responses
-                if not response or pd.isna(response):
+                if not response or pd.isna(response) or response.strip() == "":
                     consistency.append("")
                     logic.append("")
                     bias.append("")
@@ -233,6 +303,14 @@ class JudgeRunner:
             self.data = pd.read_csv(self.response_output_file, keep_default_na=False)
         else:
             raise FileNotFoundError(f"Neither judge output file nor response output file found.")
+
+    def save_data(self):
+        if self.data is not None:
+            os.makedirs(self.judge_output_file.parent, exist_ok=True)
+            self.data.to_csv(self.judge_output_file, index=False)
+            print(f"[INFO] Data saved to {self.judge_output_file}")
+        else:
+            raise ValueError("No data to save. Please run the judge model first.")
 
 
 if __name__ == "__main__":
