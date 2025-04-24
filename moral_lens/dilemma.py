@@ -183,7 +183,7 @@ class DilemmaRunner:
         # Sort the dataframe by ID and save
         self.data = self.data.sort_values(by='id')
         os.makedirs(self.output_file.parent, exist_ok=True)
-        self.data.to_csv(self.output_file, index=False)
+        self.save_data()
         print(f"[INFO] Responses {'updated' if file_exists else 'saved'} to {self.output_file}.")
 
         self.process()
@@ -252,7 +252,7 @@ class DilemmaRunner:
 
         # Save the updated dataframe
         os.makedirs(self.output_file.parent, exist_ok=True)
-        self.data.to_csv(self.output_file, index=False)
+        self.save_data()
         print(f"[INFO] Processed responses saved to {self.output_file}.")
 
 
@@ -260,6 +260,14 @@ class DilemmaRunner:
         if not self.output_file.exists():
             print(f"[INFO] Response output file not found: {self.output_file}")
         self.data = pd.read_csv(self.output_file, keep_default_na=False)
+
+    def save_data(self):
+        if self.data is not None:
+            os.makedirs(self.output_file.parent, exist_ok=True)
+            self.data.to_csv(self.output_file, index=False)
+            print(f"[INFO] Data saved to {self.output_file}")
+        else:
+            print("[INFO] No data to save. Please run the dilemma model first.")
 
 
 def put_submodule_in_path(submodule_name: str) -> None:
