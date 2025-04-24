@@ -68,6 +68,15 @@ def get_goup_name_variations(value: str) -> List[str]:
         # Add 'the' prefix
         variations.append(f"the {rest}")
 
+        # Add variations with 'homeless individuals' in addition to 'homeless people'
+        vars_to_add = []
+        for var in variations:
+            if 'homeless people' in value:
+                vars_to_add.append(var.replace('people', 'individuals'))
+            elif 'homeless person' in var:
+                vars_to_add.append(var.replace('person', 'individual'))
+        variations.extend(vars_to_add)
+
         # Add the rest without a prefix
         # variations.append(f"{rest}")  # breaks when testing for 'men' in 'women' & 'man' in 'woman'
 
