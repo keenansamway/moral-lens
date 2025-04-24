@@ -30,6 +30,7 @@ def is_valid_response(response_obj: LLMResponse) -> bool:
         "i am sorry",
         "i cant assist",
         "i cant help",
+        "as an ai language model, i cannot"
     ]
     if any(phrase in content for phrase in refusal_phrases):
         return False
@@ -38,6 +39,8 @@ def is_valid_response(response_obj: LLMResponse) -> bool:
         reasoning, decision = parse_reasoning_and_decision(content)
         decision = fuzzy_match_decisions(decision, two_choices)
         if len(decision) == 0:
+            return False
+        if len(reasoning) == 0:
             return False
 
     return True
@@ -265,7 +268,7 @@ class DilemmaRunner:
         if self.data is not None:
             os.makedirs(self.output_file.parent, exist_ok=True)
             self.data.to_csv(self.output_file, index=False)
-            print(f"[INFO] Data saved to {self.output_file}")
+            # print(f"[INFO] Data saved to {self.output_file}")
         else:
             print("[INFO] No data to save. Please run the dilemma model first.")
 
