@@ -71,58 +71,87 @@ class JudgeRunner:
         if not self.response_output_file.exists():
             raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
 
-        if self.judge_output_file.exists() and "raw_responses_rationales" in pd.read_csv(self.judge_output_file, keep_default_na=False).columns and not overwrite:
-            print(f"Rationales classification already exists in {self.judge_output_file}. Use `overwrite=True` to overwrite them.")
-            return
-
-        # Load data
+        # Load decision data
         self.load_data()
 
-        rationales_prompts = []
-        skipped_indices = []
+        file_exists = self.judge_output_file.exists()
 
-        for idx, row in self.data.iterrows():
+        if file_exists and not overwrite:
+
+            # Check if the necessary column exists
+            if "raw_responses_rationales" not in self.data.columns:
+                # Initialize the column if it doesn't exist
+                self.data["raw_responses_rationales"] = [""] * len(self.data)
+
+            # Find rows with empty rationale responses
+            # empty_rows = self.data[self.data['raw_responses_rationales'].str.len() == 0].index.to_list()
+            empty_rows = self.data[self.data['rationales'].str.len() == 0].index.to_list()
+            if not empty_rows:
+                print(f"No empty rationale responses found in {self.judge_output_file}. Use `overwrite=True` to rerun all.")
+                return
+
+            rows_to_process = empty_rows
+        else:
+            # First time running or overwrite=True, process all rows
+            self.data["raw_responses_rationales"] = [""] * len(self.data)
+            self.data["rationales"] = [""] * len(self.data)
+            rows_to_process = list(range(len(self.data)))
+
+        # Prepare prompts for rows to process
+        rationales_prompts = []
+        processed_indices = []
+
+        for idx in rows_to_process:
+            row = self.data.iloc[idx]
+
             # Skip rows with empty reasoning
             if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
-                skipped_indices.append(idx)
                 continue
 
             scenario = re.search(
                 r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
                 row['dilemma_prompt'], re.DOTALL
             ).group(1).strip()
+
             reasoning = row['reasoning']
             decision = row['decision']
-
             rationale_str = "\n".join([f'- "{k}": {v}' for k, v in self.rationales.items()])
+
             rationale_prompt = self.rational_classification_template.format(
-            scenario=scenario, reasoning=reasoning, decision=decision, rationales=rationale_str)
+                scenario=scenario, reasoning=reasoning, decision=decision, rationales=rationale_str)
 
             rationales_prompts.append(Prompt([
                 ChatMessage(role=MessageRole.system, content=self.system_prompts['rationales']),
                 ChatMessage(role=MessageRole.user, content=rationale_prompt)
             ]))
 
+            processed_indices.append(idx)
+
+        if not rationales_prompts:
+            print("No prompts to process.")
+            return
+
+        # Get model and process prompts
         model = ModelFactory.get_model(model=self.judge_model_cfg)
         rationales_responses = await model.ask_async_with_retry(rationales_prompts, validation_fn=self.validation_fn)
 
-        # Create a list with empty strings for skipped rows
-        all_responses = []
-        response_idx = 0
+        # Update the dataframe with responses
+        for i, response in enumerate(rationales_responses):
+            idx = processed_indices[i]
+            content = response.content if response else ""
 
-        for idx in range(len(self.data)):
-            if idx in skipped_indices:
-                all_responses.append("")
-            else:
-                all_responses.append(rationales_responses[response_idx].content)
-                response_idx += 1
+            # Update rows
+            self.data.loc[idx, 'raw_responses_rationales'] = content
 
-        self.data["raw_responses_rationales"] = all_responses
+            if content == "":
+                self.data.loc[idx, 'rationales'] = ""
 
-        # Save the raw responses to the judge output file
+        # Save the updated dataframe
         os.makedirs(self.judge_output_file.parent, exist_ok=True)
-        self.data.to_csv(self.judge_output_file, index=False)
-        print(f"[INFO] Judge rationales output saved to {self.judge_output_file}")
+        self.save_data()
+
+        action = "updated" if file_exists and not overwrite else "saved"
+        print(f"[INFO] Judge rationales output {action} to {self.judge_output_file}")
 
         self.process_rationales()
 
@@ -131,57 +160,86 @@ class JudgeRunner:
         if not self.response_output_file.exists():
             raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
 
-        if self.judge_output_file.exists() and "raw_responses_quality" in pd.read_csv(self.judge_output_file, keep_default_na=False).columns and not overwrite:
-            print(f"Quality evaluation outputs already exist in {self.judge_output_file}. Use `overwrite=True` to overwrite them.")
-            return
-
-        # Load data
+        # Load decision data
         self.load_data()
 
-        quality_prompts = []
-        skipped_indices = []
+        file_exists = self.judge_output_file.exists()
 
-        for idx, row in self.data.iterrows():
+        if file_exists and not overwrite:
+            # Load existing quality data
+            judge_data = pd.read_csv(self.judge_output_file, keep_default_na=False)
+
+            # Check if the necessary column exists
+            if "raw_responses_quality" not in judge_data.columns:
+                # Initialize the column if it doesn't exist
+                judge_data["raw_responses_quality"] = [""] * len(judge_data)
+
+            # Update our dataframe with the existing judge data
+            self.data = judge_data
+
+            # Find rows with empty quality responses
+            empty_rows = self.data[self.data['raw_responses_quality'].str.len() == 0].index.to_list()
+            if not empty_rows:
+                print(f"No empty quality responses found in {self.judge_output_file}. Use `overwrite=True` to rerun all.")
+                return
+
+            rows_to_process = empty_rows
+        else:
+            # First time running or overwrite=True, process all rows
+            self.data["raw_responses_quality"] = [""] * len(self.data)
+            rows_to_process = list(range(len(self.data)))
+
+        # Prepare prompts for rows to process
+        quality_prompts = []
+        processed_indices = []
+
+        for idx in rows_to_process:
+            row = self.data.iloc[idx]
+
             # Skip rows with empty reasoning
             if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
-                skipped_indices.append(idx)
                 continue
 
             scenario = re.search(
                 r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
                 row['dilemma_prompt'], re.DOTALL
             ).group(1).strip()
+
             reasoning = row['reasoning']
             decision = row['decision']
 
             quality_prompt = self.quality_evaluation_template.format(
-            scenario=scenario, reasoning=reasoning, decision=decision)
+                scenario=scenario, reasoning=reasoning, decision=decision)
 
             quality_prompts.append(Prompt([
                 ChatMessage(role=MessageRole.system, content=self.system_prompts['quality']),
                 ChatMessage(role=MessageRole.user, content=quality_prompt)
             ]))
 
+            processed_indices.append(idx)
+
+        if not quality_prompts:
+            print("No prompts to process.")
+            return
+
+        # Get model and process prompts
         model = ModelFactory.get_model(model=self.judge_model_cfg)
         quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
 
-        # Create a list with empty strings for skipped rows
-        all_responses = []
-        response_idx = 0
+        # Update the dataframe with responses
+        for i, response in enumerate(quality_responses):
+            idx = processed_indices[i]
+            content = response.content if response else ""
 
-        for idx in range(len(self.data)):
-            if idx in skipped_indices:
-                all_responses.append("")
-            else:
-                all_responses.append(quality_responses[response_idx].content)
-                response_idx += 1
+            # Update rows
+            self.data.loc[idx, 'raw_responses_quality'] = content
 
-        self.data["raw_responses_quality"] = all_responses
-
-        # Save the raw responses to the judge output file
+        # Save the updated dataframe
         os.makedirs(self.judge_output_file.parent, exist_ok=True)
-        self.data.to_csv(self.judge_output_file, index=False)
-        print(f"[INFO] Judge quality output saved to {self.judge_output_file}")
+        self.save_data()
+
+        action = "updated" if file_exists and not overwrite else "saved"
+        print(f"[INFO] Judge quality output {action} to {self.judge_output_file}")
 
         self.process_quality()
 
@@ -227,7 +285,10 @@ class JudgeRunner:
                 keys_lower = [k.lower() for k in self.rationales.keys()]
                 parsed = [x.strip() for x in parsed if x.strip().lower() in keys_lower]
 
-                processed_rationales.append("; ".join(parsed))
+                parsed = [p for p in parsed if p in self.rationales.keys()]
+                to_add = "; ".join(parsed) if parsed else ""
+
+                processed_rationales.append(to_add)
             except Exception as e:
                 print(f"Error processing rationale: {e}")
                 processed_rationales.append("")
@@ -274,10 +335,10 @@ class JudgeRunner:
                 answer3 = parse_keyword_text(response, "answer_3").lower()
                 answer4 = parse_keyword_text(response, "answer_4").lower()
 
-                consistency.append("yes" if "yes" in answer1 else "no")
-                logic.append("yes" if "yes" in answer2 else "no")
-                bias.append("yes" if "yes" in answer3 else "no")
-                pluralism.append("yes" if "yes" in answer4 else "no")
+                consistency.append("yes" if "yes" in answer1 else "no" if "no" in answer1 else "")
+                logic.append("yes" if "yes" in answer2 else "no" if "no" in answer2 else "")
+                bias.append("yes" if "yes" in answer3 else "no" if "no" in answer3 else "")
+                pluralism.append("yes" if "yes" in answer4 else "no" if "no" in answer4 else "")
             except Exception as e:
                 print(f"Error processing quality assessment at index {i}: {e}")
                 consistency.append("")
@@ -308,7 +369,7 @@ class JudgeRunner:
         if self.data is not None:
             os.makedirs(self.judge_output_file.parent, exist_ok=True)
             self.data.to_csv(self.judge_output_file, index=False)
-            print(f"[INFO] Data saved to {self.judge_output_file}")
+            # print(f"[INFO] Data saved to {self.judge_output_file}")
         else:
             raise ValueError("No data to save. Please run the judge model first.")
 
