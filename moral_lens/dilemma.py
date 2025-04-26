@@ -94,7 +94,7 @@ class DilemmaRunner:
         self.batch_size = batch_size
 
     async def run(
-        self, overwrite: bool = False
+        self, overwrite: bool = False, limit: Optional[int] = None
     ) -> None:
         # Check if the output file exists
         file_exists = self.output_file.exists()
@@ -130,6 +130,9 @@ class DilemmaRunner:
             })
 
             rows_to_process = list(range(len(self.data)))
+
+        if limit is not None:
+            rows_to_process = rows_to_process[:limit]
 
         two_choices = self.choices_df['two_choices'].str.split('; ').to_list()
 
