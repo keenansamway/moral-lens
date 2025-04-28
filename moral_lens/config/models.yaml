@@ -669,57 +669,136 @@ allenai/Llama-3.1-Tulu-3-70B:
   release_date: 2024-11-21
   developer: AllenAI
 
-# Tülu V2.5 PPO models
+# Tülu V2.5 PPO  (60k) models
 allenai/tulu-v2.5-ppo-13b-hh-rlhf-60k:
-  model_name: Tülu V2.5 13B PPO HH RLHF
+  model_name: Tülu V2.5 13B PPO HH RLHF (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-ppo-13b-chatbot-arena-2023:
-  model_name: Tülu V2.5 13B PPO ChatbotArena
+  model_name: Tülu V2.5 13B PPO ChatbotArena 2023
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-ppo-13b-stackexchange-60k:
-  model_name: Tülu V2.5 13B PPO StackExchange
+  model_name: Tülu V2.5 13B PPO StackExchange (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-ppo-13b-nectar-60k:
-  model_name: Tülu V2.5 13B PPO Nectar
+  model_name: Tülu V2.5 13B PPO Nectar (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
-# Tülu V2.5 DPO models
+# Tülu V2.5 DPO  (60k) models
 allenai/tulu-v2.5-dpo-13b-hh-rlhf-60k:
-  model_name: Tülu V2.5 13B DPO HH RLHF
+  model_name: Tülu V2.5 13B DPO HH RLHF (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-dpo-13b-chatbot-arena-2023:
-  model_name: Tülu V2.5 13B DPO ChatbotArena
+  model_name: Tülu V2.5 13B DPO ChatbotArena 2023
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-dpo-13b-stackexchange-60k:
-  model_name: Tülu V2.5 13B DPO StackExchange
+  model_name: Tülu V2.5 13B DPO StackExchange (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
 allenai/tulu-v2.5-dpo-13b-nectar-60k:
+  model_name: Tülu V2.5 13B DPO Nectar (60k)
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+# Tülu V2.5 models
+allenai/tulu-v2.5-dpo-13b-uf-mean:
+  model_name: Tülu V2.5 13B DPO UltraFeedback Mean
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-helpsteer:
+  model_name: Tülu V2.5 13B DPO HelpSteer
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-shp2:
+  model_name: Tülu V2.5 13B DPO SHP2
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-stackexchange:
+  model_name: Tülu V2.5 13B DPO StackExchange
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-uf-overall:
+  model_name: Tülu V2.5 13B DPO UltraFeedback Overall
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-capybara:
+  model_name: Tülu V2.5 13B DPO Capybara 7k
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-prm-phase-2:
+  model_name: Tülu V2.5 13B DPO 800k Phase 2
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-hh-rlhf:
+  model_name: Tülu V2.5 13B DPO HH RLHF
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-nectar:
   model_name: Tülu V2.5 13B DPO Nectar
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
 
-# Tülu 2 model
+allenai/tulu-v2.5-dpo-13b-chatbot-arena-2023:
+  model_name: Tülu V2.5 13B DPO ChatbotArena 2023
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-chatbot-arena-2024:
+  model_name: Tülu V2.5 13B DPO ChatbotArena 2024
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-alpacafarm-human-pref:
+  model_name: Tülu V2.5 13B DPO AlpacaFarm Human Preferences
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+allenai/tulu-v2.5-dpo-13b-alpacafarm-gpt4-pref:
+  model_name: Tülu V2.5 13B DPO AlpacaFarm GPT-4 Preferences
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
+# Tülu V2 model
 allenai/tulu-2-13b:
   model_name: Tülu 2 13B SFT
   provider: huggingface
