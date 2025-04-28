@@ -798,6 +798,12 @@ allenai/tulu-v2.5-dpo-13b-alpacafarm-gpt4-pref:
   release_date: 2024-06-11
   developer: AllenAI
 
+allenai/tulu-v2.5-dpo-13b-argilla-orca-pairs:
+  model_name: Tülu V2.5 13B DPO Argilla Orca Pairs
+  provider: huggingface
+  release_date: 2024-06-11
+  developer: AllenAI
+
 # Tülu V2 model
 allenai/tulu-2-13b:
   model_name: Tülu 2 13B SFT
