@@ -169,11 +169,19 @@ def parse_reasoning_and_decision(text: Optional[str]) -> Optional[Tuple[str, str
     if text is None:
         return None, None
 
-    # reasoning = parse_keyword_text(text, "reasoning")
-    # decision = parse_keyword_text(text, "decision")
-
     reasoning = parse_keyword_text_(text, "reasoning", "decision")
     decision = parse_keyword_text_(text, "decision")
+    return reasoning, decision
+
+def parse_decision_and_reasoning(text: Optional[str]) -> Optional[Tuple[str, str]]:
+    """
+    Parse the decision and reasoning from the text.
+    """
+    if text is None:
+        return None, None
+
+    reasoning = parse_keyword_text_(text, "reasoning")
+    decision = parse_keyword_text_(text, "decision", "reasoning")
     return reasoning, decision
 
 

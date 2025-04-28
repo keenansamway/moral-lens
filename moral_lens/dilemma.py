@@ -9,41 +9,48 @@ from typing import List, Optional
 from moral_lens.models import ModelFactory, load_model_config
 from moral_lens.data_models import ChatMessage, LLMResponse, MessageRole, Prompt
 from moral_lens.data_models import Provider
-from moral_lens.utils import load_yaml_file, fuzzy_match_decisions, parse_reasoning_and_decision
+from moral_lens.utils import load_yaml_file, fuzzy_match_decisions, parse_reasoning_and_decision, parse_decision_and_reasoning
 from moral_lens.config import ModelConfig, PathConfig
 
 from dataclasses import dataclass
 from typing import Optional
 
 
-def is_valid_response(response_obj: LLMResponse) -> bool:
-    """Simple validation function to check if the response exists and is not empty."""
-    content = response_obj.content
-    two_choices = response_obj.two_choices
+class IsValidResponse:
+    def __init__(self, prompt_template: str):
+        if prompt_template == "reasoning_before":
+            self.parse_fn = parse_reasoning_and_decision
+        elif prompt_template == "reasoning_after":
+            self.parse_fn = parse_decision_and_reasoning
 
-    if content is None or content.strip() == "":
-        return False
+    def __call__(self, response_obj: LLMResponse) -> bool:
+        """Simple validation method to check if the response exists and is not empty."""
+        content = response_obj.content
+        two_choices = response_obj.two_choices
 
-    content = content.replace("'", "").replace(",", "").lower()
-    refusal_phrases = [
-        "im sorry",
-        "i am sorry",
-        "i cant assist",
-        "i cant help",
-        "as an ai language model, i cannot"
-    ]
-    if any(phrase in content for phrase in refusal_phrases):
-        return False
-
-    if two_choices is not None:
-        reasoning, decision = parse_reasoning_and_decision(content)
-        decision = fuzzy_match_decisions(decision, two_choices)
-        if len(decision) == 0:
-            return False
-        if len(reasoning) == 0:
+        if content is None or content.strip() == "":
             return False
 
-    return True
+        content = content.replace("'", "").replace(",", "").lower()
+        refusal_phrases = [
+            "im sorry",
+            "i am sorry",
+            "i cant assist",
+            "i cant help",
+            "as an ai language model, i cannot"
+        ]
+        if any(phrase in content for phrase in refusal_phrases):
+            return False
+
+        if two_choices is not None:
+            reasoning, decision = self.parse_fn(content)
+            decision = fuzzy_match_decisions(decision, two_choices)
+            if len(decision) == 0:
+                return False
+            if len(reasoning) == 0:
+                return False
+
+        return True
 
 class DilemmaRunner:
     def __init__(
@@ -55,6 +62,7 @@ class DilemmaRunner:
         choices_filename: str = "choices.csv",
         override_decision_temperature: Optional[float] = None,
         batch_size: int = 1,
+        prompts_template: str = "reasoning_before",
     ):
         # Setup the path configuration
         path_config = PathConfig(results_dir=results_dir)
@@ -81,14 +89,11 @@ class DilemmaRunner:
         dilemma_template_path = path_config.get_file("prompts_dilemma.yaml")
         template_yaml_obj = load_yaml_file(dilemma_template_path)
 
-        self.dilemma_template = template_yaml_obj.get("dilemma_template", None)
-        if self.dilemma_template is None:
-            raise ValueError(f"dilemma_template not found in {dilemma_template_path}.")
+        prompts_template_obj = template_yaml_obj[prompts_template]
+        self.prompts_template = prompts_template
 
-        system_prompts = template_yaml_obj.get("system_prompts", None)
-        if system_prompts is None:
-            raise ValueError(f"system_prompts not found in {dilemma_template_path}.")
-        self.system_prompt_template = system_prompts['detailed']
+        self.system_prompt_template = prompts_template_obj['system_prompt_template']
+        self.dilemma_template = prompts_template_obj['dilemma_template']
 
         self.data: Optional[pd.DataFrame] = None
         self.batch_size = batch_size
@@ -169,10 +174,10 @@ class DilemmaRunner:
         model = ModelFactory.get_model(model=self.model_cfg)
 
         if self.model_cfg.provider == Provider.huggingface:
-            responses = model.ask_batch_with_retry(prompts, validation_fn=is_valid_response, batch_size=self.batch_size)
+            responses = model.ask_batch_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template), batch_size=self.batch_size)
             model.unload()
         else:
-            responses = await model.ask_async_with_retry(prompts, validation_fn=is_valid_response)
+            responses = await model.ask_async_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template))
 
         # Update the dataframe with responses
         for i, response in enumerate(responses):
