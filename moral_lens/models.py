@@ -677,8 +677,10 @@ class ModelFactory:
                 "Provider must be one of: openai, anthropic, gemini, openrouter, huggingface."
             )
 
+# Cache for the models configuration
+_MODELS_CONFIG_CACHE = {}
 
-def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml") -> ModelConfig:
+def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml", disable_cache: bool = False) -> ModelConfig:
     """
     Load a model configuration from a YAML file and return a ModelConfig instance.
 
@@ -698,13 +700,19 @@ def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml"
     Args:
         model_id (str): The model ID to load from the YAML file.
         path (str): The path to the YAML file. Default is 'moral_lens/config/models.yaml'.
+        disable_cache (bool): If True, bypass the cache and load directly from file. Default is True.
 
     Returns:
         ModelConfig: An instance of ModelConfig containing the loaded model configuration.
     ```
     """
-    # Load the YAML file
-    yaml_obj = load_yaml_file(path)
+    # Load the YAML file if not cached or if cache is disabled
+    if disable_cache or path not in _MODELS_CONFIG_CACHE:
+        yaml_obj = load_yaml_file(path)
+        if not disable_cache:
+            _MODELS_CONFIG_CACHE[path] = yaml_obj
+    else:
+        yaml_obj = _MODELS_CONFIG_CACHE[path]
 
     model_data = yaml_obj.get(model_id, None)
     if model_data is None:
@@ -725,7 +733,7 @@ def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml"
         model_name=model_data['model_name'],
         provider=model_data['provider'],
         release_date=model_data['release_date'],
-        developer=model_data['developer'],
+        developer=model_data.get('developer', "Unknown"),
 
         reasoning_model=model_data.get('reasoning_model', MODEL_DEFAULTS['reasoning_model']),
         accepts_system_message=model_data.get('accepts_system_message', MODEL_DEFAULTS['accepts_system_message']),
