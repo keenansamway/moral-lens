@@ -172,8 +172,9 @@ class BaseModel(ABC):
                 if success:
                     results[i] = response
                     pbar.update(1)
-            attempts += 1
+
             pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
+            attempts += 1
 
             if self.temperature == 0.0:
                 # If the temperature is 0, we can break early
@@ -606,8 +607,8 @@ class HuggingFaceModel(BaseModel):
                     results[abs_idx] = response
                     pbar.update(1)
 
-            attempts += 1
             pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
+            attempts += 1
             if self.temperature == 0.0:
                 break
 
