@@ -131,7 +131,7 @@ class BaseModel(ABC):
         """
         results = [None] * len(prompts)
         attempts = 0
-        pbar = tqdm(total=len(prompts), desc="Valid responses received", ascii=True)
+        pbar = tqdm(total=len(prompts), desc=f"Attempt {attempts+1}: Valid responses received", ascii=True)
 
         # if self.max_rate > self.num_concurrent:
         #     self.max_rate = self.num_concurrent
@@ -173,6 +173,7 @@ class BaseModel(ABC):
                     results[i] = response
                     pbar.update(1)
             attempts += 1
+            pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
 
             if self.temperature == 0.0:
                 # If the temperature is 0, we can break early
@@ -582,7 +583,7 @@ class HuggingFaceModel(BaseModel):
     ) -> List[LLMResponse]:
         results = [None] * len(prompts)
         attempts = 0
-        pbar = tqdm(total=len(prompts), desc="Valid responses received", ascii=True)
+        pbar = tqdm(total=len(prompts), desc=f"Attempt {attempts+1}: Valid responses received", ascii=True)
 
         while attempts < MAX_RETRIES and sum(1 for x in results if x is not None) < len(prompts):
             to_retry_indices = [i for i, r in enumerate(results) if r is None]
@@ -606,6 +607,7 @@ class HuggingFaceModel(BaseModel):
                     pbar.update(1)
 
             attempts += 1
+            pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
             if self.temperature == 0.0:
                 break
 
