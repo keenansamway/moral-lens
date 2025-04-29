@@ -84,8 +84,8 @@ class JudgeRunner:
                 self.data["raw_responses_rationales"] = [""] * len(self.data)
 
             # Find rows with empty rationale responses
-            # empty_rows = self.data[self.data['raw_responses_rationales'].str.len() == 0].index.to_list()
-            empty_rows = self.data[self.data['rationales'].str.len() == 0].index.to_list()
+            empty_rows = self.data[self.data['raw_responses_rationales'].str.len() == 0].index.to_list()
+            # empty_rows = self.data[self.data['rationales'].str.len() == 0].index.to_list()
             if not empty_rows:
                 print(f"No empty rationale responses found in {self.judge_output_file}. Use `overwrite=True` to rerun all.")
                 return
