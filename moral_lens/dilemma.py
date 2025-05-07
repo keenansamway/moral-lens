@@ -9,7 +9,7 @@ from typing import List, Optional
 from moral_lens.models import ModelFactory, load_model_config
 from moral_lens.data_models import ChatMessage, LLMResponse, MessageRole, Prompt
 from moral_lens.data_models import Provider
-from moral_lens.utils import load_yaml_file, fuzzy_match_decisions, parse_reasoning_and_decision, parse_decision_and_reasoning
+from moral_lens.utils import load_yaml_file, fuzzy_match_decisions, parse_reasoning_and_decision, parse_decision_and_reasoning, match_A_or_B
 from moral_lens.config import ModelConfig, PathConfig
 
 from dataclasses import dataclass
@@ -18,10 +18,14 @@ from typing import Optional
 
 class IsValidResponse:
     def __init__(self, prompt_template: str):
+        self.prompt_template = prompt_template
+
         if prompt_template == "reasoning_before":
             self.parse_fn = parse_reasoning_and_decision
         elif prompt_template == "reasoning_after":
             self.parse_fn = parse_decision_and_reasoning
+        elif prompt_template == "no_reasoning":
+            self.parse_fn = parse_reasoning_and_decision
 
     def __call__(self, response_obj: LLMResponse) -> bool:
         """Simple validation method to check if the response exists and is not empty."""
@@ -43,11 +47,14 @@ class IsValidResponse:
             return False
 
         if two_choices is not None:
+            choiceA, choiceB = two_choices
             reasoning, decision = self.parse_fn(content)
-            decision = fuzzy_match_decisions(decision, two_choices)
+            # decision = fuzzy_match_decisions(decision, two_choices)
+            decisionLetter = match_A_or_B(decision)
+            decision = choiceA if decisionLetter == "A" else choiceB if decisionLetter == "B" else ""
             if len(decision) == 0:
                 return False
-            if len(reasoning) == 0:
+            if len(reasoning) == 0 and self.prompt_template != "no_reasoning":
                 return False
 
         return True
@@ -109,7 +116,11 @@ class DilemmaRunner:
             self.load_data()
 
             # Find rows with empty responses
-            empty_rows = self.data[self.data['raw_response'].str.len() == 0].index.to_list()
+            empty_rows = self.data[
+                (self.data['raw_response'].str.len() == 0) |
+                (self.data['reasoning'].str.len() == 0) |
+                (self.data['decision'].str.len() == 0)
+            ].index.to_list()
             if not empty_rows:
                 print(f"No empty responses found in {self.output_file}. Use `overwrite=True` to rerun all.")
                 return
@@ -123,7 +134,11 @@ class DilemmaRunner:
                 "system_prompt": [""] * len(self.choices_df),
                 "dilemma_prompt": [""] * len(self.choices_df),
                 "two_choices": self.choices_df['two_choices'],
-                "two_choices_set": self.choices_df['two_choices_unordered_set'],
+                "two_choices_set": self.choices_df['two_choices_set'],
+                "choice1": self.choices_df.get('choice1'),
+                "choice2": self.choices_df.get('choice2'),
+                "num1": self.choices_df.get('num1'),
+                "num2": self.choices_df.get('num2'),
                 "phenomenon_category": self.choices_df['phenomenon_category'],
                 "category1": self.choices_df['category1'],
                 "category2": self.choices_df['category2'],
@@ -178,6 +193,7 @@ class DilemmaRunner:
             model.unload()
         else:
             responses = await model.ask_async_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template))
+            # responses = await model.ask_async_with_retry(prompts)
 
         # Update the dataframe with responses
         for i, response in enumerate(responses):
@@ -234,8 +250,12 @@ class DilemmaRunner:
 
             # Parse the response
             try:
+                choiceA, choiceB = choices
                 reasoning, decision = parse_reasoning_and_decision(response)
-                decision = fuzzy_match_decisions(decision, choices)
+                # decision = fuzzy_match_decisions(decision, choices)
+                decisionLetter = match_A_or_B(decision)
+                decision = choiceA if decisionLetter == "A" else choiceB if decisionLetter == "B" else ""
+                reasoning = "" if decision == "" else reasoning
 
                 reasonings.append(reasoning)
                 decisions.append(decision)
@@ -257,6 +277,19 @@ class DilemmaRunner:
         self.data['reasoning'] = reasonings
         self.data['decision'] = decisions
         self.data['decision_category'] = decision_categories
+        self.data['decision_utility_raw'] = self.data.apply(
+            lambda row:
+                0 if row['decision'] == ""
+                else row['num1'] - row['num2']
+                if row['decision'] == row['choice1']
+                else row['num2'] - row['num1']
+                if row['decision'] == row['choice2']
+                else 0, axis=1
+        )
+        # convert all -4 and +4 to -1 and +1
+        self.data['decision_utility'] = self.data['decision_utility_raw'].apply(
+            lambda x: -1 if x == -4 else 1 if x == 4 else x
+        )
 
         # Sort by ID (to maintain consistency with run() function)
         self.data = self.data.sort_values(by='id')
@@ -271,6 +304,8 @@ class DilemmaRunner:
         if not self.output_file.exists():
             print(f"[INFO] Response output file not found: {self.output_file}")
         self.data = pd.read_csv(self.output_file, keep_default_na=False)
+        self.data['num1'] = self.data['num1'].astype(int)
+        self.data['num2'] = self.data['num2'].astype(int)
 
     def save_data(self):
         if self.data is not None:

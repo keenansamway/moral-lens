@@ -1,4 +1,4 @@
-id,two_choices,two_choices_unordered_set,phenomenon_category,category1,category2
+id,two_choices,two_choices_set,phenomenon_category,category1,category2
 0,5 dogs; 5 people,5 dogs; 5 people,Species,Animals,Humans
 1,5 people; 5 dogs,5 dogs; 5 people,Species,Humans,Animals
 2,a dog; a person,a dog; a person,Species,Animals,Humans

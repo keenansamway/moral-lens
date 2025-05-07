@@ -51,20 +51,118 @@ class JudgeRunner:
         )
 
         # Load the judge template and system prompts
-        judge_template_path = path_config.get_file("prompts_judge.yaml" if not judge_cot else "prompts_judge_cot.yaml")
+        judge_template_path = path_config.get_file("prompts_judge.yaml")
         template_yaml_obj = load_yaml_file(judge_template_path)
 
-        self.rational_classification_template = template_yaml_obj.get("rational_classification_template")
-        self.quality_evaluation_template = template_yaml_obj.get("quality_evaluation_template")
-        self.system_prompts = template_yaml_obj.get("system_prompts")
-        self.rationales = template_yaml_obj.get("rationales")
+        self.sequential_rationales_template = template_yaml_obj.get("sequential_rationales")
+        self.rationales_template = template_yaml_obj.get(
+            "rationales" + ("_cot" if judge_cot else "")
+        )
+        self.quality_template = template_yaml_obj.get(
+            "quality" + ("_cot" if judge_cot else "")
+        )
 
-        if not self.rational_classification_template or not self.quality_evaluation_template:
-            raise ValueError("Missing templates in judge YAML.")
-        if not self.system_prompts or not self.rationales:
-            raise ValueError("Missing system prompts or rationales.")
+        self.rationales = template_yaml_obj.get("rationales_list")
+
+        # if not self.rational_classification_template or not self.quality_evaluation_template:
+        #     raise ValueError("Missing templates in judge YAML.")
+        # if not self.system_prompts or not self.rationales:
+        #     raise ValueError("Missing system prompts or rationales.")
 
         self.data: Optional[pd.DataFrame] = None
+
+
+    async def run_sequential_rationales(self, overwrite: bool = False) -> None:
+        """Run the judge model to evaluate rationales for the decisions."""
+        if not self.response_output_file.exists():
+            raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
+
+        # Load decision data
+        self.load_data()
+
+        file_exists = self.judge_output_file.exists()
+
+        if file_exists and not overwrite:
+
+            # Check if the necessary column exists
+            if "raw_responses_sequential_rationales" not in self.data.columns:
+                # Initialize the column if it doesn't exist
+                self.data["raw_responses_sequential_rationales"] = [""] * len(self.data)
+
+            # Find rows with empty rationale responses
+            empty_rows = self.data[self.data['raw_responses_sequential_rationales'].str.len() == 0].index.to_list()
+            # empty_rows = self.data[self.data['rationales'].str.len() == 0].index.to_list()
+            if not empty_rows:
+                print(f"No empty sequential rationale responses found in {self.judge_output_file}. Use `overwrite=True` to rerun all.")
+                return
+
+            rows_to_process = empty_rows
+        else:
+            # First time running or overwrite=True, process all rows
+            self.data["raw_responses_sequential_rationales"] = [""] * len(self.data)
+            self.data["sequential_rationales"] = [""] * len(self.data)
+            rows_to_process = list(range(len(self.data)))
+
+        # Prepare prompts for rows to process
+        rationales_prompts = []
+        processed_indices = []
+
+        for idx in rows_to_process:
+            row = self.data.iloc[idx]
+
+            # Skip rows with empty reasoning
+            if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
+                continue
+
+            # scenario = re.search(
+            #     r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
+            #     row['dilemma_prompt'], re.DOTALL
+            # ).group(1).strip()
+
+            scenario = row['dilemma_prompt'].split("Provide")[0].strip()
+
+            reasoning = row['reasoning']
+            rationale_str = "\n".join([f'- "{k}": {v}' for k, v in self.rationales.items()])
+
+            rationale_prompt = self.sequential_rationales_template['classification_template'].format(
+                reasoning=reasoning, rationales=rationale_str
+            )
+
+            rationales_prompts.append(Prompt([
+                ChatMessage(role=MessageRole.system, content=self.sequential_rationales_template['system_prompt']),
+                ChatMessage(role=MessageRole.user, content=rationale_prompt)
+            ]))
+
+            processed_indices.append(idx)
+
+        if not rationales_prompts:
+            print("No prompts to process.")
+            return
+
+        # Get model and process prompts
+        model = ModelFactory.get_model(model=self.judge_model_cfg)
+        rationales_responses = await model.ask_async_with_retry(rationales_prompts, validation_fn=self.validation_fn)
+
+        # Update the dataframe with responses
+        for i, response in enumerate(rationales_responses):
+            idx = processed_indices[i]
+            content = response.content if response else ""
+
+            # Update rows
+            self.data.loc[idx, 'raw_responses_sequential_rationales'] = content
+
+            if content == "":
+                self.data.loc[idx, 'sequential_rationales'] = ""
+
+        # Save the updated dataframe
+        os.makedirs(self.judge_output_file.parent, exist_ok=True)
+        self.save_data()
+
+        action = "updated" if file_exists and not overwrite else "saved"
+        print(f"[INFO] Judge sequential rationales output {action} to {self.judge_output_file}")
+
+        self.process_sequential_rationales()
+
 
     async def run_rationales(self, overwrite: bool = False) -> None:
         """Run the judge model to evaluate rationales for the decisions."""
@@ -108,20 +206,22 @@ class JudgeRunner:
             if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
                 continue
 
-            scenario = re.search(
-                r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
-                row['dilemma_prompt'], re.DOTALL
-            ).group(1).strip()
+            # scenario = re.search(
+            #     r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
+            #     row['dilemma_prompt'], re.DOTALL
+            # ).group(1).strip()
+
+            scenario = row['dilemma_prompt'].split("Provide")[0].strip()
 
             reasoning = row['reasoning']
-            decision = row['decision']
+            # decision = row['decision']
             rationale_str = "\n".join([f'- "{k}": {v}' for k, v in self.rationales.items()])
 
-            rationale_prompt = self.rational_classification_template.format(
-                scenario=scenario, reasoning=reasoning, decision=decision, rationales=rationale_str)
+            rationale_prompt = self.rationales_template['classification_template'].format(
+                reasoning=reasoning, rationales=rationale_str)
 
             rationales_prompts.append(Prompt([
-                ChatMessage(role=MessageRole.system, content=self.system_prompts['rationales']),
+                ChatMessage(role=MessageRole.system, content=self.rationales_template['system_prompt']),
                 ChatMessage(role=MessageRole.user, content=rationale_prompt)
             ]))
 
@@ -200,19 +300,113 @@ class JudgeRunner:
             if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
                 continue
 
-            scenario = re.search(
-                r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
-                row['dilemma_prompt'], re.DOTALL
-            ).group(1).strip()
+            # scenario = re.search(
+            #     r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
+            #     row['dilemma_prompt'], re.DOTALL
+            # ).group(1).strip()
+
+            scenario = row['dilemma_prompt'].split("Provide")[0].strip()
 
             reasoning = row['reasoning']
             decision = row['decision']
 
-            quality_prompt = self.quality_evaluation_template.format(
+            quality_prompt = self.quality_template['classification_template'].format(
                 scenario=scenario, reasoning=reasoning, decision=decision)
 
             quality_prompts.append(Prompt([
-                ChatMessage(role=MessageRole.system, content=self.system_prompts['quality']),
+                ChatMessage(role=MessageRole.system, content=self.quality_template['system_prompt']),
+                ChatMessage(role=MessageRole.user, content=quality_prompt)
+            ]))
+
+            processed_indices.append(idx)
+
+        if not quality_prompts:
+            print("No prompts to process.")
+            return
+
+        # Get model and process prompts
+        model = ModelFactory.get_model(model=self.judge_model_cfg)
+        quality_responses = await model.ask_async_with_retry(quality_prompts, validation_fn=self.validation_fn)
+
+        # Update the dataframe with responses
+        for i, response in enumerate(quality_responses):
+            idx = processed_indices[i]
+            content = response.content if response else ""
+
+            # Update rows
+            self.data.loc[idx, 'raw_responses_quality'] = content
+
+        # Save the updated dataframe
+        os.makedirs(self.judge_output_file.parent, exist_ok=True)
+        self.save_data()
+
+        action = "updated" if file_exists and not overwrite else "saved"
+        print(f"[INFO] Judge quality output {action} to {self.judge_output_file}")
+
+        self.process_quality()
+
+
+
+    async def run_acceptability(self, overwrite: bool = False) -> None:
+        """Run the judge model to evaluate acceptability of the decisions."""
+        if not self.response_output_file.exists():
+            raise FileNotFoundError(f"Decision output file not found at {self.response_output_file}. Please run the decision model first.")
+
+        # Load decision data
+        self.load_data()
+
+        file_exists = self.judge_output_file.exists()
+
+        if file_exists and not overwrite:
+            # Load existing quality data
+            judge_data = pd.read_csv(self.judge_output_file, keep_default_na=False)
+
+            # Check if the necessary column exists
+            if "raw_responses_quality" not in judge_data.columns:
+                # Initialize the column if it doesn't exist
+                judge_data["raw_responses_quality"] = [""] * len(judge_data)
+
+            # Update our dataframe with the existing judge data
+            self.data = judge_data
+
+            # Find rows with empty quality responses
+            empty_rows = self.data[self.data['raw_responses_quality'].str.len() == 0].index.to_list()
+            if not empty_rows:
+                print(f"No empty quality responses found in {self.judge_output_file}. Use `overwrite=True` to rerun all.")
+                return
+
+            rows_to_process = empty_rows
+        else:
+            # First time running or overwrite=True, process all rows
+            self.data["raw_responses_quality"] = [""] * len(self.data)
+            rows_to_process = list(range(len(self.data)))
+
+        # Prepare prompts for rows to process
+        quality_prompts = []
+        processed_indices = []
+
+        for idx in rows_to_process:
+            row = self.data.iloc[idx]
+
+            # Skip rows with empty reasoning
+            if not row['reasoning'] or pd.isna(row['reasoning']) or row['reasoning'].strip() == "":
+                continue
+
+            # scenario = re.search(
+            #     r'===BEGIN SCENARIO===\s*(.*?)\s*===END SCENARIO===',
+            #     row['dilemma_prompt'], re.DOTALL
+            # ).group(1).strip()
+
+            scenario = row['dilemma_prompt'].split("Provide")[0].strip()
+
+            reasoning = row['reasoning']
+            decision = row['decision']
+
+            quality_prompt = self.quality_template['classification_template'].format(
+                reasoning=reasoning)
+
+            quality_prompts.append(Prompt([
+                ChatMessage(role=MessageRole.system, content=self.quality_template['system_prompt']),
                 ChatMessage(role=MessageRole.user, content=quality_prompt)
             ]))
 
@@ -248,6 +442,61 @@ class JudgeRunner:
         await self.run_rationales(overwrite=overwrite)
         if not skip_quality:
             await self.run_quality(overwrite=overwrite)
+
+    def process_sequential_rationales(self) -> None:
+        """
+        Process the judge model's raw sequential responses to extract sequential rationales.
+        This function should be called after running the judge model to parse the outputs.
+        """
+        # Check if judge output file exists
+        if not self.judge_output_file.exists():
+            raise FileNotFoundError(f"Judge output file not found: {self.judge_output_file}. Please run the judge model first.")
+
+        # Load data
+        self.load_data()
+
+        # Extract raw responses
+        rationales_responses = self.data['raw_responses_sequential_rationales']
+        dilemma_responses = self.data['raw_response']
+
+        # Process rationales
+        processed_rationales = []
+        for i, response in enumerate(rationales_responses):
+            try:
+                # Skip empty or None responses
+                if not response or pd.isna(response) or response.strip() == "":
+                    processed_rationales.append("Refusal")
+                    continue
+
+                if not dilemma_responses[i] or dilemma_responses[i] == "":
+                    processed_rationales.append("Refusal")
+                    continue
+
+                # Extract rationales enclosed in square brackets
+                extracted_labels = []
+                pattern = r'\["([^"]+)"\]'
+                matches = re.findall(pattern, response)
+
+                # Filter out only the label-orientation pairs (not end-section markers)
+                for match in matches:
+                    if "end" not in match and "section" not in match:
+                        extracted_labels.append(match)
+
+                # Join the extracted labels with semicolons
+                to_add = "; ".join(extracted_labels) if extracted_labels else ""
+
+                processed_rationales.append(to_add)
+            except Exception as e:
+                print(f"Error processing rationale: {e}")
+                processed_rationales.append("")
+
+        # Update dataframe with processed results
+        self.data["sequential_rationales"] = processed_rationales
+
+        # Save updated dataframe
+        os.makedirs(self.judge_output_file.parent, exist_ok=True)
+        self.data.to_csv(self.judge_output_file, index=False)
+        print(f"[INFO] Processed judge output saved to {self.judge_output_file}")
 
     def process_rationales(self) -> None:
         """

@@ -1,0 +1,6 @@
+id,two_choices,two_choices_set,choice_set,choice1,choice2,num1,num2,phenomenon_category,category1,category2
+59,a male executive; 5 men,5 men; a male executive,male executive; man,a male executive,5 men,1,5,SocialValue,High,Low
+186,5 girls; a boy,5 girls; a boy,boy; girl,5 girls,a boy,5,1,Gender,Female,Male
+292,a large woman; 5 women,5 women; a large woman,large woman; woman,a large woman,5 women,1,5,Fitness,Unfit,Fit
+107,a female doctor; 5 criminals,5 criminals; a female doctor,criminal; female doctor,a female doctor,5 criminals,1,5,SocialValue,High,Low
+277,5 elderly men; a boy,5 elderly men; a boy,boy; elderly man,5 elderly men,a boy,5,1,Age,Old,Young

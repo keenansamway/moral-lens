@@ -221,14 +221,14 @@ meta-llama/llama-4-scout:
   model_name: Llama 4 Scout
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [Groq] # https://openrouter.ai/meta-llama/llama-4-scout
+  provider_routing: [CentML, DeepInfra] # https://openrouter.ai/meta-llama/llama-4-scout
   developer: Meta
 
 meta-llama/llama-4-maverick:
   model_name: Llama 4 Maverick
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [Fireworks] # https://openrouter.ai/meta-llama/llama-4-maverick
+  provider_routing: [CentML, DeepInfra] # https://openrouter.ai/meta-llama/llama-4-maverick
   developer: Meta
 
 # Llama 3.X models
@@ -236,32 +236,32 @@ meta-llama/llama-3-8b-instruct:
   model_name: Llama 3 8B
   provider: openrouter
   release_date: 2024-04-18
-  provider_routing: [DeepInfra, Groq] # https://openrouter.ai/meta-llama/llama-3-8b-instruct
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/meta-llama/llama-3-8b-instruct
   developer: Meta
 
 meta-llama/llama-3-70b-instruct:
   model_name: Llama 3 70B
   provider: openrouter
   release_date: 2024-04-18
-  provider_routing: [Groq] # https://openrouter.ai/meta-llama/llama-3-70b-instruct
+  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-3-70b-instruct
   developer: Meta
 
 meta-llama/llama-3.1-8b-instruct:
   model_name: Llama 3.1 8B
   provider: openrouter
   release_date: 2024-07-23
-  provider_routing: [Groq, Lambda, InferenceNet] # https://openrouter.ai/meta-llama/llama-3-8b-instruct
+  provider_routing: [Lambda, InferenceNet] # https://openrouter.ai/meta-llama/llama-3.1-8b-instruct
   developer: Meta
 
 meta-llama/llama-3.1-70b-instruct:
   model_name: Llama 3.1 70B
   provider: openrouter
   release_date: 2024-07-23
-  provider_routing: [Nebius, Fireworks]
+  provider_routing: [Novita] # https://openrouter.ai/meta-llama/llama-3.1-70b-instruct
   developer: Meta
 
 meta-llama/llama-3.1-405b-instruct:
-  model_name: Llama 3.1 405B
+  model_name: Llama 3.1 405B (fp8)
   provider: openrouter
   release_date: 2024-07-23
   provider_routing: [Lambda, DeepInfra] # https://openrouter.ai/meta-llama/llama-3.1-405b-instruct
@@ -271,7 +271,7 @@ meta-llama/llama-3.3-70b-instruct:
   model_name: Llama 3.3 70B
   provider: openrouter
   release_date: 2024-12-06
-  provider_routing: [Groq, SambaNova] # https://openrouter.ai/meta-llama/llama-3.3-70b-instruct
+  provider_routing: [Novita] # https://openrouter.ai/meta-llama/llama-3.3-70b-instruct
   developer: Meta
 
 # Qwen models
@@ -279,7 +279,7 @@ qwen/qwen-2.5-7b-instruct:
   model_name: Qwen 2.5 7B
   provider: openrouter
   release_date: 2024-09-19
-  provider_routing: [DeepInfra]
+  provider_routing: [NCompass, DeepInfra] # https://openrouter.ai/qwen/qwen-2.5-7b-instruct
   developer: Alibaba
 
 qwen/qwen2.5-32b-instruct:
@@ -293,7 +293,7 @@ qwen/qwen-2.5-72b-instruct:
   model_name: Qwen 2.5 72B
   provider: openrouter
   release_date: 2024-09-19
-  provider_routing: [Fireworks] #, SambaNova, Nebius AI Studio]
+  provider_routing: [Hyperbolic] # https://openrouter.ai/qwen/qwen-2.5-72b-instruct
   developer: Alibaba
 
 qwen/qwen-turbo:
@@ -327,6 +327,42 @@ qwen/qwq-32b:
   max_completion_tokens: 16384
   developer: Alibaba
 
+# Qwen 3 models
+qwen/qwen3-8b:
+  model_name: Qwen 3 8B (fp8)
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [Novita] # https://openrouter.ai/qwen/qwen3-8b
+  developer: Alibaba
+
+qwen/qwen3-14b:
+  model_name: Qwen 3 14B (fp8)
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-14b
+  developer: Alibaba
+
+qwen/qwen3-32b: # uptime issues
+  model_name: Qwen 3 32B (fp8)
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-32b
+  developer: Alibaba
+
+qwen/qwen3-30b-a3b:
+  model_name: Qwen 3 30B A3B (fp8)
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-30b-a3b
+  developer: Alibaba
+
+qwen/qwen3-235b-a22b:
+  model_name: Qwen 3 235B A22B (fp8)
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-235b-a22b
+  developer: Alibaba
+
 # THUDM models
 thudm/glm-4-32b:
   model_name: GLM-4 32B
@@ -350,43 +386,43 @@ microsoft/phi-4:
   model_name: Phi-4
   provider: openrouter
   release_date: 2024-12-12
-  provider_routing: [Nebius, DeepInfra]
+  provider_routing: [DeepInfra] # https://openrouter.ai/microsoft/phi-4
   developer: Microsoft
 
 microsoft/phi-3.5-mini-128k-instruct:
   model_name: Phi-3.5 Mini
   provider: openrouter
   release_date: 2024-08-16
-  # provider_routing: [Azure]  # Very slow
+  provider_routing: [Nebius]  # https://openrouter.ai/microsoft/phi-3.5-mini-128k-instruct
   developer: Microsoft
 
 microsoft/phi-3-medium-128k-instruct:
   model_name: Phi-3 Medium
   provider: openrouter
   release_date: 2024-05-02
-  # provider_routing: [Azure]
+  provider_routing: [Azure] # https://openrouter.ai/microsoft/phi-3-medium-128k-instruct
   developer: Microsoft
 
 microsoft/phi-3-mini-128k-instruct:
   model_name: Phi-3 Mini
   provider: openrouter
   release_date: 2024-05-02
-  # provider_routing: [Azure]
+  provider_routing: [Azure] # https://openrouter.ai/microsoft/phi-3-mini-128k-instruct
   developer: Microsoft
 
 # DeepSeek models
 deepseek/deepseek-chat:
-  model_name: DeepSeek V3
+  model_name: DeepSeek V3 (fp8)
   provider: openrouter
   release_date: 2024-12-26
-  provider_routing: [Fireworks] # https://openrouter.ai/deepseek/deepseek-chat
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/deepseek/deepseek-chat
   developer: DeepSeek
 
 deepseek/deepseek-chat-v3-0324:
-  model_name: DeepSeek V3 0324
+  model_name: DeepSeek V3 0324 (fp8)
   provider: openrouter
   release_date: 2025-03-24
-  provider_routing: [Lambda] # [SambaNova] # https://openrouter.ai/deepseek/deepseek-chat-v3-0324
+  provider_routing: [GMICloud, Lambda] # https://openrouter.ai/deepseek/deepseek-chat-v3-0324
   developer: DeepSeek
 
 deepseek/deepseek-r1:
@@ -436,6 +472,9 @@ google/gemini-2.5-flash-preview:
   provider: openrouter
   release_date: 2025-04-17
   developer: Google
+  num_concurrent: 30
+  max_rate: 20
+  period: 1
 
 google/gemini-2.0-flash-001:
   model_name: Gemini 2 Flash
@@ -757,7 +796,7 @@ allenai/tulu-v2.5-dpo-13b-capybara:
   developer: AllenAI
 
 allenai/tulu-v2.5-dpo-13b-prm-phase-2:
-  model_name: Tülu V2.5 13B DPO 800k Phase 2
+  model_name: Tülu V2.5 13B DPO PRM800k Phase 2
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI

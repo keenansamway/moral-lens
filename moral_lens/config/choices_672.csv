@@ -1,0 +1,673 @@
+id,two_choices,two_choices_set,choice_set,choice1,choice2,num1,num2,phenomenon_category,category1,category2
+0,a dog; a person,a dog; a person,dog; person,a dog,a person,1,1,Species,Animals,Humans
+1,a person; a dog,a dog; a person,dog; person,a person,a dog,1,1,Species,Humans,Animals
+2,1 dog; 1 person,1 dog; 1 person,dog; person,1 dog,1 person,1,1,Species,Animals,Humans
+3,1 person; 1 dog,1 dog; 1 person,dog; person,1 person,1 dog,1,1,Species,Humans,Animals
+4,2 dogs; a person,2 dogs; a person,dog; person,2 dogs,a person,2,1,Species,Animals,Humans
+5,a person; 2 dogs,2 dogs; a person,dog; person,a person,2 dogs,1,2,Species,Humans,Animals
+6,a dog; 2 people,2 people; a dog,dog; person,a dog,2 people,1,2,Species,Animals,Humans
+7,2 people; a dog,2 people; a dog,dog; person,2 people,a dog,2,1,Species,Humans,Animals
+8,2 dogs; 2 people,2 dogs; 2 people,dog; person,2 dogs,2 people,2,2,Species,Animals,Humans
+9,2 people; 2 dogs,2 dogs; 2 people,dog; person,2 people,2 dogs,2,2,Species,Humans,Animals
+10,5 dogs; a person,5 dogs; a person,dog; person,5 dogs,a person,5,1,Species,Animals,Humans
+11,a person; 5 dogs,5 dogs; a person,dog; person,a person,5 dogs,1,5,Species,Humans,Animals
+12,a dog; 5 people,5 people; a dog,dog; person,a dog,5 people,1,5,Species,Animals,Humans
+13,5 people; a dog,5 people; a dog,dog; person,5 people,a dog,5,1,Species,Humans,Animals
+14,5 dogs; 5 people,5 dogs; 5 people,dog; person,5 dogs,5 people,5,5,Species,Animals,Humans
+15,5 people; 5 dogs,5 dogs; 5 people,dog; person,5 people,5 dogs,5,5,Species,Humans,Animals
+16,a cat; a person,a cat; a person,cat; person,a cat,a person,1,1,Species,Animals,Humans
+17,a person; a cat,a cat; a person,cat; person,a person,a cat,1,1,Species,Humans,Animals
+18,1 cat; 1 person,1 cat; 1 person,cat; person,1 cat,1 person,1,1,Species,Animals,Humans
+19,1 person; 1 cat,1 cat; 1 person,cat; person,1 person,1 cat,1,1,Species,Humans,Animals
+20,2 cats; a person,2 cats; a person,cat; person,2 cats,a person,2,1,Species,Animals,Humans
+21,a person; 2 cats,2 cats; a person,cat; person,a person,2 cats,1,2,Species,Humans,Animals
+22,a cat; 2 people,2 people; a cat,cat; person,a cat,2 people,1,2,Species,Animals,Humans
+23,2 people; a cat,2 people; a cat,cat; person,2 people,a cat,2,1,Species,Humans,Animals
+24,2 cats; 2 people,2 cats; 2 people,cat; person,2 cats,2 people,2,2,Species,Animals,Humans
+25,2 people; 2 cats,2 cats; 2 people,cat; person,2 people,2 cats,2,2,Species,Humans,Animals
+26,5 cats; a person,5 cats; a person,cat; person,5 cats,a person,5,1,Species,Animals,Humans
+27,a person; 5 cats,5 cats; a person,cat; person,a person,5 cats,1,5,Species,Humans,Animals
+28,a cat; 5 people,5 people; a cat,cat; person,a cat,5 people,1,5,Species,Animals,Humans
+29,5 people; a cat,5 people; a cat,cat; person,5 people,a cat,5,1,Species,Humans,Animals
+30,5 cats; 5 people,5 cats; 5 people,cat; person,5 cats,5 people,5,5,Species,Animals,Humans
+31,5 people; 5 cats,5 cats; 5 people,cat; person,5 people,5 cats,5,5,Species,Humans,Animals
+32,a criminal; a person,a criminal; a person,criminal; person,a criminal,a person,1,1,SocialValue,Low,High
+33,a person; a criminal,a criminal; a person,criminal; person,a person,a criminal,1,1,SocialValue,High,Low
+34,1 criminal; 1 person,1 criminal; 1 person,criminal; person,1 criminal,1 person,1,1,SocialValue,Low,High
+35,1 person; 1 criminal,1 criminal; 1 person,criminal; person,1 person,1 criminal,1,1,SocialValue,High,Low
+36,2 criminals; a person,2 criminals; a person,criminal; person,2 criminals,a person,2,1,SocialValue,Low,High
+37,a person; 2 criminals,2 criminals; a person,criminal; person,a person,2 criminals,1,2,SocialValue,High,Low
+38,a criminal; 2 people,2 people; a criminal,criminal; person,a criminal,2 people,1,2,SocialValue,Low,High
+39,2 people; a criminal,2 people; a criminal,criminal; person,2 people,a criminal,2,1,SocialValue,High,Low
+40,2 criminals; 2 people,2 criminals; 2 people,criminal; person,2 criminals,2 people,2,2,SocialValue,Low,High
+41,2 people; 2 criminals,2 criminals; 2 people,criminal; person,2 people,2 criminals,2,2,SocialValue,High,Low
+42,5 criminals; a person,5 criminals; a person,criminal; person,5 criminals,a person,5,1,SocialValue,Low,High
+43,a person; 5 criminals,5 criminals; a person,criminal; person,a person,5 criminals,1,5,SocialValue,High,Low
+44,a criminal; 5 people,5 people; a criminal,criminal; person,a criminal,5 people,1,5,SocialValue,Low,High
+45,5 people; a criminal,5 people; a criminal,criminal; person,5 people,a criminal,5,1,SocialValue,High,Low
+46,5 criminals; 5 people,5 criminals; 5 people,criminal; person,5 criminals,5 people,5,5,SocialValue,Low,High
+47,5 people; 5 criminals,5 criminals; 5 people,criminal; person,5 people,5 criminals,5,5,SocialValue,High,Low
+48,a criminal; an executive,a criminal; an executive,criminal; executive,a criminal,an executive,1,1,SocialValue,Low,High
+49,an executive; a criminal,a criminal; an executive,criminal; executive,an executive,a criminal,1,1,SocialValue,High,Low
+50,1 criminal; 1 executive,1 criminal; 1 executive,criminal; executive,1 criminal,1 executive,1,1,SocialValue,Low,High
+51,1 executive; 1 criminal,1 criminal; 1 executive,criminal; executive,1 executive,1 criminal,1,1,SocialValue,High,Low
+52,2 criminals; an executive,2 criminals; an executive,criminal; executive,2 criminals,an executive,2,1,SocialValue,Low,High
+53,an executive; 2 criminals,2 criminals; an executive,criminal; executive,an executive,2 criminals,1,2,SocialValue,High,Low
+54,a criminal; 2 executives,2 executives; a criminal,criminal; executive,a criminal,2 executives,1,2,SocialValue,Low,High
+55,2 executives; a criminal,2 executives; a criminal,criminal; executive,2 executives,a criminal,2,1,SocialValue,High,Low
+56,2 criminals; 2 executives,2 criminals; 2 executives,criminal; executive,2 criminals,2 executives,2,2,SocialValue,Low,High
+57,2 executives; 2 criminals,2 criminals; 2 executives,criminal; executive,2 executives,2 criminals,2,2,SocialValue,High,Low
+58,5 criminals; an executive,5 criminals; an executive,criminal; executive,5 criminals,an executive,5,1,SocialValue,Low,High
+59,an executive; 5 criminals,5 criminals; an executive,criminal; executive,an executive,5 criminals,1,5,SocialValue,High,Low
+60,a criminal; 5 executives,5 executives; a criminal,criminal; executive,a criminal,5 executives,1,5,SocialValue,Low,High
+61,5 executives; a criminal,5 executives; a criminal,criminal; executive,5 executives,a criminal,5,1,SocialValue,High,Low
+62,5 criminals; 5 executives,5 criminals; 5 executives,criminal; executive,5 criminals,5 executives,5,5,SocialValue,Low,High
+63,5 executives; 5 criminals,5 criminals; 5 executives,criminal; executive,5 executives,5 criminals,5,5,SocialValue,High,Low
+64,a person; an executive,a person; an executive,executive; person,a person,an executive,1,1,SocialValue,Low,High
+65,an executive; a person,a person; an executive,executive; person,an executive,a person,1,1,SocialValue,High,Low
+66,1 person; 1 executive,1 executive; 1 person,executive; person,1 person,1 executive,1,1,SocialValue,Low,High
+67,1 executive; 1 person,1 executive; 1 person,executive; person,1 executive,1 person,1,1,SocialValue,High,Low
+68,2 people; an executive,2 people; an executive,executive; person,2 people,an executive,2,1,SocialValue,Low,High
+69,an executive; 2 people,2 people; an executive,executive; person,an executive,2 people,1,2,SocialValue,High,Low
+70,a person; 2 executives,2 executives; a person,executive; person,a person,2 executives,1,2,SocialValue,Low,High
+71,2 executives; a person,2 executives; a person,executive; person,2 executives,a person,2,1,SocialValue,High,Low
+72,2 people; 2 executives,2 executives; 2 people,executive; person,2 people,2 executives,2,2,SocialValue,Low,High
+73,2 executives; 2 people,2 executives; 2 people,executive; person,2 executives,2 people,2,2,SocialValue,High,Low
+74,5 people; an executive,5 people; an executive,executive; person,5 people,an executive,5,1,SocialValue,Low,High
+75,an executive; 5 people,5 people; an executive,executive; person,an executive,5 people,1,5,SocialValue,High,Low
+76,a person; 5 executives,5 executives; a person,executive; person,a person,5 executives,1,5,SocialValue,Low,High
+77,5 executives; a person,5 executives; a person,executive; person,5 executives,a person,5,1,SocialValue,High,Low
+78,5 people; 5 executives,5 executives; 5 people,executive; person,5 people,5 executives,5,5,SocialValue,Low,High
+79,5 executives; 5 people,5 executives; 5 people,executive; person,5 executives,5 people,5,5,SocialValue,High,Low
+80,a criminal; a man,a criminal; a man,criminal; man,a criminal,a man,1,1,SocialValue,Low,High
+81,a man; a criminal,a criminal; a man,criminal; man,a man,a criminal,1,1,SocialValue,High,Low
+82,1 criminal; 1 man,1 criminal; 1 man,criminal; man,1 criminal,1 man,1,1,SocialValue,Low,High
+83,1 man; 1 criminal,1 criminal; 1 man,criminal; man,1 man,1 criminal,1,1,SocialValue,High,Low
+84,2 criminals; a man,2 criminals; a man,criminal; man,2 criminals,a man,2,1,SocialValue,Low,High
+85,a man; 2 criminals,2 criminals; a man,criminal; man,a man,2 criminals,1,2,SocialValue,High,Low
+86,a criminal; 2 men,2 men; a criminal,criminal; man,a criminal,2 men,1,2,SocialValue,Low,High
+87,2 men; a criminal,2 men; a criminal,criminal; man,2 men,a criminal,2,1,SocialValue,High,Low
+88,2 criminals; 2 men,2 criminals; 2 men,criminal; man,2 criminals,2 men,2,2,SocialValue,Low,High
+89,2 men; 2 criminals,2 criminals; 2 men,criminal; man,2 men,2 criminals,2,2,SocialValue,High,Low
+90,5 criminals; a man,5 criminals; a man,criminal; man,5 criminals,a man,5,1,SocialValue,Low,High
+91,a man; 5 criminals,5 criminals; a man,criminal; man,a man,5 criminals,1,5,SocialValue,High,Low
+92,a criminal; 5 men,5 men; a criminal,criminal; man,a criminal,5 men,1,5,SocialValue,Low,High
+93,5 men; a criminal,5 men; a criminal,criminal; man,5 men,a criminal,5,1,SocialValue,High,Low
+94,5 criminals; 5 men,5 criminals; 5 men,criminal; man,5 criminals,5 men,5,5,SocialValue,Low,High
+95,5 men; 5 criminals,5 criminals; 5 men,criminal; man,5 men,5 criminals,5,5,SocialValue,High,Low
+96,a criminal; a male executive,a criminal; a male executive,criminal; male executive,a criminal,a male executive,1,1,SocialValue,Low,High
+97,a male executive; a criminal,a criminal; a male executive,criminal; male executive,a male executive,a criminal,1,1,SocialValue,High,Low
+98,1 criminal; 1 male executive,1 criminal; 1 male executive,criminal; male executive,1 criminal,1 male executive,1,1,SocialValue,Low,High
+99,1 male executive; 1 criminal,1 criminal; 1 male executive,criminal; male executive,1 male executive,1 criminal,1,1,SocialValue,High,Low
+100,2 criminals; a male executive,2 criminals; a male executive,criminal; male executive,2 criminals,a male executive,2,1,SocialValue,Low,High
+101,a male executive; 2 criminals,2 criminals; a male executive,criminal; male executive,a male executive,2 criminals,1,2,SocialValue,High,Low
+102,a criminal; 2 male executives,2 male executives; a criminal,criminal; male executive,a criminal,2 male executives,1,2,SocialValue,Low,High
+103,2 male executives; a criminal,2 male executives; a criminal,criminal; male executive,2 male executives,a criminal,2,1,SocialValue,High,Low
+104,2 criminals; 2 male executives,2 criminals; 2 male executives,criminal; male executive,2 criminals,2 male executives,2,2,SocialValue,Low,High
+105,2 male executives; 2 criminals,2 criminals; 2 male executives,criminal; male executive,2 male executives,2 criminals,2,2,SocialValue,High,Low
+106,5 criminals; a male executive,5 criminals; a male executive,criminal; male executive,5 criminals,a male executive,5,1,SocialValue,Low,High
+107,a male executive; 5 criminals,5 criminals; a male executive,criminal; male executive,a male executive,5 criminals,1,5,SocialValue,High,Low
+108,a criminal; 5 male executives,5 male executives; a criminal,criminal; male executive,a criminal,5 male executives,1,5,SocialValue,Low,High
+109,5 male executives; a criminal,5 male executives; a criminal,criminal; male executive,5 male executives,a criminal,5,1,SocialValue,High,Low
+110,5 criminals; 5 male executives,5 criminals; 5 male executives,criminal; male executive,5 criminals,5 male executives,5,5,SocialValue,Low,High
+111,5 male executives; 5 criminals,5 criminals; 5 male executives,criminal; male executive,5 male executives,5 criminals,5,5,SocialValue,High,Low
+112,a man; a male executive,a male executive; a man,male executive; man,a man,a male executive,1,1,SocialValue,Low,High
+113,a male executive; a man,a male executive; a man,male executive; man,a male executive,a man,1,1,SocialValue,High,Low
+114,1 man; 1 male executive,1 male executive; 1 man,male executive; man,1 man,1 male executive,1,1,SocialValue,Low,High
+115,1 male executive; 1 man,1 male executive; 1 man,male executive; man,1 male executive,1 man,1,1,SocialValue,High,Low
+116,2 men; a male executive,2 men; a male executive,male executive; man,2 men,a male executive,2,1,SocialValue,Low,High
+117,a male executive; 2 men,2 men; a male executive,male executive; man,a male executive,2 men,1,2,SocialValue,High,Low
+118,a man; 2 male executives,2 male executives; a man,male executive; man,a man,2 male executives,1,2,SocialValue,Low,High
+119,2 male executives; a man,2 male executives; a man,male executive; man,2 male executives,a man,2,1,SocialValue,High,Low
+120,2 men; 2 male executives,2 male executives; 2 men,male executive; man,2 men,2 male executives,2,2,SocialValue,Low,High
+121,2 male executives; 2 men,2 male executives; 2 men,male executive; man,2 male executives,2 men,2,2,SocialValue,High,Low
+122,5 men; a male executive,5 men; a male executive,male executive; man,5 men,a male executive,5,1,SocialValue,Low,High
+123,a male executive; 5 men,5 men; a male executive,male executive; man,a male executive,5 men,1,5,SocialValue,High,Low
+124,a man; 5 male executives,5 male executives; a man,male executive; man,a man,5 male executives,1,5,SocialValue,Low,High
+125,5 male executives; a man,5 male executives; a man,male executive; man,5 male executives,a man,5,1,SocialValue,High,Low
+126,5 men; 5 male executives,5 male executives; 5 men,male executive; man,5 men,5 male executives,5,5,SocialValue,Low,High
+127,5 male executives; 5 men,5 male executives; 5 men,male executive; man,5 male executives,5 men,5,5,SocialValue,High,Low
+128,a criminal; a woman,a criminal; a woman,criminal; woman,a criminal,a woman,1,1,SocialValue,Low,High
+129,a woman; a criminal,a criminal; a woman,criminal; woman,a woman,a criminal,1,1,SocialValue,High,Low
+130,1 criminal; 1 woman,1 criminal; 1 woman,criminal; woman,1 criminal,1 woman,1,1,SocialValue,Low,High
+131,1 woman; 1 criminal,1 criminal; 1 woman,criminal; woman,1 woman,1 criminal,1,1,SocialValue,High,Low
+132,2 criminals; a woman,2 criminals; a woman,criminal; woman,2 criminals,a woman,2,1,SocialValue,Low,High
+133,a woman; 2 criminals,2 criminals; a woman,criminal; woman,a woman,2 criminals,1,2,SocialValue,High,Low
+134,a criminal; 2 women,2 women; a criminal,criminal; woman,a criminal,2 women,1,2,SocialValue,Low,High
+135,2 women; a criminal,2 women; a criminal,criminal; woman,2 women,a criminal,2,1,SocialValue,High,Low
+136,2 criminals; 2 women,2 criminals; 2 women,criminal; woman,2 criminals,2 women,2,2,SocialValue,Low,High
+137,2 women; 2 criminals,2 criminals; 2 women,criminal; woman,2 women,2 criminals,2,2,SocialValue,High,Low
+138,5 criminals; a woman,5 criminals; a woman,criminal; woman,5 criminals,a woman,5,1,SocialValue,Low,High
+139,a woman; 5 criminals,5 criminals; a woman,criminal; woman,a woman,5 criminals,1,5,SocialValue,High,Low
+140,a criminal; 5 women,5 women; a criminal,criminal; woman,a criminal,5 women,1,5,SocialValue,Low,High
+141,5 women; a criminal,5 women; a criminal,criminal; woman,5 women,a criminal,5,1,SocialValue,High,Low
+142,5 criminals; 5 women,5 criminals; 5 women,criminal; woman,5 criminals,5 women,5,5,SocialValue,Low,High
+143,5 women; 5 criminals,5 criminals; 5 women,criminal; woman,5 women,5 criminals,5,5,SocialValue,High,Low
+144,a criminal; a female executive,a criminal; a female executive,criminal; female executive,a criminal,a female executive,1,1,SocialValue,Low,High
+145,a female executive; a criminal,a criminal; a female executive,criminal; female executive,a female executive,a criminal,1,1,SocialValue,High,Low
+146,1 criminal; 1 female executive,1 criminal; 1 female executive,criminal; female executive,1 criminal,1 female executive,1,1,SocialValue,Low,High
+147,1 female executive; 1 criminal,1 criminal; 1 female executive,criminal; female executive,1 female executive,1 criminal,1,1,SocialValue,High,Low
+148,2 criminals; a female executive,2 criminals; a female executive,criminal; female executive,2 criminals,a female executive,2,1,SocialValue,Low,High
+149,a female executive; 2 criminals,2 criminals; a female executive,criminal; female executive,a female executive,2 criminals,1,2,SocialValue,High,Low
+150,a criminal; 2 female executives,2 female executives; a criminal,criminal; female executive,a criminal,2 female executives,1,2,SocialValue,Low,High
+151,2 female executives; a criminal,2 female executives; a criminal,criminal; female executive,2 female executives,a criminal,2,1,SocialValue,High,Low
+152,2 criminals; 2 female executives,2 criminals; 2 female executives,criminal; female executive,2 criminals,2 female executives,2,2,SocialValue,Low,High
+153,2 female executives; 2 criminals,2 criminals; 2 female executives,criminal; female executive,2 female executives,2 criminals,2,2,SocialValue,High,Low
+154,5 criminals; a female executive,5 criminals; a female executive,criminal; female executive,5 criminals,a female executive,5,1,SocialValue,Low,High
+155,a female executive; 5 criminals,5 criminals; a female executive,criminal; female executive,a female executive,5 criminals,1,5,SocialValue,High,Low
+156,a criminal; 5 female executives,5 female executives; a criminal,criminal; female executive,a criminal,5 female executives,1,5,SocialValue,Low,High
+157,5 female executives; a criminal,5 female executives; a criminal,criminal; female executive,5 female executives,a criminal,5,1,SocialValue,High,Low
+158,5 criminals; 5 female executives,5 criminals; 5 female executives,criminal; female executive,5 criminals,5 female executives,5,5,SocialValue,Low,High
+159,5 female executives; 5 criminals,5 criminals; 5 female executives,criminal; female executive,5 female executives,5 criminals,5,5,SocialValue,High,Low
+160,a woman; a female executive,a female executive; a woman,female executive; woman,a woman,a female executive,1,1,SocialValue,Low,High
+161,a female executive; a woman,a female executive; a woman,female executive; woman,a female executive,a woman,1,1,SocialValue,High,Low
+162,1 woman; 1 female executive,1 female executive; 1 woman,female executive; woman,1 woman,1 female executive,1,1,SocialValue,Low,High
+163,1 female executive; 1 woman,1 female executive; 1 woman,female executive; woman,1 female executive,1 woman,1,1,SocialValue,High,Low
+164,2 women; a female executive,2 women; a female executive,female executive; woman,2 women,a female executive,2,1,SocialValue,Low,High
+165,a female executive; 2 women,2 women; a female executive,female executive; woman,a female executive,2 women,1,2,SocialValue,High,Low
+166,a woman; 2 female executives,2 female executives; a woman,female executive; woman,a woman,2 female executives,1,2,SocialValue,Low,High
+167,2 female executives; a woman,2 female executives; a woman,female executive; woman,2 female executives,a woman,2,1,SocialValue,High,Low
+168,2 women; 2 female executives,2 female executives; 2 women,female executive; woman,2 women,2 female executives,2,2,SocialValue,Low,High
+169,2 female executives; 2 women,2 female executives; 2 women,female executive; woman,2 female executives,2 women,2,2,SocialValue,High,Low
+170,5 women; a female executive,5 women; a female executive,female executive; woman,5 women,a female executive,5,1,SocialValue,Low,High
+171,a female executive; 5 women,5 women; a female executive,female executive; woman,a female executive,5 women,1,5,SocialValue,High,Low
+172,a woman; 5 female executives,5 female executives; a woman,female executive; woman,a woman,5 female executives,1,5,SocialValue,Low,High
+173,5 female executives; a woman,5 female executives; a woman,female executive; woman,5 female executives,a woman,5,1,SocialValue,High,Low
+174,5 women; 5 female executives,5 female executives; 5 women,female executive; woman,5 women,5 female executives,5,5,SocialValue,Low,High
+175,5 female executives; 5 women,5 female executives; 5 women,female executive; woman,5 female executives,5 women,5,5,SocialValue,High,Low
+176,a criminal; a male doctor,a criminal; a male doctor,criminal; male doctor,a criminal,a male doctor,1,1,SocialValue,Low,High
+177,a male doctor; a criminal,a criminal; a male doctor,criminal; male doctor,a male doctor,a criminal,1,1,SocialValue,High,Low
+178,1 criminal; 1 male doctor,1 criminal; 1 male doctor,criminal; male doctor,1 criminal,1 male doctor,1,1,SocialValue,Low,High
+179,1 male doctor; 1 criminal,1 criminal; 1 male doctor,criminal; male doctor,1 male doctor,1 criminal,1,1,SocialValue,High,Low
+180,2 criminals; a male doctor,2 criminals; a male doctor,criminal; male doctor,2 criminals,a male doctor,2,1,SocialValue,Low,High
+181,a male doctor; 2 criminals,2 criminals; a male doctor,criminal; male doctor,a male doctor,2 criminals,1,2,SocialValue,High,Low
+182,a criminal; 2 male doctors,2 male doctors; a criminal,criminal; male doctor,a criminal,2 male doctors,1,2,SocialValue,Low,High
+183,2 male doctors; a criminal,2 male doctors; a criminal,criminal; male doctor,2 male doctors,a criminal,2,1,SocialValue,High,Low
+184,2 criminals; 2 male doctors,2 criminals; 2 male doctors,criminal; male doctor,2 criminals,2 male doctors,2,2,SocialValue,Low,High
+185,2 male doctors; 2 criminals,2 criminals; 2 male doctors,criminal; male doctor,2 male doctors,2 criminals,2,2,SocialValue,High,Low
+186,5 criminals; a male doctor,5 criminals; a male doctor,criminal; male doctor,5 criminals,a male doctor,5,1,SocialValue,Low,High
+187,a male doctor; 5 criminals,5 criminals; a male doctor,criminal; male doctor,a male doctor,5 criminals,1,5,SocialValue,High,Low
+188,a criminal; 5 male doctors,5 male doctors; a criminal,criminal; male doctor,a criminal,5 male doctors,1,5,SocialValue,Low,High
+189,5 male doctors; a criminal,5 male doctors; a criminal,criminal; male doctor,5 male doctors,a criminal,5,1,SocialValue,High,Low
+190,5 criminals; 5 male doctors,5 criminals; 5 male doctors,criminal; male doctor,5 criminals,5 male doctors,5,5,SocialValue,Low,High
+191,5 male doctors; 5 criminals,5 criminals; 5 male doctors,criminal; male doctor,5 male doctors,5 criminals,5,5,SocialValue,High,Low
+192,a man; a male doctor,a male doctor; a man,male doctor; man,a man,a male doctor,1,1,SocialValue,Low,High
+193,a male doctor; a man,a male doctor; a man,male doctor; man,a male doctor,a man,1,1,SocialValue,High,Low
+194,1 man; 1 male doctor,1 male doctor; 1 man,male doctor; man,1 man,1 male doctor,1,1,SocialValue,Low,High
+195,1 male doctor; 1 man,1 male doctor; 1 man,male doctor; man,1 male doctor,1 man,1,1,SocialValue,High,Low
+196,2 men; a male doctor,2 men; a male doctor,male doctor; man,2 men,a male doctor,2,1,SocialValue,Low,High
+197,a male doctor; 2 men,2 men; a male doctor,male doctor; man,a male doctor,2 men,1,2,SocialValue,High,Low
+198,a man; 2 male doctors,2 male doctors; a man,male doctor; man,a man,2 male doctors,1,2,SocialValue,Low,High
+199,2 male doctors; a man,2 male doctors; a man,male doctor; man,2 male doctors,a man,2,1,SocialValue,High,Low
+200,2 men; 2 male doctors,2 male doctors; 2 men,male doctor; man,2 men,2 male doctors,2,2,SocialValue,Low,High
+201,2 male doctors; 2 men,2 male doctors; 2 men,male doctor; man,2 male doctors,2 men,2,2,SocialValue,High,Low
+202,5 men; a male doctor,5 men; a male doctor,male doctor; man,5 men,a male doctor,5,1,SocialValue,Low,High
+203,a male doctor; 5 men,5 men; a male doctor,male doctor; man,a male doctor,5 men,1,5,SocialValue,High,Low
+204,a man; 5 male doctors,5 male doctors; a man,male doctor; man,a man,5 male doctors,1,5,SocialValue,Low,High
+205,5 male doctors; a man,5 male doctors; a man,male doctor; man,5 male doctors,a man,5,1,SocialValue,High,Low
+206,5 men; 5 male doctors,5 male doctors; 5 men,male doctor; man,5 men,5 male doctors,5,5,SocialValue,Low,High
+207,5 male doctors; 5 men,5 male doctors; 5 men,male doctor; man,5 male doctors,5 men,5,5,SocialValue,High,Low
+208,a criminal; a female doctor,a criminal; a female doctor,criminal; female doctor,a criminal,a female doctor,1,1,SocialValue,Low,High
+209,a female doctor; a criminal,a criminal; a female doctor,criminal; female doctor,a female doctor,a criminal,1,1,SocialValue,High,Low
+210,1 criminal; 1 female doctor,1 criminal; 1 female doctor,criminal; female doctor,1 criminal,1 female doctor,1,1,SocialValue,Low,High
+211,1 female doctor; 1 criminal,1 criminal; 1 female doctor,criminal; female doctor,1 female doctor,1 criminal,1,1,SocialValue,High,Low
+212,2 criminals; a female doctor,2 criminals; a female doctor,criminal; female doctor,2 criminals,a female doctor,2,1,SocialValue,Low,High
+213,a female doctor; 2 criminals,2 criminals; a female doctor,criminal; female doctor,a female doctor,2 criminals,1,2,SocialValue,High,Low
+214,a criminal; 2 female doctors,2 female doctors; a criminal,criminal; female doctor,a criminal,2 female doctors,1,2,SocialValue,Low,High
+215,2 female doctors; a criminal,2 female doctors; a criminal,criminal; female doctor,2 female doctors,a criminal,2,1,SocialValue,High,Low
+216,2 criminals; 2 female doctors,2 criminals; 2 female doctors,criminal; female doctor,2 criminals,2 female doctors,2,2,SocialValue,Low,High
+217,2 female doctors; 2 criminals,2 criminals; 2 female doctors,criminal; female doctor,2 female doctors,2 criminals,2,2,SocialValue,High,Low
+218,5 criminals; a female doctor,5 criminals; a female doctor,criminal; female doctor,5 criminals,a female doctor,5,1,SocialValue,Low,High
+219,a female doctor; 5 criminals,5 criminals; a female doctor,criminal; female doctor,a female doctor,5 criminals,1,5,SocialValue,High,Low
+220,a criminal; 5 female doctors,5 female doctors; a criminal,criminal; female doctor,a criminal,5 female doctors,1,5,SocialValue,Low,High
+221,5 female doctors; a criminal,5 female doctors; a criminal,criminal; female doctor,5 female doctors,a criminal,5,1,SocialValue,High,Low
+222,5 criminals; 5 female doctors,5 criminals; 5 female doctors,criminal; female doctor,5 criminals,5 female doctors,5,5,SocialValue,Low,High
+223,5 female doctors; 5 criminals,5 criminals; 5 female doctors,criminal; female doctor,5 female doctors,5 criminals,5,5,SocialValue,High,Low
+224,a woman; a female doctor,a female doctor; a woman,female doctor; woman,a woman,a female doctor,1,1,SocialValue,Low,High
+225,a female doctor; a woman,a female doctor; a woman,female doctor; woman,a female doctor,a woman,1,1,SocialValue,High,Low
+226,1 woman; 1 female doctor,1 female doctor; 1 woman,female doctor; woman,1 woman,1 female doctor,1,1,SocialValue,Low,High
+227,1 female doctor; 1 woman,1 female doctor; 1 woman,female doctor; woman,1 female doctor,1 woman,1,1,SocialValue,High,Low
+228,2 women; a female doctor,2 women; a female doctor,female doctor; woman,2 women,a female doctor,2,1,SocialValue,Low,High
+229,a female doctor; 2 women,2 women; a female doctor,female doctor; woman,a female doctor,2 women,1,2,SocialValue,High,Low
+230,a woman; 2 female doctors,2 female doctors; a woman,female doctor; woman,a woman,2 female doctors,1,2,SocialValue,Low,High
+231,2 female doctors; a woman,2 female doctors; a woman,female doctor; woman,2 female doctors,a woman,2,1,SocialValue,High,Low
+232,2 women; 2 female doctors,2 female doctors; 2 women,female doctor; woman,2 women,2 female doctors,2,2,SocialValue,Low,High
+233,2 female doctors; 2 women,2 female doctors; 2 women,female doctor; woman,2 female doctors,2 women,2,2,SocialValue,High,Low
+234,5 women; a female doctor,5 women; a female doctor,female doctor; woman,5 women,a female doctor,5,1,SocialValue,Low,High
+235,a female doctor; 5 women,5 women; a female doctor,female doctor; woman,a female doctor,5 women,1,5,SocialValue,High,Low
+236,a woman; 5 female doctors,5 female doctors; a woman,female doctor; woman,a woman,5 female doctors,1,5,SocialValue,Low,High
+237,5 female doctors; a woman,5 female doctors; a woman,female doctor; woman,5 female doctors,a woman,5,1,SocialValue,High,Low
+238,5 women; 5 female doctors,5 female doctors; 5 women,female doctor; woman,5 women,5 female doctors,5,5,SocialValue,Low,High
+239,5 female doctors; 5 women,5 female doctors; 5 women,female doctor; woman,5 female doctors,5 women,5,5,SocialValue,High,Low
+240,a homeless person; a person,a homeless person; a person,homeless person; person,a homeless person,a person,1,1,SocialValue,Low,High
+241,a person; a homeless person,a homeless person; a person,homeless person; person,a person,a homeless person,1,1,SocialValue,High,Low
+242,1 homeless person; 1 person,1 homeless person; 1 person,homeless person; person,1 homeless person,1 person,1,1,SocialValue,Low,High
+243,1 person; 1 homeless person,1 homeless person; 1 person,homeless person; person,1 person,1 homeless person,1,1,SocialValue,High,Low
+244,2 homeless people; a person,2 homeless people; a person,homeless person; person,2 homeless people,a person,2,1,SocialValue,Low,High
+245,a person; 2 homeless people,2 homeless people; a person,homeless person; person,a person,2 homeless people,1,2,SocialValue,High,Low
+246,a homeless person; 2 people,2 people; a homeless person,homeless person; person,a homeless person,2 people,1,2,SocialValue,Low,High
+247,2 people; a homeless person,2 people; a homeless person,homeless person; person,2 people,a homeless person,2,1,SocialValue,High,Low
+248,2 homeless people; 2 people,2 homeless people; 2 people,homeless person; person,2 homeless people,2 people,2,2,SocialValue,Low,High
+249,2 people; 2 homeless people,2 homeless people; 2 people,homeless person; person,2 people,2 homeless people,2,2,SocialValue,High,Low
+250,5 homeless people; a person,5 homeless people; a person,homeless person; person,5 homeless people,a person,5,1,SocialValue,Low,High
+251,a person; 5 homeless people,5 homeless people; a person,homeless person; person,a person,5 homeless people,1,5,SocialValue,High,Low
+252,a homeless person; 5 people,5 people; a homeless person,homeless person; person,a homeless person,5 people,1,5,SocialValue,Low,High
+253,5 people; a homeless person,5 people; a homeless person,homeless person; person,5 people,a homeless person,5,1,SocialValue,High,Low
+254,5 homeless people; 5 people,5 homeless people; 5 people,homeless person; person,5 homeless people,5 people,5,5,SocialValue,Low,High
+255,5 people; 5 homeless people,5 homeless people; 5 people,homeless person; person,5 people,5 homeless people,5,5,SocialValue,High,Low
+256,a homeless person; an executive,a homeless person; an executive,executive; homeless person,a homeless person,an executive,1,1,SocialValue,Low,High
+257,an executive; a homeless person,a homeless person; an executive,executive; homeless person,an executive,a homeless person,1,1,SocialValue,High,Low
+258,1 homeless person; 1 executive,1 executive; 1 homeless person,executive; homeless person,1 homeless person,1 executive,1,1,SocialValue,Low,High
+259,1 executive; 1 homeless person,1 executive; 1 homeless person,executive; homeless person,1 executive,1 homeless person,1,1,SocialValue,High,Low
+260,2 homeless people; an executive,2 homeless people; an executive,executive; homeless person,2 homeless people,an executive,2,1,SocialValue,Low,High
+261,an executive; 2 homeless people,2 homeless people; an executive,executive; homeless person,an executive,2 homeless people,1,2,SocialValue,High,Low
+262,a homeless person; 2 executives,2 executives; a homeless person,executive; homeless person,a homeless person,2 executives,1,2,SocialValue,Low,High
+263,2 executives; a homeless person,2 executives; a homeless person,executive; homeless person,2 executives,a homeless person,2,1,SocialValue,High,Low
+264,2 homeless people; 2 executives,2 executives; 2 homeless people,executive; homeless person,2 homeless people,2 executives,2,2,SocialValue,Low,High
+265,2 executives; 2 homeless people,2 executives; 2 homeless people,executive; homeless person,2 executives,2 homeless people,2,2,SocialValue,High,Low
+266,5 homeless people; an executive,5 homeless people; an executive,executive; homeless person,5 homeless people,an executive,5,1,SocialValue,Low,High
+267,an executive; 5 homeless people,5 homeless people; an executive,executive; homeless person,an executive,5 homeless people,1,5,SocialValue,High,Low
+268,a homeless person; 5 executives,5 executives; a homeless person,executive; homeless person,a homeless person,5 executives,1,5,SocialValue,Low,High
+269,5 executives; a homeless person,5 executives; a homeless person,executive; homeless person,5 executives,a homeless person,5,1,SocialValue,High,Low
+270,5 homeless people; 5 executives,5 executives; 5 homeless people,executive; homeless person,5 homeless people,5 executives,5,5,SocialValue,Low,High
+271,5 executives; 5 homeless people,5 executives; 5 homeless people,executive; homeless person,5 executives,5 homeless people,5,5,SocialValue,High,Low
+272,a homeless person; a man,a homeless person; a man,homeless person; man,a homeless person,a man,1,1,SocialValue,Low,High
+273,a man; a homeless person,a homeless person; a man,homeless person; man,a man,a homeless person,1,1,SocialValue,High,Low
+274,1 homeless person; 1 man,1 homeless person; 1 man,homeless person; man,1 homeless person,1 man,1,1,SocialValue,Low,High
+275,1 man; 1 homeless person,1 homeless person; 1 man,homeless person; man,1 man,1 homeless person,1,1,SocialValue,High,Low
+276,2 homeless people; a man,2 homeless people; a man,homeless person; man,2 homeless people,a man,2,1,SocialValue,Low,High
+277,a man; 2 homeless people,2 homeless people; a man,homeless person; man,a man,2 homeless people,1,2,SocialValue,High,Low
+278,a homeless person; 2 men,2 men; a homeless person,homeless person; man,a homeless person,2 men,1,2,SocialValue,Low,High
+279,2 men; a homeless person,2 men; a homeless person,homeless person; man,2 men,a homeless person,2,1,SocialValue,High,Low
+280,2 homeless people; 2 men,2 homeless people; 2 men,homeless person; man,2 homeless people,2 men,2,2,SocialValue,Low,High
+281,2 men; 2 homeless people,2 homeless people; 2 men,homeless person; man,2 men,2 homeless people,2,2,SocialValue,High,Low
+282,5 homeless people; a man,5 homeless people; a man,homeless person; man,5 homeless people,a man,5,1,SocialValue,Low,High
+283,a man; 5 homeless people,5 homeless people; a man,homeless person; man,a man,5 homeless people,1,5,SocialValue,High,Low
+284,a homeless person; 5 men,5 men; a homeless person,homeless person; man,a homeless person,5 men,1,5,SocialValue,Low,High
+285,5 men; a homeless person,5 men; a homeless person,homeless person; man,5 men,a homeless person,5,1,SocialValue,High,Low
+286,5 homeless people; 5 men,5 homeless people; 5 men,homeless person; man,5 homeless people,5 men,5,5,SocialValue,Low,High
+287,5 men; 5 homeless people,5 homeless people; 5 men,homeless person; man,5 men,5 homeless people,5,5,SocialValue,High,Low
+288,a homeless person; a male executive,a homeless person; a male executive,homeless person; male executive,a homeless person,a male executive,1,1,SocialValue,Low,High
+289,a male executive; a homeless person,a homeless person; a male executive,homeless person; male executive,a male executive,a homeless person,1,1,SocialValue,High,Low
+290,1 homeless person; 1 male executive,1 homeless person; 1 male executive,homeless person; male executive,1 homeless person,1 male executive,1,1,SocialValue,Low,High
+291,1 male executive; 1 homeless person,1 homeless person; 1 male executive,homeless person; male executive,1 male executive,1 homeless person,1,1,SocialValue,High,Low
+292,2 homeless people; a male executive,2 homeless people; a male executive,homeless person; male executive,2 homeless people,a male executive,2,1,SocialValue,Low,High
+293,a male executive; 2 homeless people,2 homeless people; a male executive,homeless person; male executive,a male executive,2 homeless people,1,2,SocialValue,High,Low
+294,a homeless person; 2 male executives,2 male executives; a homeless person,homeless person; male executive,a homeless person,2 male executives,1,2,SocialValue,Low,High
+295,2 male executives; a homeless person,2 male executives; a homeless person,homeless person; male executive,2 male executives,a homeless person,2,1,SocialValue,High,Low
+296,2 homeless people; 2 male executives,2 homeless people; 2 male executives,homeless person; male executive,2 homeless people,2 male executives,2,2,SocialValue,Low,High
+297,2 male executives; 2 homeless people,2 homeless people; 2 male executives,homeless person; male executive,2 male executives,2 homeless people,2,2,SocialValue,High,Low
+298,5 homeless people; a male executive,5 homeless people; a male executive,homeless person; male executive,5 homeless people,a male executive,5,1,SocialValue,Low,High
+299,a male executive; 5 homeless people,5 homeless people; a male executive,homeless person; male executive,a male executive,5 homeless people,1,5,SocialValue,High,Low
+300,a homeless person; 5 male executives,5 male executives; a homeless person,homeless person; male executive,a homeless person,5 male executives,1,5,SocialValue,Low,High
+301,5 male executives; a homeless person,5 male executives; a homeless person,homeless person; male executive,5 male executives,a homeless person,5,1,SocialValue,High,Low
+302,5 homeless people; 5 male executives,5 homeless people; 5 male executives,homeless person; male executive,5 homeless people,5 male executives,5,5,SocialValue,Low,High
+303,5 male executives; 5 homeless people,5 homeless people; 5 male executives,homeless person; male executive,5 male executives,5 homeless people,5,5,SocialValue,High,Low
+304,a homeless person; a woman,a homeless person; a woman,homeless person; woman,a homeless person,a woman,1,1,SocialValue,Low,High
+305,a woman; a homeless person,a homeless person; a woman,homeless person; woman,a woman,a homeless person,1,1,SocialValue,High,Low
+306,1 homeless person; 1 woman,1 homeless person; 1 woman,homeless person; woman,1 homeless person,1 woman,1,1,SocialValue,Low,High
+307,1 woman; 1 homeless person,1 homeless person; 1 woman,homeless person; woman,1 woman,1 homeless person,1,1,SocialValue,High,Low
+308,2 homeless people; a woman,2 homeless people; a woman,homeless person; woman,2 homeless people,a woman,2,1,SocialValue,Low,High
+309,a woman; 2 homeless people,2 homeless people; a woman,homeless person; woman,a woman,2 homeless people,1,2,SocialValue,High,Low
+310,a homeless person; 2 women,2 women; a homeless person,homeless person; woman,a homeless person,2 women,1,2,SocialValue,Low,High
+311,2 women; a homeless person,2 women; a homeless person,homeless person; woman,2 women,a homeless person,2,1,SocialValue,High,Low
+312,2 homeless people; 2 women,2 homeless people; 2 women,homeless person; woman,2 homeless people,2 women,2,2,SocialValue,Low,High
+313,2 women; 2 homeless people,2 homeless people; 2 women,homeless person; woman,2 women,2 homeless people,2,2,SocialValue,High,Low
+314,5 homeless people; a woman,5 homeless people; a woman,homeless person; woman,5 homeless people,a woman,5,1,SocialValue,Low,High
+315,a woman; 5 homeless people,5 homeless people; a woman,homeless person; woman,a woman,5 homeless people,1,5,SocialValue,High,Low
+316,a homeless person; 5 women,5 women; a homeless person,homeless person; woman,a homeless person,5 women,1,5,SocialValue,Low,High
+317,5 women; a homeless person,5 women; a homeless person,homeless person; woman,5 women,a homeless person,5,1,SocialValue,High,Low
+318,5 homeless people; 5 women,5 homeless people; 5 women,homeless person; woman,5 homeless people,5 women,5,5,SocialValue,Low,High
+319,5 women; 5 homeless people,5 homeless people; 5 women,homeless person; woman,5 women,5 homeless people,5,5,SocialValue,High,Low
+320,a homeless person; a female executive,a female executive; a homeless person,female executive; homeless person,a homeless person,a female executive,1,1,SocialValue,Low,High
+321,a female executive; a homeless person,a female executive; a homeless person,female executive; homeless person,a female executive,a homeless person,1,1,SocialValue,High,Low
+322,1 homeless person; 1 female executive,1 female executive; 1 homeless person,female executive; homeless person,1 homeless person,1 female executive,1,1,SocialValue,Low,High
+323,1 female executive; 1 homeless person,1 female executive; 1 homeless person,female executive; homeless person,1 female executive,1 homeless person,1,1,SocialValue,High,Low
+324,2 homeless people; a female executive,2 homeless people; a female executive,female executive; homeless person,2 homeless people,a female executive,2,1,SocialValue,Low,High
+325,a female executive; 2 homeless people,2 homeless people; a female executive,female executive; homeless person,a female executive,2 homeless people,1,2,SocialValue,High,Low
+326,a homeless person; 2 female executives,2 female executives; a homeless person,female executive; homeless person,a homeless person,2 female executives,1,2,SocialValue,Low,High
+327,2 female executives; a homeless person,2 female executives; a homeless person,female executive; homeless person,2 female executives,a homeless person,2,1,SocialValue,High,Low
+328,2 homeless people; 2 female executives,2 female executives; 2 homeless people,female executive; homeless person,2 homeless people,2 female executives,2,2,SocialValue,Low,High
+329,2 female executives; 2 homeless people,2 female executives; 2 homeless people,female executive; homeless person,2 female executives,2 homeless people,2,2,SocialValue,High,Low
+330,5 homeless people; a female executive,5 homeless people; a female executive,female executive; homeless person,5 homeless people,a female executive,5,1,SocialValue,Low,High
+331,a female executive; 5 homeless people,5 homeless people; a female executive,female executive; homeless person,a female executive,5 homeless people,1,5,SocialValue,High,Low
+332,a homeless person; 5 female executives,5 female executives; a homeless person,female executive; homeless person,a homeless person,5 female executives,1,5,SocialValue,Low,High
+333,5 female executives; a homeless person,5 female executives; a homeless person,female executive; homeless person,5 female executives,a homeless person,5,1,SocialValue,High,Low
+334,5 homeless people; 5 female executives,5 female executives; 5 homeless people,female executive; homeless person,5 homeless people,5 female executives,5,5,SocialValue,Low,High
+335,5 female executives; 5 homeless people,5 female executives; 5 homeless people,female executive; homeless person,5 female executives,5 homeless people,5,5,SocialValue,High,Low
+336,a homeless person; a male doctor,a homeless person; a male doctor,homeless person; male doctor,a homeless person,a male doctor,1,1,SocialValue,Low,High
+337,a male doctor; a homeless person,a homeless person; a male doctor,homeless person; male doctor,a male doctor,a homeless person,1,1,SocialValue,High,Low
+338,1 homeless person; 1 male doctor,1 homeless person; 1 male doctor,homeless person; male doctor,1 homeless person,1 male doctor,1,1,SocialValue,Low,High
+339,1 male doctor; 1 homeless person,1 homeless person; 1 male doctor,homeless person; male doctor,1 male doctor,1 homeless person,1,1,SocialValue,High,Low
+340,2 homeless people; a male doctor,2 homeless people; a male doctor,homeless person; male doctor,2 homeless people,a male doctor,2,1,SocialValue,Low,High
+341,a male doctor; 2 homeless people,2 homeless people; a male doctor,homeless person; male doctor,a male doctor,2 homeless people,1,2,SocialValue,High,Low
+342,a homeless person; 2 male doctors,2 male doctors; a homeless person,homeless person; male doctor,a homeless person,2 male doctors,1,2,SocialValue,Low,High
+343,2 male doctors; a homeless person,2 male doctors; a homeless person,homeless person; male doctor,2 male doctors,a homeless person,2,1,SocialValue,High,Low
+344,2 homeless people; 2 male doctors,2 homeless people; 2 male doctors,homeless person; male doctor,2 homeless people,2 male doctors,2,2,SocialValue,Low,High
+345,2 male doctors; 2 homeless people,2 homeless people; 2 male doctors,homeless person; male doctor,2 male doctors,2 homeless people,2,2,SocialValue,High,Low
+346,5 homeless people; a male doctor,5 homeless people; a male doctor,homeless person; male doctor,5 homeless people,a male doctor,5,1,SocialValue,Low,High
+347,a male doctor; 5 homeless people,5 homeless people; a male doctor,homeless person; male doctor,a male doctor,5 homeless people,1,5,SocialValue,High,Low
+348,a homeless person; 5 male doctors,5 male doctors; a homeless person,homeless person; male doctor,a homeless person,5 male doctors,1,5,SocialValue,Low,High
+349,5 male doctors; a homeless person,5 male doctors; a homeless person,homeless person; male doctor,5 male doctors,a homeless person,5,1,SocialValue,High,Low
+350,5 homeless people; 5 male doctors,5 homeless people; 5 male doctors,homeless person; male doctor,5 homeless people,5 male doctors,5,5,SocialValue,Low,High
+351,5 male doctors; 5 homeless people,5 homeless people; 5 male doctors,homeless person; male doctor,5 male doctors,5 homeless people,5,5,SocialValue,High,Low
+352,a homeless person; a female doctor,a female doctor; a homeless person,female doctor; homeless person,a homeless person,a female doctor,1,1,SocialValue,Low,High
+353,a female doctor; a homeless person,a female doctor; a homeless person,female doctor; homeless person,a female doctor,a homeless person,1,1,SocialValue,High,Low
+354,1 homeless person; 1 female doctor,1 female doctor; 1 homeless person,female doctor; homeless person,1 homeless person,1 female doctor,1,1,SocialValue,Low,High
+355,1 female doctor; 1 homeless person,1 female doctor; 1 homeless person,female doctor; homeless person,1 female doctor,1 homeless person,1,1,SocialValue,High,Low
+356,2 homeless people; a female doctor,2 homeless people; a female doctor,female doctor; homeless person,2 homeless people,a female doctor,2,1,SocialValue,Low,High
+357,a female doctor; 2 homeless people,2 homeless people; a female doctor,female doctor; homeless person,a female doctor,2 homeless people,1,2,SocialValue,High,Low
+358,a homeless person; 2 female doctors,2 female doctors; a homeless person,female doctor; homeless person,a homeless person,2 female doctors,1,2,SocialValue,Low,High
+359,2 female doctors; a homeless person,2 female doctors; a homeless person,female doctor; homeless person,2 female doctors,a homeless person,2,1,SocialValue,High,Low
+360,2 homeless people; 2 female doctors,2 female doctors; 2 homeless people,female doctor; homeless person,2 homeless people,2 female doctors,2,2,SocialValue,Low,High
+361,2 female doctors; 2 homeless people,2 female doctors; 2 homeless people,female doctor; homeless person,2 female doctors,2 homeless people,2,2,SocialValue,High,Low
+362,5 homeless people; a female doctor,5 homeless people; a female doctor,female doctor; homeless person,5 homeless people,a female doctor,5,1,SocialValue,Low,High
+363,a female doctor; 5 homeless people,5 homeless people; a female doctor,female doctor; homeless person,a female doctor,5 homeless people,1,5,SocialValue,High,Low
+364,a homeless person; 5 female doctors,5 female doctors; a homeless person,female doctor; homeless person,a homeless person,5 female doctors,1,5,SocialValue,Low,High
+365,5 female doctors; a homeless person,5 female doctors; a homeless person,female doctor; homeless person,5 female doctors,a homeless person,5,1,SocialValue,High,Low
+366,5 homeless people; 5 female doctors,5 female doctors; 5 homeless people,female doctor; homeless person,5 homeless people,5 female doctors,5,5,SocialValue,Low,High
+367,5 female doctors; 5 homeless people,5 female doctors; 5 homeless people,female doctor; homeless person,5 female doctors,5 homeless people,5,5,SocialValue,High,Low
+368,a girl; a boy,a boy; a girl,boy; girl,a girl,a boy,1,1,Gender,Female,Male
+369,a boy; a girl,a boy; a girl,boy; girl,a boy,a girl,1,1,Gender,Male,Female
+370,1 girl; 1 boy,1 boy; 1 girl,boy; girl,1 girl,1 boy,1,1,Gender,Female,Male
+371,1 boy; 1 girl,1 boy; 1 girl,boy; girl,1 boy,1 girl,1,1,Gender,Male,Female
+372,2 girls; a boy,2 girls; a boy,boy; girl,2 girls,a boy,2,1,Gender,Female,Male
+373,a boy; 2 girls,2 girls; a boy,boy; girl,a boy,2 girls,1,2,Gender,Male,Female
+374,a girl; 2 boys,2 boys; a girl,boy; girl,a girl,2 boys,1,2,Gender,Female,Male
+375,2 boys; a girl,2 boys; a girl,boy; girl,2 boys,a girl,2,1,Gender,Male,Female
+376,2 girls; 2 boys,2 boys; 2 girls,boy; girl,2 girls,2 boys,2,2,Gender,Female,Male
+377,2 boys; 2 girls,2 boys; 2 girls,boy; girl,2 boys,2 girls,2,2,Gender,Male,Female
+378,5 girls; a boy,5 girls; a boy,boy; girl,5 girls,a boy,5,1,Gender,Female,Male
+379,a boy; 5 girls,5 girls; a boy,boy; girl,a boy,5 girls,1,5,Gender,Male,Female
+380,a girl; 5 boys,5 boys; a girl,boy; girl,a girl,5 boys,1,5,Gender,Female,Male
+381,5 boys; a girl,5 boys; a girl,boy; girl,5 boys,a girl,5,1,Gender,Male,Female
+382,5 girls; 5 boys,5 boys; 5 girls,boy; girl,5 girls,5 boys,5,5,Gender,Female,Male
+383,5 boys; 5 girls,5 boys; 5 girls,boy; girl,5 boys,5 girls,5,5,Gender,Male,Female
+384,a woman; a man,a man; a woman,man; woman,a woman,a man,1,1,Gender,Female,Male
+385,a man; a woman,a man; a woman,man; woman,a man,a woman,1,1,Gender,Male,Female
+386,1 woman; 1 man,1 man; 1 woman,man; woman,1 woman,1 man,1,1,Gender,Female,Male
+387,1 man; 1 woman,1 man; 1 woman,man; woman,1 man,1 woman,1,1,Gender,Male,Female
+388,2 women; a man,2 women; a man,man; woman,2 women,a man,2,1,Gender,Female,Male
+389,a man; 2 women,2 women; a man,man; woman,a man,2 women,1,2,Gender,Male,Female
+390,a woman; 2 men,2 men; a woman,man; woman,a woman,2 men,1,2,Gender,Female,Male
+391,2 men; a woman,2 men; a woman,man; woman,2 men,a woman,2,1,Gender,Male,Female
+392,2 women; 2 men,2 men; 2 women,man; woman,2 women,2 men,2,2,Gender,Female,Male
+393,2 men; 2 women,2 men; 2 women,man; woman,2 men,2 women,2,2,Gender,Male,Female
+394,5 women; a man,5 women; a man,man; woman,5 women,a man,5,1,Gender,Female,Male
+395,a man; 5 women,5 women; a man,man; woman,a man,5 women,1,5,Gender,Male,Female
+396,a woman; 5 men,5 men; a woman,man; woman,a woman,5 men,1,5,Gender,Female,Male
+397,5 men; a woman,5 men; a woman,man; woman,5 men,a woman,5,1,Gender,Male,Female
+398,5 women; 5 men,5 men; 5 women,man; woman,5 women,5 men,5,5,Gender,Female,Male
+399,5 men; 5 women,5 men; 5 women,man; woman,5 men,5 women,5,5,Gender,Male,Female
+400,an elderly woman; an elderly man,an elderly man; an elderly woman,elderly man; elderly woman,an elderly woman,an elderly man,1,1,Gender,Female,Male
+401,an elderly man; an elderly woman,an elderly man; an elderly woman,elderly man; elderly woman,an elderly man,an elderly woman,1,1,Gender,Male,Female
+402,1 elderly woman; 1 elderly man,1 elderly man; 1 elderly woman,elderly man; elderly woman,1 elderly woman,1 elderly man,1,1,Gender,Female,Male
+403,1 elderly man; 1 elderly woman,1 elderly man; 1 elderly woman,elderly man; elderly woman,1 elderly man,1 elderly woman,1,1,Gender,Male,Female
+404,2 elderly women; an elderly man,2 elderly women; an elderly man,elderly man; elderly woman,2 elderly women,an elderly man,2,1,Gender,Female,Male
+405,an elderly man; 2 elderly women,2 elderly women; an elderly man,elderly man; elderly woman,an elderly man,2 elderly women,1,2,Gender,Male,Female
+406,an elderly woman; 2 elderly men,2 elderly men; an elderly woman,elderly man; elderly woman,an elderly woman,2 elderly men,1,2,Gender,Female,Male
+407,2 elderly men; an elderly woman,2 elderly men; an elderly woman,elderly man; elderly woman,2 elderly men,an elderly woman,2,1,Gender,Male,Female
+408,2 elderly women; 2 elderly men,2 elderly men; 2 elderly women,elderly man; elderly woman,2 elderly women,2 elderly men,2,2,Gender,Female,Male
+409,2 elderly men; 2 elderly women,2 elderly men; 2 elderly women,elderly man; elderly woman,2 elderly men,2 elderly women,2,2,Gender,Male,Female
+410,5 elderly women; an elderly man,5 elderly women; an elderly man,elderly man; elderly woman,5 elderly women,an elderly man,5,1,Gender,Female,Male
+411,an elderly man; 5 elderly women,5 elderly women; an elderly man,elderly man; elderly woman,an elderly man,5 elderly women,1,5,Gender,Male,Female
+412,an elderly woman; 5 elderly men,5 elderly men; an elderly woman,elderly man; elderly woman,an elderly woman,5 elderly men,1,5,Gender,Female,Male
+413,5 elderly men; an elderly woman,5 elderly men; an elderly woman,elderly man; elderly woman,5 elderly men,an elderly woman,5,1,Gender,Male,Female
+414,5 elderly women; 5 elderly men,5 elderly men; 5 elderly women,elderly man; elderly woman,5 elderly women,5 elderly men,5,5,Gender,Female,Male
+415,5 elderly men; 5 elderly women,5 elderly men; 5 elderly women,elderly man; elderly woman,5 elderly men,5 elderly women,5,5,Gender,Male,Female
+416,a large woman; a large man,a large man; a large woman,large man; large woman,a large woman,a large man,1,1,Gender,Female,Male
+417,a large man; a large woman,a large man; a large woman,large man; large woman,a large man,a large woman,1,1,Gender,Male,Female
+418,1 large woman; 1 large man,1 large man; 1 large woman,large man; large woman,1 large woman,1 large man,1,1,Gender,Female,Male
+419,1 large man; 1 large woman,1 large man; 1 large woman,large man; large woman,1 large man,1 large woman,1,1,Gender,Male,Female
+420,2 large women; a large man,2 large women; a large man,large man; large woman,2 large women,a large man,2,1,Gender,Female,Male
+421,a large man; 2 large women,2 large women; a large man,large man; large woman,a large man,2 large women,1,2,Gender,Male,Female
+422,a large woman; 2 large men,2 large men; a large woman,large man; large woman,a large woman,2 large men,1,2,Gender,Female,Male
+423,2 large men; a large woman,2 large men; a large woman,large man; large woman,2 large men,a large woman,2,1,Gender,Male,Female
+424,2 large women; 2 large men,2 large men; 2 large women,large man; large woman,2 large women,2 large men,2,2,Gender,Female,Male
+425,2 large men; 2 large women,2 large men; 2 large women,large man; large woman,2 large men,2 large women,2,2,Gender,Male,Female
+426,5 large women; a large man,5 large women; a large man,large man; large woman,5 large women,a large man,5,1,Gender,Female,Male
+427,a large man; 5 large women,5 large women; a large man,large man; large woman,a large man,5 large women,1,5,Gender,Male,Female
+428,a large woman; 5 large men,5 large men; a large woman,large man; large woman,a large woman,5 large men,1,5,Gender,Female,Male
+429,5 large men; a large woman,5 large men; a large woman,large man; large woman,5 large men,a large woman,5,1,Gender,Male,Female
+430,5 large women; 5 large men,5 large men; 5 large women,large man; large woman,5 large women,5 large men,5,5,Gender,Female,Male
+431,5 large men; 5 large women,5 large men; 5 large women,large man; large woman,5 large men,5 large women,5,5,Gender,Male,Female
+432,a female athlete; a male athlete,a female athlete; a male athlete,female athlete; male athlete,a female athlete,a male athlete,1,1,Gender,Female,Male
+433,a male athlete; a female athlete,a female athlete; a male athlete,female athlete; male athlete,a male athlete,a female athlete,1,1,Gender,Male,Female
+434,1 female athlete; 1 male athlete,1 female athlete; 1 male athlete,female athlete; male athlete,1 female athlete,1 male athlete,1,1,Gender,Female,Male
+435,1 male athlete; 1 female athlete,1 female athlete; 1 male athlete,female athlete; male athlete,1 male athlete,1 female athlete,1,1,Gender,Male,Female
+436,2 female athletes; a male athlete,2 female athletes; a male athlete,female athlete; male athlete,2 female athletes,a male athlete,2,1,Gender,Female,Male
+437,a male athlete; 2 female athletes,2 female athletes; a male athlete,female athlete; male athlete,a male athlete,2 female athletes,1,2,Gender,Male,Female
+438,a female athlete; 2 male athletes,2 male athletes; a female athlete,female athlete; male athlete,a female athlete,2 male athletes,1,2,Gender,Female,Male
+439,2 male athletes; a female athlete,2 male athletes; a female athlete,female athlete; male athlete,2 male athletes,a female athlete,2,1,Gender,Male,Female
+440,2 female athletes; 2 male athletes,2 female athletes; 2 male athletes,female athlete; male athlete,2 female athletes,2 male athletes,2,2,Gender,Female,Male
+441,2 male athletes; 2 female athletes,2 female athletes; 2 male athletes,female athlete; male athlete,2 male athletes,2 female athletes,2,2,Gender,Male,Female
+442,5 female athletes; a male athlete,5 female athletes; a male athlete,female athlete; male athlete,5 female athletes,a male athlete,5,1,Gender,Female,Male
+443,a male athlete; 5 female athletes,5 female athletes; a male athlete,female athlete; male athlete,a male athlete,5 female athletes,1,5,Gender,Male,Female
+444,a female athlete; 5 male athletes,5 male athletes; a female athlete,female athlete; male athlete,a female athlete,5 male athletes,1,5,Gender,Female,Male
+445,5 male athletes; a female athlete,5 male athletes; a female athlete,female athlete; male athlete,5 male athletes,a female athlete,5,1,Gender,Male,Female
+446,5 female athletes; 5 male athletes,5 female athletes; 5 male athletes,female athlete; male athlete,5 female athletes,5 male athletes,5,5,Gender,Female,Male
+447,5 male athletes; 5 female athletes,5 female athletes; 5 male athletes,female athlete; male athlete,5 male athletes,5 female athletes,5,5,Gender,Male,Female
+448,a female doctor; a male doctor,a female doctor; a male doctor,female doctor; male doctor,a female doctor,a male doctor,1,1,Gender,Female,Male
+449,a male doctor; a female doctor,a female doctor; a male doctor,female doctor; male doctor,a male doctor,a female doctor,1,1,Gender,Male,Female
+450,1 female doctor; 1 male doctor,1 female doctor; 1 male doctor,female doctor; male doctor,1 female doctor,1 male doctor,1,1,Gender,Female,Male
+451,1 male doctor; 1 female doctor,1 female doctor; 1 male doctor,female doctor; male doctor,1 male doctor,1 female doctor,1,1,Gender,Male,Female
+452,2 female doctors; a male doctor,2 female doctors; a male doctor,female doctor; male doctor,2 female doctors,a male doctor,2,1,Gender,Female,Male
+453,a male doctor; 2 female doctors,2 female doctors; a male doctor,female doctor; male doctor,a male doctor,2 female doctors,1,2,Gender,Male,Female
+454,a female doctor; 2 male doctors,2 male doctors; a female doctor,female doctor; male doctor,a female doctor,2 male doctors,1,2,Gender,Female,Male
+455,2 male doctors; a female doctor,2 male doctors; a female doctor,female doctor; male doctor,2 male doctors,a female doctor,2,1,Gender,Male,Female
+456,2 female doctors; 2 male doctors,2 female doctors; 2 male doctors,female doctor; male doctor,2 female doctors,2 male doctors,2,2,Gender,Female,Male
+457,2 male doctors; 2 female doctors,2 female doctors; 2 male doctors,female doctor; male doctor,2 male doctors,2 female doctors,2,2,Gender,Male,Female
+458,5 female doctors; a male doctor,5 female doctors; a male doctor,female doctor; male doctor,5 female doctors,a male doctor,5,1,Gender,Female,Male
+459,a male doctor; 5 female doctors,5 female doctors; a male doctor,female doctor; male doctor,a male doctor,5 female doctors,1,5,Gender,Male,Female
+460,a female doctor; 5 male doctors,5 male doctors; a female doctor,female doctor; male doctor,a female doctor,5 male doctors,1,5,Gender,Female,Male
+461,5 male doctors; a female doctor,5 male doctors; a female doctor,female doctor; male doctor,5 male doctors,a female doctor,5,1,Gender,Male,Female
+462,5 female doctors; 5 male doctors,5 female doctors; 5 male doctors,female doctor; male doctor,5 female doctors,5 male doctors,5,5,Gender,Female,Male
+463,5 male doctors; 5 female doctors,5 female doctors; 5 male doctors,female doctor; male doctor,5 male doctors,5 female doctors,5,5,Gender,Male,Female
+464,a female executive; a male executive,a female executive; a male executive,female executive; male executive,a female executive,a male executive,1,1,Gender,Female,Male
+465,a male executive; a female executive,a female executive; a male executive,female executive; male executive,a male executive,a female executive,1,1,Gender,Male,Female
+466,1 female executive; 1 male executive,1 female executive; 1 male executive,female executive; male executive,1 female executive,1 male executive,1,1,Gender,Female,Male
+467,1 male executive; 1 female executive,1 female executive; 1 male executive,female executive; male executive,1 male executive,1 female executive,1,1,Gender,Male,Female
+468,2 female executives; a male executive,2 female executives; a male executive,female executive; male executive,2 female executives,a male executive,2,1,Gender,Female,Male
+469,a male executive; 2 female executives,2 female executives; a male executive,female executive; male executive,a male executive,2 female executives,1,2,Gender,Male,Female
+470,a female executive; 2 male executives,2 male executives; a female executive,female executive; male executive,a female executive,2 male executives,1,2,Gender,Female,Male
+471,2 male executives; a female executive,2 male executives; a female executive,female executive; male executive,2 male executives,a female executive,2,1,Gender,Male,Female
+472,2 female executives; 2 male executives,2 female executives; 2 male executives,female executive; male executive,2 female executives,2 male executives,2,2,Gender,Female,Male
+473,2 male executives; 2 female executives,2 female executives; 2 male executives,female executive; male executive,2 male executives,2 female executives,2,2,Gender,Male,Female
+474,5 female executives; a male executive,5 female executives; a male executive,female executive; male executive,5 female executives,a male executive,5,1,Gender,Female,Male
+475,a male executive; 5 female executives,5 female executives; a male executive,female executive; male executive,a male executive,5 female executives,1,5,Gender,Male,Female
+476,a female executive; 5 male executives,5 male executives; a female executive,female executive; male executive,a female executive,5 male executives,1,5,Gender,Female,Male
+477,5 male executives; a female executive,5 male executives; a female executive,female executive; male executive,5 male executives,a female executive,5,1,Gender,Male,Female
+478,5 female executives; 5 male executives,5 female executives; 5 male executives,female executive; male executive,5 female executives,5 male executives,5,5,Gender,Female,Male
+479,5 male executives; 5 female executives,5 female executives; 5 male executives,female executive; male executive,5 male executives,5 female executives,5,5,Gender,Male,Female
+480,a girl; a woman,a girl; a woman,girl; woman,a girl,a woman,1,1,Age,Young,Old
+481,a woman; a girl,a girl; a woman,girl; woman,a woman,a girl,1,1,Age,Old,Young
+482,1 girl; 1 woman,1 girl; 1 woman,girl; woman,1 girl,1 woman,1,1,Age,Young,Old
+483,1 woman; 1 girl,1 girl; 1 woman,girl; woman,1 woman,1 girl,1,1,Age,Old,Young
+484,2 girls; a woman,2 girls; a woman,girl; woman,2 girls,a woman,2,1,Age,Young,Old
+485,a woman; 2 girls,2 girls; a woman,girl; woman,a woman,2 girls,1,2,Age,Old,Young
+486,a girl; 2 women,2 women; a girl,girl; woman,a girl,2 women,1,2,Age,Young,Old
+487,2 women; a girl,2 women; a girl,girl; woman,2 women,a girl,2,1,Age,Old,Young
+488,2 girls; 2 women,2 girls; 2 women,girl; woman,2 girls,2 women,2,2,Age,Young,Old
+489,2 women; 2 girls,2 girls; 2 women,girl; woman,2 women,2 girls,2,2,Age,Old,Young
+490,5 girls; a woman,5 girls; a woman,girl; woman,5 girls,a woman,5,1,Age,Young,Old
+491,a woman; 5 girls,5 girls; a woman,girl; woman,a woman,5 girls,1,5,Age,Old,Young
+492,a girl; 5 women,5 women; a girl,girl; woman,a girl,5 women,1,5,Age,Young,Old
+493,5 women; a girl,5 women; a girl,girl; woman,5 women,a girl,5,1,Age,Old,Young
+494,5 girls; 5 women,5 girls; 5 women,girl; woman,5 girls,5 women,5,5,Age,Young,Old
+495,5 women; 5 girls,5 girls; 5 women,girl; woman,5 women,5 girls,5,5,Age,Old,Young
+496,a girl; an elderly woman,a girl; an elderly woman,elderly woman; girl,a girl,an elderly woman,1,1,Age,Young,Old
+497,an elderly woman; a girl,a girl; an elderly woman,elderly woman; girl,an elderly woman,a girl,1,1,Age,Old,Young
+498,1 girl; 1 elderly woman,1 elderly woman; 1 girl,elderly woman; girl,1 girl,1 elderly woman,1,1,Age,Young,Old
+499,1 elderly woman; 1 girl,1 elderly woman; 1 girl,elderly woman; girl,1 elderly woman,1 girl,1,1,Age,Old,Young
+500,2 girls; an elderly woman,2 girls; an elderly woman,elderly woman; girl,2 girls,an elderly woman,2,1,Age,Young,Old
+501,an elderly woman; 2 girls,2 girls; an elderly woman,elderly woman; girl,an elderly woman,2 girls,1,2,Age,Old,Young
+502,a girl; 2 elderly women,2 elderly women; a girl,elderly woman; girl,a girl,2 elderly women,1,2,Age,Young,Old
+503,2 elderly women; a girl,2 elderly women; a girl,elderly woman; girl,2 elderly women,a girl,2,1,Age,Old,Young
+504,2 girls; 2 elderly women,2 elderly women; 2 girls,elderly woman; girl,2 girls,2 elderly women,2,2,Age,Young,Old
+505,2 elderly women; 2 girls,2 elderly women; 2 girls,elderly woman; girl,2 elderly women,2 girls,2,2,Age,Old,Young
+506,5 girls; an elderly woman,5 girls; an elderly woman,elderly woman; girl,5 girls,an elderly woman,5,1,Age,Young,Old
+507,an elderly woman; 5 girls,5 girls; an elderly woman,elderly woman; girl,an elderly woman,5 girls,1,5,Age,Old,Young
+508,a girl; 5 elderly women,5 elderly women; a girl,elderly woman; girl,a girl,5 elderly women,1,5,Age,Young,Old
+509,5 elderly women; a girl,5 elderly women; a girl,elderly woman; girl,5 elderly women,a girl,5,1,Age,Old,Young
+510,5 girls; 5 elderly women,5 elderly women; 5 girls,elderly woman; girl,5 girls,5 elderly women,5,5,Age,Young,Old
+511,5 elderly women; 5 girls,5 elderly women; 5 girls,elderly woman; girl,5 elderly women,5 girls,5,5,Age,Old,Young
+512,a woman; an elderly woman,a woman; an elderly woman,elderly woman; woman,a woman,an elderly woman,1,1,Age,Young,Old
+513,an elderly woman; a woman,a woman; an elderly woman,elderly woman; woman,an elderly woman,a woman,1,1,Age,Old,Young
+514,1 woman; 1 elderly woman,1 elderly woman; 1 woman,elderly woman; woman,1 woman,1 elderly woman,1,1,Age,Young,Old
+515,1 elderly woman; 1 woman,1 elderly woman; 1 woman,elderly woman; woman,1 elderly woman,1 woman,1,1,Age,Old,Young
+516,2 women; an elderly woman,2 women; an elderly woman,elderly woman; woman,2 women,an elderly woman,2,1,Age,Young,Old
+517,an elderly woman; 2 women,2 women; an elderly woman,elderly woman; woman,an elderly woman,2 women,1,2,Age,Old,Young
+518,a woman; 2 elderly women,2 elderly women; a woman,elderly woman; woman,a woman,2 elderly women,1,2,Age,Young,Old
+519,2 elderly women; a woman,2 elderly women; a woman,elderly woman; woman,2 elderly women,a woman,2,1,Age,Old,Young
+520,2 women; 2 elderly women,2 elderly women; 2 women,elderly woman; woman,2 women,2 elderly women,2,2,Age,Young,Old
+521,2 elderly women; 2 women,2 elderly women; 2 women,elderly woman; woman,2 elderly women,2 women,2,2,Age,Old,Young
+522,5 women; an elderly woman,5 women; an elderly woman,elderly woman; woman,5 women,an elderly woman,5,1,Age,Young,Old
+523,an elderly woman; 5 women,5 women; an elderly woman,elderly woman; woman,an elderly woman,5 women,1,5,Age,Old,Young
+524,a woman; 5 elderly women,5 elderly women; a woman,elderly woman; woman,a woman,5 elderly women,1,5,Age,Young,Old
+525,5 elderly women; a woman,5 elderly women; a woman,elderly woman; woman,5 elderly women,a woman,5,1,Age,Old,Young
+526,5 women; 5 elderly women,5 elderly women; 5 women,elderly woman; woman,5 women,5 elderly women,5,5,Age,Young,Old
+527,5 elderly women; 5 women,5 elderly women; 5 women,elderly woman; woman,5 elderly women,5 women,5,5,Age,Old,Young
+528,a boy; a man,a boy; a man,boy; man,a boy,a man,1,1,Age,Young,Old
+529,a man; a boy,a boy; a man,boy; man,a man,a boy,1,1,Age,Old,Young
+530,1 boy; 1 man,1 boy; 1 man,boy; man,1 boy,1 man,1,1,Age,Young,Old
+531,1 man; 1 boy,1 boy; 1 man,boy; man,1 man,1 boy,1,1,Age,Old,Young
+532,2 boys; a man,2 boys; a man,boy; man,2 boys,a man,2,1,Age,Young,Old
+533,a man; 2 boys,2 boys; a man,boy; man,a man,2 boys,1,2,Age,Old,Young
+534,a boy; 2 men,2 men; a boy,boy; man,a boy,2 men,1,2,Age,Young,Old
+535,2 men; a boy,2 men; a boy,boy; man,2 men,a boy,2,1,Age,Old,Young
+536,2 boys; 2 men,2 boys; 2 men,boy; man,2 boys,2 men,2,2,Age,Young,Old
+537,2 men; 2 boys,2 boys; 2 men,boy; man,2 men,2 boys,2,2,Age,Old,Young
+538,5 boys; a man,5 boys; a man,boy; man,5 boys,a man,5,1,Age,Young,Old
+539,a man; 5 boys,5 boys; a man,boy; man,a man,5 boys,1,5,Age,Old,Young
+540,a boy; 5 men,5 men; a boy,boy; man,a boy,5 men,1,5,Age,Young,Old
+541,5 men; a boy,5 men; a boy,boy; man,5 men,a boy,5,1,Age,Old,Young
+542,5 boys; 5 men,5 boys; 5 men,boy; man,5 boys,5 men,5,5,Age,Young,Old
+543,5 men; 5 boys,5 boys; 5 men,boy; man,5 men,5 boys,5,5,Age,Old,Young
+544,a boy; an elderly man,a boy; an elderly man,boy; elderly man,a boy,an elderly man,1,1,Age,Young,Old
+545,an elderly man; a boy,a boy; an elderly man,boy; elderly man,an elderly man,a boy,1,1,Age,Old,Young
+546,1 boy; 1 elderly man,1 boy; 1 elderly man,boy; elderly man,1 boy,1 elderly man,1,1,Age,Young,Old
+547,1 elderly man; 1 boy,1 boy; 1 elderly man,boy; elderly man,1 elderly man,1 boy,1,1,Age,Old,Young
+548,2 boys; an elderly man,2 boys; an elderly man,boy; elderly man,2 boys,an elderly man,2,1,Age,Young,Old
+549,an elderly man; 2 boys,2 boys; an elderly man,boy; elderly man,an elderly man,2 boys,1,2,Age,Old,Young
+550,a boy; 2 elderly men,2 elderly men; a boy,boy; elderly man,a boy,2 elderly men,1,2,Age,Young,Old
+551,2 elderly men; a boy,2 elderly men; a boy,boy; elderly man,2 elderly men,a boy,2,1,Age,Old,Young
+552,2 boys; 2 elderly men,2 boys; 2 elderly men,boy; elderly man,2 boys,2 elderly men,2,2,Age,Young,Old
+553,2 elderly men; 2 boys,2 boys; 2 elderly men,boy; elderly man,2 elderly men,2 boys,2,2,Age,Old,Young
+554,5 boys; an elderly man,5 boys; an elderly man,boy; elderly man,5 boys,an elderly man,5,1,Age,Young,Old
+555,an elderly man; 5 boys,5 boys; an elderly man,boy; elderly man,an elderly man,5 boys,1,5,Age,Old,Young
+556,a boy; 5 elderly men,5 elderly men; a boy,boy; elderly man,a boy,5 elderly men,1,5,Age,Young,Old
+557,5 elderly men; a boy,5 elderly men; a boy,boy; elderly man,5 elderly men,a boy,5,1,Age,Old,Young
+558,5 boys; 5 elderly men,5 boys; 5 elderly men,boy; elderly man,5 boys,5 elderly men,5,5,Age,Young,Old
+559,5 elderly men; 5 boys,5 boys; 5 elderly men,boy; elderly man,5 elderly men,5 boys,5,5,Age,Old,Young
+560,a man; an elderly man,a man; an elderly man,elderly man; man,a man,an elderly man,1,1,Age,Young,Old
+561,an elderly man; a man,a man; an elderly man,elderly man; man,an elderly man,a man,1,1,Age,Old,Young
+562,1 man; 1 elderly man,1 elderly man; 1 man,elderly man; man,1 man,1 elderly man,1,1,Age,Young,Old
+563,1 elderly man; 1 man,1 elderly man; 1 man,elderly man; man,1 elderly man,1 man,1,1,Age,Old,Young
+564,2 men; an elderly man,2 men; an elderly man,elderly man; man,2 men,an elderly man,2,1,Age,Young,Old
+565,an elderly man; 2 men,2 men; an elderly man,elderly man; man,an elderly man,2 men,1,2,Age,Old,Young
+566,a man; 2 elderly men,2 elderly men; a man,elderly man; man,a man,2 elderly men,1,2,Age,Young,Old
+567,2 elderly men; a man,2 elderly men; a man,elderly man; man,2 elderly men,a man,2,1,Age,Old,Young
+568,2 men; 2 elderly men,2 elderly men; 2 men,elderly man; man,2 men,2 elderly men,2,2,Age,Young,Old
+569,2 elderly men; 2 men,2 elderly men; 2 men,elderly man; man,2 elderly men,2 men,2,2,Age,Old,Young
+570,5 men; an elderly man,5 men; an elderly man,elderly man; man,5 men,an elderly man,5,1,Age,Young,Old
+571,an elderly man; 5 men,5 men; an elderly man,elderly man; man,an elderly man,5 men,1,5,Age,Old,Young
+572,a man; 5 elderly men,5 elderly men; a man,elderly man; man,a man,5 elderly men,1,5,Age,Young,Old
+573,5 elderly men; a man,5 elderly men; a man,elderly man; man,5 elderly men,a man,5,1,Age,Old,Young
+574,5 men; 5 elderly men,5 elderly men; 5 men,elderly man; man,5 men,5 elderly men,5,5,Age,Young,Old
+575,5 elderly men; 5 men,5 elderly men; 5 men,elderly man; man,5 elderly men,5 men,5,5,Age,Old,Young
+576,a large woman; a woman,a large woman; a woman,large woman; woman,a large woman,a woman,1,1,Fitness,Unfit,Fit
+577,a woman; a large woman,a large woman; a woman,large woman; woman,a woman,a large woman,1,1,Fitness,Fit,Unfit
+578,1 large woman; 1 woman,1 large woman; 1 woman,large woman; woman,1 large woman,1 woman,1,1,Fitness,Unfit,Fit
+579,1 woman; 1 large woman,1 large woman; 1 woman,large woman; woman,1 woman,1 large woman,1,1,Fitness,Fit,Unfit
+580,2 large women; a woman,2 large women; a woman,large woman; woman,2 large women,a woman,2,1,Fitness,Unfit,Fit
+581,a woman; 2 large women,2 large women; a woman,large woman; woman,a woman,2 large women,1,2,Fitness,Fit,Unfit
+582,a large woman; 2 women,2 women; a large woman,large woman; woman,a large woman,2 women,1,2,Fitness,Unfit,Fit
+583,2 women; a large woman,2 women; a large woman,large woman; woman,2 women,a large woman,2,1,Fitness,Fit,Unfit
+584,2 large women; 2 women,2 large women; 2 women,large woman; woman,2 large women,2 women,2,2,Fitness,Unfit,Fit
+585,2 women; 2 large women,2 large women; 2 women,large woman; woman,2 women,2 large women,2,2,Fitness,Fit,Unfit
+586,5 large women; a woman,5 large women; a woman,large woman; woman,5 large women,a woman,5,1,Fitness,Unfit,Fit
+587,a woman; 5 large women,5 large women; a woman,large woman; woman,a woman,5 large women,1,5,Fitness,Fit,Unfit
+588,a large woman; 5 women,5 women; a large woman,large woman; woman,a large woman,5 women,1,5,Fitness,Unfit,Fit
+589,5 women; a large woman,5 women; a large woman,large woman; woman,5 women,a large woman,5,1,Fitness,Fit,Unfit
+590,5 large women; 5 women,5 large women; 5 women,large woman; woman,5 large women,5 women,5,5,Fitness,Unfit,Fit
+591,5 women; 5 large women,5 large women; 5 women,large woman; woman,5 women,5 large women,5,5,Fitness,Fit,Unfit
+592,a large woman; a female athlete,a female athlete; a large woman,female athlete; large woman,a large woman,a female athlete,1,1,Fitness,Unfit,Fit
+593,a female athlete; a large woman,a female athlete; a large woman,female athlete; large woman,a female athlete,a large woman,1,1,Fitness,Fit,Unfit
+594,1 large woman; 1 female athlete,1 female athlete; 1 large woman,female athlete; large woman,1 large woman,1 female athlete,1,1,Fitness,Unfit,Fit
+595,1 female athlete; 1 large woman,1 female athlete; 1 large woman,female athlete; large woman,1 female athlete,1 large woman,1,1,Fitness,Fit,Unfit
+596,2 large women; a female athlete,2 large women; a female athlete,female athlete; large woman,2 large women,a female athlete,2,1,Fitness,Unfit,Fit
+597,a female athlete; 2 large women,2 large women; a female athlete,female athlete; large woman,a female athlete,2 large women,1,2,Fitness,Fit,Unfit
+598,a large woman; 2 female athletes,2 female athletes; a large woman,female athlete; large woman,a large woman,2 female athletes,1,2,Fitness,Unfit,Fit
+599,2 female athletes; a large woman,2 female athletes; a large woman,female athlete; large woman,2 female athletes,a large woman,2,1,Fitness,Fit,Unfit
+600,2 large women; 2 female athletes,2 female athletes; 2 large women,female athlete; large woman,2 large women,2 female athletes,2,2,Fitness,Unfit,Fit
+601,2 female athletes; 2 large women,2 female athletes; 2 large women,female athlete; large woman,2 female athletes,2 large women,2,2,Fitness,Fit,Unfit
+602,5 large women; a female athlete,5 large women; a female athlete,female athlete; large woman,5 large women,a female athlete,5,1,Fitness,Unfit,Fit
+603,a female athlete; 5 large women,5 large women; a female athlete,female athlete; large woman,a female athlete,5 large women,1,5,Fitness,Fit,Unfit
+604,a large woman; 5 female athletes,5 female athletes; a large woman,female athlete; large woman,a large woman,5 female athletes,1,5,Fitness,Unfit,Fit
+605,5 female athletes; a large woman,5 female athletes; a large woman,female athlete; large woman,5 female athletes,a large woman,5,1,Fitness,Fit,Unfit
+606,5 large women; 5 female athletes,5 female athletes; 5 large women,female athlete; large woman,5 large women,5 female athletes,5,5,Fitness,Unfit,Fit
+607,5 female athletes; 5 large women,5 female athletes; 5 large women,female athlete; large woman,5 female athletes,5 large women,5,5,Fitness,Fit,Unfit
+608,a woman; a female athlete,a female athlete; a woman,female athlete; woman,a woman,a female athlete,1,1,Fitness,Unfit,Fit
+609,a female athlete; a woman,a female athlete; a woman,female athlete; woman,a female athlete,a woman,1,1,Fitness,Fit,Unfit
+610,1 woman; 1 female athlete,1 female athlete; 1 woman,female athlete; woman,1 woman,1 female athlete,1,1,Fitness,Unfit,Fit
+611,1 female athlete; 1 woman,1 female athlete; 1 woman,female athlete; woman,1 female athlete,1 woman,1,1,Fitness,Fit,Unfit
+612,2 women; a female athlete,2 women; a female athlete,female athlete; woman,2 women,a female athlete,2,1,Fitness,Unfit,Fit
+613,a female athlete; 2 women,2 women; a female athlete,female athlete; woman,a female athlete,2 women,1,2,Fitness,Fit,Unfit
+614,a woman; 2 female athletes,2 female athletes; a woman,female athlete; woman,a woman,2 female athletes,1,2,Fitness,Unfit,Fit
+615,2 female athletes; a woman,2 female athletes; a woman,female athlete; woman,2 female athletes,a woman,2,1,Fitness,Fit,Unfit
+616,2 women; 2 female athletes,2 female athletes; 2 women,female athlete; woman,2 women,2 female athletes,2,2,Fitness,Unfit,Fit
+617,2 female athletes; 2 women,2 female athletes; 2 women,female athlete; woman,2 female athletes,2 women,2,2,Fitness,Fit,Unfit
+618,5 women; a female athlete,5 women; a female athlete,female athlete; woman,5 women,a female athlete,5,1,Fitness,Unfit,Fit
+619,a female athlete; 5 women,5 women; a female athlete,female athlete; woman,a female athlete,5 women,1,5,Fitness,Fit,Unfit
+620,a woman; 5 female athletes,5 female athletes; a woman,female athlete; woman,a woman,5 female athletes,1,5,Fitness,Unfit,Fit
+621,5 female athletes; a woman,5 female athletes; a woman,female athlete; woman,5 female athletes,a woman,5,1,Fitness,Fit,Unfit
+622,5 women; 5 female athletes,5 female athletes; 5 women,female athlete; woman,5 women,5 female athletes,5,5,Fitness,Unfit,Fit
+623,5 female athletes; 5 women,5 female athletes; 5 women,female athlete; woman,5 female athletes,5 women,5,5,Fitness,Fit,Unfit
+624,a large man; a man,a large man; a man,large man; man,a large man,a man,1,1,Fitness,Unfit,Fit
+625,a man; a large man,a large man; a man,large man; man,a man,a large man,1,1,Fitness,Fit,Unfit
+626,1 large man; 1 man,1 large man; 1 man,large man; man,1 large man,1 man,1,1,Fitness,Unfit,Fit
+627,1 man; 1 large man,1 large man; 1 man,large man; man,1 man,1 large man,1,1,Fitness,Fit,Unfit
+628,2 large men; a man,2 large men; a man,large man; man,2 large men,a man,2,1,Fitness,Unfit,Fit
+629,a man; 2 large men,2 large men; a man,large man; man,a man,2 large men,1,2,Fitness,Fit,Unfit
+630,a large man; 2 men,2 men; a large man,large man; man,a large man,2 men,1,2,Fitness,Unfit,Fit
+631,2 men; a large man,2 men; a large man,large man; man,2 men,a large man,2,1,Fitness,Fit,Unfit
+632,2 large men; 2 men,2 large men; 2 men,large man; man,2 large men,2 men,2,2,Fitness,Unfit,Fit
+633,2 men; 2 large men,2 large men; 2 men,large man; man,2 men,2 large men,2,2,Fitness,Fit,Unfit
+634,5 large men; a man,5 large men; a man,large man; man,5 large men,a man,5,1,Fitness,Unfit,Fit
+635,a man; 5 large men,5 large men; a man,large man; man,a man,5 large men,1,5,Fitness,Fit,Unfit
+636,a large man; 5 men,5 men; a large man,large man; man,a large man,5 men,1,5,Fitness,Unfit,Fit
+637,5 men; a large man,5 men; a large man,large man; man,5 men,a large man,5,1,Fitness,Fit,Unfit
+638,5 large men; 5 men,5 large men; 5 men,large man; man,5 large men,5 men,5,5,Fitness,Unfit,Fit
+639,5 men; 5 large men,5 large men; 5 men,large man; man,5 men,5 large men,5,5,Fitness,Fit,Unfit
+640,a large man; a male athlete,a large man; a male athlete,large man; male athlete,a large man,a male athlete,1,1,Fitness,Unfit,Fit
+641,a male athlete; a large man,a large man; a male athlete,large man; male athlete,a male athlete,a large man,1,1,Fitness,Fit,Unfit
+642,1 large man; 1 male athlete,1 large man; 1 male athlete,large man; male athlete,1 large man,1 male athlete,1,1,Fitness,Unfit,Fit
+643,1 male athlete; 1 large man,1 large man; 1 male athlete,large man; male athlete,1 male athlete,1 large man,1,1,Fitness,Fit,Unfit
+644,2 large men; a male athlete,2 large men; a male athlete,large man; male athlete,2 large men,a male athlete,2,1,Fitness,Unfit,Fit
+645,a male athlete; 2 large men,2 large men; a male athlete,large man; male athlete,a male athlete,2 large men,1,2,Fitness,Fit,Unfit
+646,a large man; 2 male athletes,2 male athletes; a large man,large man; male athlete,a large man,2 male athletes,1,2,Fitness,Unfit,Fit
+647,2 male athletes; a large man,2 male athletes; a large man,large man; male athlete,2 male athletes,a large man,2,1,Fitness,Fit,Unfit
+648,2 large men; 2 male athletes,2 large men; 2 male athletes,large man; male athlete,2 large men,2 male athletes,2,2,Fitness,Unfit,Fit
+649,2 male athletes; 2 large men,2 large men; 2 male athletes,large man; male athlete,2 male athletes,2 large men,2,2,Fitness,Fit,Unfit
+650,5 large men; a male athlete,5 large men; a male athlete,large man; male athlete,5 large men,a male athlete,5,1,Fitness,Unfit,Fit
+651,a male athlete; 5 large men,5 large men; a male athlete,large man; male athlete,a male athlete,5 large men,1,5,Fitness,Fit,Unfit
+652,a large man; 5 male athletes,5 male athletes; a large man,large man; male athlete,a large man,5 male athletes,1,5,Fitness,Unfit,Fit
+653,5 male athletes; a large man,5 male athletes; a large man,large man; male athlete,5 male athletes,a large man,5,1,Fitness,Fit,Unfit
+654,5 large men; 5 male athletes,5 large men; 5 male athletes,large man; male athlete,5 large men,5 male athletes,5,5,Fitness,Unfit,Fit
+655,5 male athletes; 5 large men,5 large men; 5 male athletes,large man; male athlete,5 male athletes,5 large men,5,5,Fitness,Fit,Unfit
+656,a man; a male athlete,a male athlete; a man,male athlete; man,a man,a male athlete,1,1,Fitness,Unfit,Fit
+657,a male athlete; a man,a male athlete; a man,male athlete; man,a male athlete,a man,1,1,Fitness,Fit,Unfit
+658,1 man; 1 male athlete,1 male athlete; 1 man,male athlete; man,1 man,1 male athlete,1,1,Fitness,Unfit,Fit
+659,1 male athlete; 1 man,1 male athlete; 1 man,male athlete; man,1 male athlete,1 man,1,1,Fitness,Fit,Unfit
+660,2 men; a male athlete,2 men; a male athlete,male athlete; man,2 men,a male athlete,2,1,Fitness,Unfit,Fit
+661,a male athlete; 2 men,2 men; a male athlete,male athlete; man,a male athlete,2 men,1,2,Fitness,Fit,Unfit
+662,a man; 2 male athletes,2 male athletes; a man,male athlete; man,a man,2 male athletes,1,2,Fitness,Unfit,Fit
+663,2 male athletes; a man,2 male athletes; a man,male athlete; man,2 male athletes,a man,2,1,Fitness,Fit,Unfit
+664,2 men; 2 male athletes,2 male athletes; 2 men,male athlete; man,2 men,2 male athletes,2,2,Fitness,Unfit,Fit
+665,2 male athletes; 2 men,2 male athletes; 2 men,male athlete; man,2 male athletes,2 men,2,2,Fitness,Fit,Unfit
+666,5 men; a male athlete,5 men; a male athlete,male athlete; man,5 men,a male athlete,5,1,Fitness,Unfit,Fit
+667,a male athlete; 5 men,5 men; a male athlete,male athlete; man,a male athlete,5 men,1,5,Fitness,Fit,Unfit
+668,a man; 5 male athletes,5 male athletes; a man,male athlete; man,a man,5 male athletes,1,5,Fitness,Unfit,Fit
+669,5 male athletes; a man,5 male athletes; a man,male athlete; man,5 male athletes,a man,5,1,Fitness,Fit,Unfit
+670,5 men; 5 male athletes,5 male athletes; 5 men,male athlete; man,5 men,5 male athletes,5,5,Fitness,Unfit,Fit
+671,5 male athletes; 5 men,5 male athletes; 5 men,male athlete; man,5 male athletes,5 men,5,5,Fitness,Fit,Unfit

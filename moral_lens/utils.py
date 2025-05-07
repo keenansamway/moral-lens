@@ -143,7 +143,21 @@ def parse_keyword_text(text: str, keyword: str) -> str:
 def parse_keyword_text_(text: str, keyword: str, endword: str = None) -> str:
     text = text.replace("*", "")  # Clean up any stray asterisks that might be in the text
     text = text.replace("_", " ")  # Replace underscores with spaces
+    # text = re.sub(" decision:", " decision", text, re.IGNORECASE)
+    # text = re.sub(" reasoning:", " reasoning", text, re.IGNORECASE)
+    text = text.replace(" decision:", " decision")
+    text = text.replace(" Decision:", " Decision")
+    text = text.replace(" reasoning:", " reasoning")
+    text = text.replace(" Reasoning:", " Reasoning")
+    text = text.replace(" scratchpad:", " scratchpad")
+    text = text.replace(" Scratchpad:", " Scratchpad")
+    # text = re.sub(" scratchpad:", " scratchpad", text, re.IGNORECASE)
     keyword = keyword.replace("_", " ")  # Replace underscores with spaces
+
+    # Check if there are multiple instances of the keyword
+    instances = re.findall(rf"\b{keyword}:", text, re.IGNORECASE)
+    if len(instances) > 1:
+        return ""
 
     # Ensure keyword and endword are at the beginning of a line
     if endword is not None and endword != "":
@@ -169,7 +183,7 @@ def parse_reasoning_and_decision(text: Optional[str]) -> Optional[Tuple[str, str
     if text is None:
         return None, None
 
-    reasoning = parse_keyword_text_(text, "reasoning", "decision")
+    reasoning = parse_keyword_text_(text, "scratchpad", "decision")
     decision = parse_keyword_text_(text, "decision")
     return reasoning, decision
 
@@ -180,10 +194,28 @@ def parse_decision_and_reasoning(text: Optional[str]) -> Optional[Tuple[str, str
     if text is None:
         return None, None
 
-    reasoning = parse_keyword_text_(text, "reasoning")
-    decision = parse_keyword_text_(text, "decision", "reasoning")
+    reasoning = parse_keyword_text_(text, "scratchpad")
+    decision = parse_keyword_text_(text, "decision", "scratchpad")
     return reasoning, decision
 
+def match_A_or_B(text: str) -> Optional[str]:
+    """
+    Given a text, check if it contains only one of either 'A' or 'B' and return the corresponding value.
+    """
+    text = text.replace("*", "")
+    text = text.replace("_", " ")
+    text = re.sub(" decision:", " decision", text, re.IGNORECASE)
+    text = re.sub(r"[()]", "", text) # remove any parentheses or brackets
+
+    # Check for 'A' or 'B' in the text
+    ifA = re.search(r"\bA\b", text, re.IGNORECASE)
+    ifB = re.search(r"\bB\b", text, re.IGNORECASE)
+    if ifA and not ifB:
+        return "A"
+    elif ifB and not ifA:
+        return "B"
+    else:
+        return ""
 
 def fuzzy_match_decisions(value: str, possible_values: List[str]) -> Optional[str]:
     """
