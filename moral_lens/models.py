@@ -51,7 +51,7 @@ RATE_LIMITS = {
     "openai":       RateLimitConfig(num_concurrent=50, max_rate=20, period=1),
     "anthropic":    RateLimitConfig(num_concurrent=10, max_rate=50, period=60),
     "gemini":       RateLimitConfig(num_concurrent=100, max_rate=50, period=1),
-    "openrouter":   RateLimitConfig(num_concurrent=20, max_rate=10, period=1),
+    "openrouter":   RateLimitConfig(num_concurrent=50, max_rate=20, period=1),
     "huggingface":  None, # HuggingFace does not require rate limiting
 }
 
@@ -380,7 +380,8 @@ class OpenRouterModel(BaseModel):
         )
 
         self.provider_routing = {
-            "order": self.provider_routing
+            "order": self.provider_routing,
+            "allow_fallbacks": False,
         } if self.provider_routing else None
 
         print(f"[INFO] OpenRouter model {self.model_id} loaded.")
