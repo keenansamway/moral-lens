@@ -389,6 +389,16 @@ microsoft/phi-4:
   provider_routing: [DeepInfra] # https://openrouter.ai/microsoft/phi-4
   developer: Microsoft
 
+microsoft/phi-4-reasoning-plus:
+  model_name: Phi-4 Reasoning Plus
+  provider: openrouter
+  release_date: 2025-05-01
+  reasoning_model: true
+  provider_routing: [DeepInfra] # https://openrouter.ai/microsoft/phi-4-reasoning-plus
+  developer: Microsoft
+  temperature: 0.8
+  max_completion_tokens: 16384
+
 microsoft/phi-3.5-mini-128k-instruct:
   model_name: Phi-3.5 Mini
   provider: openrouter
@@ -435,12 +445,42 @@ deepseek/deepseek-r1:
   max_completion_tokens: 16384
   developer: DeepSeek
 
-deepseek/deepseek-r1-distill-qwen-32b:
-  model_name: DeepSeek R1 Distill Qwen 32B
+deepseek/deepseek-r1-distill-qwen-1.5b:
+  model_name: DeepSeek R1 Distill Qwen 1.5B
   provider: openrouter
   release_date: 2025-01-20
   reasoning_model: true
-  provider_routing: [Groq]
+  provider_routing: [Together] # https://openrouter.ai/deepseek/deepseek-r1-distill-qwen-1.5b
+  temperature: 0.6
+  max_completion_tokens: 16384
+  developer: DeepSeek
+
+deepseek/deepseek-r1-distill-llama-8b:
+  model_name: DeepSeek R1 Distill Llama 8B
+  provider: openrouter
+  release_date: 2025-01-20
+  reasoning_model: true
+  provider_routing: [Novita] # https://openrouter.ai/deepseek/deepseek-r1-distill-llama-8b
+  temperature: 0.6
+  max_completion_tokens: 16384
+  developer: DeepSeek
+
+deepseek/deepseek-r1-distill-qwen-14b:
+  model_name: DeepSeek R1 Distill Qwen 14B
+  provider: openrouter
+  release_date: 2025-01-20
+  reasoning_model: true
+  provider_routing: [Novita] # https://openrouter.ai/deepseek/deepseek-r1-distill-qwen-14b
+  temperature: 0.6
+  max_completion_tokens: 16384
+  developer: DeepSeek
+
+deepseek/deepseek-r1-distill-qwen-32b:
+  model_name: DeepSeek R1 Distill Qwen 32B (fp8)
+  provider: openrouter
+  release_date: 2025-01-20
+  reasoning_model: true
+  provider_routing: [DeepInfra] # https://openrouter.ai/deepseek/deepseek-r1-distill-qwen-32b
   temperature: 0.6
   max_completion_tokens: 16384
   developer: DeepSeek
@@ -450,7 +490,7 @@ deepseek/deepseek-r1-distill-llama-70b:
   provider: openrouter
   release_date: 2025-01-20
   reasoning_model: true
-  provider_routing: [Groq]
+  provider_routing: [Groq] # https://openrouter.ai/deepseek/deepseek-r1-distill-llama-70b
   temperature: 0.6
   max_completion_tokens: 16384
   developer: DeepSeek
@@ -515,21 +555,21 @@ google/gemini-pro:
 google/gemma-3-4b-it:
   model_name: Gemma 3 4B
   provider: openrouter
-  release_date: 2025-03-10
+  release_date: 2025-03-12
   provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-4b-it
   developer: Google
 
 google/gemma-3-12b-it:
   model_name: Gemma 3 12B
   provider: openrouter
-  release_date: 2025-03-10
+  release_date: 2025-03-12
   provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-12b-it
   developer: Google
 
 google/gemma-3-27b-it:
   model_name: Gemma 3 27B
   provider: openrouter
-  release_date: 2025-03-10
+  release_date: 2025-03-12
   provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-27b-it
   developer: Google
 
@@ -586,12 +626,31 @@ meta-llama/Llama-3.2-3B-Instruct:
   release_date: 2024-09-25
   developer: Meta
 
+# Gemma 2 models
+google/gemma-2-2b-it:
+  model_name: Gemma 2 2B
+  provider: huggingface
+  release_date: 2024-06-27
+  developer: Google
+
+google/gemma-2-9b-it:
+  model_name: Gemma 2 9B
+  provider: huggingface
+  release_date: 2024-06-27
+  developer: Google
+
+google/gemma-2-27b-it:
+  model_name: Gemma 2 27B
+  provider: huggingface
+  release_date: 2024-07-31
+  developer: Google
+
 # Gemma 3 models
-# google/gemma-3-1b-it:
-#   model_name: Gemma 3 1B
-#   provider: huggingface
-#   release_date: 2025-03-10
-#   developer: Google
+google/gemma-3-1b-it:
+  model_name: Gemma 3 1B
+  provider: huggingface
+  release_date: 2025-03-12
+  developer: Google
 
 # google/gemma-3-4b-it:
 #   model_name: Gemma 3 4B
@@ -883,3 +942,5 @@ amd/Instella-3B-Instruct:
   provider: huggingface
   release_date: 2025-03-05
   developer: AMD
+
+
