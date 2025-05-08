@@ -438,15 +438,17 @@ class HuggingFaceModel(BaseModel):
             self.model_id,
             torch_dtype=torch.bfloat16,
             device_map="auto",
-            local_files_only=False,
+            local_files_only=True,
             token=APIKEYS.HF_TOKEN,
+            trust_remote_code=True,
         )
 
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_id,
             padding_side="left",
-            local_files_only=False,
+            local_files_only=True,
             token=APIKEYS.HF_TOKEN,
+            trust_remote_code=True,
         )
 
         self.tokenizer.pad_token = self.tokenizer.eos_token
