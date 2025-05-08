@@ -240,7 +240,7 @@ class OpenAIModel(BaseModel):
         response_obj = LLMResponse(
             model_id=self.model_id,
             completion=completion,
-            content=completion.choices[0].message.content,
+            content=getattr(completion.choices[0].message, "content", ""),
             thinking_content=getattr(completion.choices[0].message, "reasoning", ""),
             two_choices=list(prompt.messages[-1].content.split('"')[1::2]), # TODO: a bit hacky
         )
