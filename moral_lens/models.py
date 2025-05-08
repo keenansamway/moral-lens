@@ -165,15 +165,19 @@ class BaseModel(ABC):
                 for i, res in enumerate(results)
                 if res is None
             ]
+            total_to_retry = len(tasks)
+            tried_this_attempt = 0
 
             # If a task is successful, update the results and the progress bar
             for completed in asyncio.as_completed(tasks):
                 i, success, response = await completed
+                pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt}/{total_to_retry}): Valid responses received")
+                tried_this_attempt += 1
                 if success:
                     results[i] = response
                     pbar.update(1)
 
-            pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
+            # pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
             attempts += 1
 
             if self.temperature == 0.0:
@@ -591,6 +595,8 @@ class HuggingFaceModel(BaseModel):
 
         while attempts < MAX_RETRIES and sum(1 for x in results if x is not None) < len(prompts):
             to_retry_indices = [i for i, r in enumerate(results) if r is None]
+            total_to_retry = len(to_retry_indices)
+            tried_this_attempt = 0
 
             # Process prompts in batches
             for i in range(0, len(to_retry_indices), batch_size):
@@ -604,13 +610,15 @@ class HuggingFaceModel(BaseModel):
 
                 for rel_idx, abs_idx in enumerate(batch_indices):
                     response = batch_responses[rel_idx]
+                    pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt}/{total_to_retry}): Valid responses received")
+                    tried_this_attempt += 1
                     if validation_fn and not validation_fn(response):
                         continue
                     response.attempts = attempts + 1
                     results[abs_idx] = response
                     pbar.update(1)
 
-            pbar.set_description(f"Attempt {attempts+1}: Valid responses received")
+
             attempts += 1
             if self.temperature == 0.0:
                 break
