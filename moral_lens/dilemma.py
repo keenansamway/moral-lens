@@ -35,7 +35,7 @@ class IsValidResponse:
         if content is None or content.strip() == "":
             return False
 
-        content = content.replace("'", "").replace(",", "").lower()
+        content = content.replace("'", "").replace(",", "").lower().strip()
         refusal_phrases = [
             "im sorry",
             "i am sorry",
@@ -106,7 +106,7 @@ class DilemmaRunner:
         self.batch_size = batch_size
 
     async def run(
-        self, overwrite: bool = False, limit: Optional[int] = None
+        self, overwrite: bool = False, limit: Optional[int] = None, disable_validation: bool = False, try_retries: bool = True
     ) -> None:
         # Check if the output file exists
         file_exists = self.output_file.exists()
@@ -123,6 +123,10 @@ class DilemmaRunner:
             ].index.to_list()
             if not empty_rows:
                 print(f"No empty responses found in {self.output_file}. Use `overwrite=True` to rerun all.")
+                return
+
+            if not try_retries:
+                print(f"Found {len(empty_rows)} empty responses, but will not retry now. Do not set `try_retries=False` to retry them.")
                 return
 
             rows_to_process = empty_rows
@@ -192,15 +196,20 @@ class DilemmaRunner:
             responses = model.ask_batch_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template), batch_size=self.batch_size)
             model.unload()
         else:
-            responses = await model.ask_async_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template))
-            # responses = await model.ask_async_with_retry(prompts)
+            if disable_validation:
+                responses = await model.ask_async_with_retry(prompts)
+            else:
+                responses = await model.ask_async_with_retry(prompts, validation_fn=IsValidResponse(self.prompts_template))
 
         # Update the dataframe with responses
         for i, response in enumerate(responses):
             idx = processed_indices[i]
-            attempts = response.attempts if response else 0
-            thinking = response.thinking_content if response else ""
-            content = response.content if response else ""
+            attempts = response.attempts if response and response.attempts else 0
+            thinking = response.thinking_content if response and response.thinking_content else ""
+            content = response.content if response and response.content else ""
+
+            thinking = thinking.strip()
+            content = content.strip()
 
             # Update rows
             self.data.loc[idx, 'attempt_count'] += attempts
