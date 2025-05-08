@@ -99,6 +99,13 @@ class DilemmaRunner:
         prompts_template_obj = template_yaml_obj[prompts_template]
         self.prompts_template = prompts_template
 
+        if prompts_template == "reasoning_before":
+            self.parse_fn = parse_reasoning_and_decision
+        elif prompts_template == "reasoning_after":
+            self.parse_fn = parse_decision_and_reasoning
+        elif prompts_template == "no_reasoning":
+            self.parse_fn = parse_reasoning_and_decision
+
         self.system_prompt_template = prompts_template_obj['system_prompt_template']
         self.dilemma_template = prompts_template_obj['dilemma_template']
 
@@ -118,7 +125,7 @@ class DilemmaRunner:
             # Find rows with empty responses
             empty_rows = self.data[
                 (self.data['raw_response'].str.len() == 0) |
-                (self.data['reasoning'].str.len() == 0) |
+                ((self.data['reasoning'].str.len() == 0) & (self.data['thinking'].str.len() == 0)) |
                 (self.data['decision'].str.len() == 0)
             ].index.to_list()
             if not empty_rows:
@@ -239,6 +246,7 @@ class DilemmaRunner:
 
         # Extract necessary data
         responses = self.data['raw_response'].to_list()
+        thinkings = self.data['thinking'].to_list()
         two_choices = self.data['two_choices'].str.split('; ').to_list()
         category1s = self.data['category1'].to_list()
         category2s = self.data['category2'].to_list()
@@ -249,7 +257,7 @@ class DilemmaRunner:
         decision_categories = []
 
         # Process each response
-        for i, (response, choices) in enumerate(zip(responses, two_choices)):
+        for i, (response, choices, thinking) in enumerate(zip(responses, two_choices, thinkings)):
             # Skip empty or None responses
             if not response or response == "":
                 reasonings.append("")
@@ -260,7 +268,9 @@ class DilemmaRunner:
             # Parse the response
             try:
                 choiceA, choiceB = choices
-                reasoning, decision = parse_reasoning_and_decision(response)
+                reasoning, decision = self.parse_fn(response)
+                if thinking != "":
+                    reasoning = thinking
                 # decision = fuzzy_match_decisions(decision, choices)
                 decisionLetter = match_A_or_B(decision)
                 decision = choiceA if decisionLetter == "A" else choiceB if decisionLetter == "B" else ""

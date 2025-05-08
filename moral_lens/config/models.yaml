@@ -322,7 +322,7 @@ qwen/qwq-32b:
   provider: openrouter
   release_date: 2025-03-06
   reasoning_model: true
-  provider_routing: [Groq] # [Novita, DeepInfra]
+  provider_routing: [Groq] # https://openrouter.ai/qwen/qwq-32b
   temperature: 0.6
   max_completion_tokens: 16384
   developer: Alibaba
@@ -433,6 +433,14 @@ deepseek/deepseek-chat-v3-0324:
   provider: openrouter
   release_date: 2025-03-24
   provider_routing: [GMICloud, Lambda] # https://openrouter.ai/deepseek/deepseek-chat-v3-0324
+  developer: DeepSeek
+
+deepseek/deepseek-prover-v2:
+  model_name: DeepSeek Prover V2 (fp8)
+  provider: openrouter
+  release_date: 2025-04-30
+  reasoning_model: true
+  provider_routing: [DeepInfra] # https://openrouter.ai/deepseek/deepseek-prover-v2
   developer: DeepSeek
 
 deepseek/deepseek-r1:
@@ -609,6 +617,17 @@ anthropic/claude-3.7-sonnet:beta:
   provider: openrouter
   release_date: 2025-02-19
   developer: Anthropic
+
+# xAI models
+x-ai/grok-3-mini-beta:
+  model_name: Grok 3 Mini
+  provider: openrouter
+  reasoning_model: true
+  release_date: 2025-04-09
+  provider_routing: [xAI] # https://openrouter.ai/x-ai/grok-3-mini-beta
+  temperature: 0.7
+  max_completion_tokens: 16384
+  developer: xAI
 
 
 # ------------------------------

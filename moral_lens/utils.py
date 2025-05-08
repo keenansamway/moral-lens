@@ -194,8 +194,8 @@ def parse_decision_and_reasoning(text: Optional[str]) -> Optional[Tuple[str, str
     if text is None:
         return None, None
 
-    reasoning = parse_keyword_text_(text, "scratchpad")
-    decision = parse_keyword_text_(text, "decision", "scratchpad")
+    reasoning = parse_keyword_text_(text, "reasoning")
+    decision = parse_keyword_text_(text, "decision", "reasoning")
     return reasoning, decision
 
 def match_A_or_B(text: str) -> Optional[str]:

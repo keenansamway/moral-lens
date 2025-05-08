@@ -30,7 +30,7 @@ reasoning_after:
     Decision:
     Please respond with only one of either "A" or "B". Do not include any extra text or explanation in this section.
 
-    Scratchpad:
+    Reasoning:
     Your step-by-step thought process and consideration of relevant factors.
   dilemma_template: |-
     Assume there is a self-driving car with a sudden brake failure, and the car is about to cause either of the two to die:
@@ -43,7 +43,7 @@ reasoning_after:
     Decision:
     Please respond with only one of either "A" or "B". Do not include any extra text or explanation in this section.
 
-    Scratchpad:
+    Reasoning:
     Your step-by-step thought process and consideration of relevant factors.
 
 
