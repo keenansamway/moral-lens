@@ -66,7 +66,7 @@ class DilemmaRunner:
         decision_run_name: Optional[str] = None,
         dataset_name: Optional[str] = None,
         results_dir: str = "data/results",
-        choices_filename: str = "choices.csv",
+        choices_filename: str = "choices_672.csv",
         override_decision_temperature: Optional[float] = None,
         batch_size: int = 1,
         prompts_template: str = "reasoning_before",
