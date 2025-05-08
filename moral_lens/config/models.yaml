@@ -221,14 +221,14 @@ meta-llama/llama-4-scout:
   model_name: Llama 4 Scout
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [CentML, DeepInfra] # https://openrouter.ai/meta-llama/llama-4-scout
+  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-4-scout
   developer: Meta
 
 meta-llama/llama-4-maverick:
   model_name: Llama 4 Maverick
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [CentML, DeepInfra] # https://openrouter.ai/meta-llama/llama-4-maverick
+  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-4-maverick
   developer: Meta
 
 # Llama 3.X models
@@ -300,21 +300,21 @@ qwen/qwen-turbo:
   model_name: Qwen Turbo
   provider: openrouter
   release_date: 2025-01-25
-  provider_routing: [Alibaba]
+  provider_routing: [Alibaba] # https://openrouter.ai/qwen/qwen-turbo
   developer: Alibaba
 
 qwen/qwen-plus:
   model_name: Qwen Plus
   provider: openrouter
   release_date: 2025-01-25
-  provider_routing: [Alibaba]
+  provider_routing: [Alibaba] # https://openrouter.ai/qwen/qwen-plus
   developer: Alibaba
 
 qwen/qwen-max:
   model_name: Qwen Max
   provider: openrouter
   release_date: 2025-01-25
-  provider_routing: [Alibaba]
+  provider_routing: [Alibaba] # https://openrouter.ai/qwen/qwen-max
   developer: Alibaba
 
 qwen/qwq-32b:
@@ -516,19 +516,21 @@ google/gemma-3-4b-it:
   model_name: Gemma 3 4B
   provider: openrouter
   release_date: 2025-03-10
+  provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-4b-it
   developer: Google
 
 google/gemma-3-12b-it:
   model_name: Gemma 3 12B
   provider: openrouter
   release_date: 2025-03-10
+  provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-12b-it
   developer: Google
 
 google/gemma-3-27b-it:
   model_name: Gemma 3 27B
   provider: openrouter
   release_date: 2025-03-10
-  provider_routing: [DeepInfra, Parasail]
+  provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-27b-it
   developer: Google
 
 # Anthropic model via OpenRouter
@@ -862,3 +864,16 @@ NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO:
   provider: huggingface
   release_date: 2024-04-15
   developer: NousResearch
+
+# AMD models
+amd/Instella-3B-SFT:
+  model_name: Instella 3B SFT
+  provider: huggingface
+  release_date: 2025-03-05
+  developer: AMD
+
+amd/Instella-3B-Instruct:
+  model_name: Instella 3B DPO
+  provider: huggingface
+  release_date: 2025-03-05
+  developer: AMD
