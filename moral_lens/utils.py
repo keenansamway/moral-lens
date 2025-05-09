@@ -213,8 +213,8 @@ def match_A_or_B(text: str) -> Optional[str]:
     text = re.sub(r"[()]", "", text) # remove any parentheses or brackets
 
     # Check for 'A' or 'B' in the text
-    ifA = re.search(r"\bA\b", text)#, re.IGNORECASE)
-    ifB = re.search(r"\bB\b", text)#, re.IGNORECASE)
+    ifA = re.search(r"\bA\b(?!['])", text)#, re.IGNORECASE)
+    ifB = re.search(r"\bB\b(?!['])", text)#, re.IGNORECASE)
     if ifA and not ifB:
         return "A"
     elif ifB and not ifA:
