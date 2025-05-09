@@ -156,7 +156,7 @@ def parse_keyword_text_(text: str, keyword: str, endword: str = None) -> str:
 
     # Check if there are multiple instances of the keyword
     instances = re.findall(rf"\b{keyword}:", text, re.IGNORECASE)
-    if len(instances) > 1:
+    if len(instances) != 1:
         return ""
 
     # Ensure keyword and endword are at the beginning of a line
@@ -204,12 +204,17 @@ def match_A_or_B(text: str) -> Optional[str]:
     """
     text = text.replace("*", "")
     text = text.replace("_", " ")
-    text = re.sub(" decision:", " decision", text, re.IGNORECASE)
+    text = text.replace(" decision:", " decision")
+    text = text.replace(" Decision:", " Decision")
+    text = text.replace(" reasoning:", " reasoning")
+    text = text.replace(" Reasoning:", " Reasoning")
+    text = text.replace(" scratchpad:", " scratchpad")
+    text = text.replace(" Scratchpad:", " Scratchpad")
     text = re.sub(r"[()]", "", text) # remove any parentheses or brackets
 
     # Check for 'A' or 'B' in the text
-    ifA = re.search(r"\bA\b", text, re.IGNORECASE)
-    ifB = re.search(r"\bB\b", text, re.IGNORECASE)
+    ifA = re.search(r"\bA\b", text)#, re.IGNORECASE)
+    ifB = re.search(r"\bB\b", text)#, re.IGNORECASE)
     if ifA and not ifB:
         return "A"
     elif ifB and not ifA:
