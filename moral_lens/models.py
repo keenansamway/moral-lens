@@ -171,7 +171,7 @@ class BaseModel(ABC):
             # If a task is successful, update the results and the progress bar
             for completed in asyncio.as_completed(tasks):
                 i, success, response = await completed
-                pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt}/{total_to_retry}): Valid responses received")
+                pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt+1}/{total_to_retry}): Valid responses received")
                 tried_this_attempt += 1
                 if success:
                     results[i] = response
@@ -610,7 +610,7 @@ class HuggingFaceModel(BaseModel):
 
                 for rel_idx, abs_idx in enumerate(batch_indices):
                     response = batch_responses[rel_idx]
-                    pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt}/{total_to_retry}): Valid responses received")
+                    pbar.set_description(f"Attempt {attempts+1} ({tried_this_attempt+1}/{total_to_retry}): Valid responses received")
                     tried_this_attempt += 1
                     if validation_fn and not validation_fn(response):
                         continue

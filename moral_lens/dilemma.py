@@ -35,7 +35,7 @@ class IsValidResponse:
         if content is None or content.strip() == "":
             return False
 
-        content = content.replace("'", "").replace(",", "").lower().strip()
+        content = content.replace("'", "").replace(",", "").strip()
         refusal_phrases = [
             "im sorry",
             "i am sorry",
