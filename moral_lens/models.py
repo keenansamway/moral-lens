@@ -692,6 +692,17 @@ class ModelFactory:
 # Cache for the models configuration
 _MODELS_CONFIG_CACHE = {}
 
+def update_model_config_cache(path: str = "moral_lens/config/models.yaml") -> None:
+    """
+    Update the model configuration cache by loading the YAML file.
+
+    Args:
+        model_id (str): The model ID to load from the YAML file.
+        path (str): The path to the YAML file. Default is 'moral_lens/config/models.yaml'.
+    """
+    yaml_obj = load_yaml_file(path)
+    _MODELS_CONFIG_CACHE[path] = yaml_obj
+
 def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml", disable_cache: bool = False) -> ModelConfig:
     """
     Load a model configuration from a YAML file and return a ModelConfig instance.

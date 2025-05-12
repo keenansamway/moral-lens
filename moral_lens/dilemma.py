@@ -144,6 +144,7 @@ class DilemmaRunner:
                 "id": self.choices_df['id'],
                 "system_prompt": [""] * len(self.choices_df),
                 "dilemma_prompt": [""] * len(self.choices_df),
+                "choice_set": self.choices_df['choice_set'],
                 "two_choices": self.choices_df['two_choices'],
                 "two_choices_set": self.choices_df['two_choices_set'],
                 "choice1": self.choices_df.get('choice1'),

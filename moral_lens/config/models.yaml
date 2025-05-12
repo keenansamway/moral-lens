@@ -2,6 +2,12 @@
 # OpenAI
 # ------------------------------
 # GPT-3.5 models
+openai/gpt-3.5-turbo-0613: # rate limit issues with OpenRouter, doesn't work with OpenAI
+  model_name: GPT-3.5 Turbo 0613
+  provider: openrouter
+  release_date: 2023-06-13
+  developer: OpenAI
+
 gpt-3.5-turbo-1106:
   model_name: GPT-3.5 Turbo 1106
   provider: openai
@@ -221,14 +227,14 @@ meta-llama/llama-4-scout:
   model_name: Llama 4 Scout
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-4-scout
+  provider_routing: [Groq] # Cerebras # https://openrouter.ai/meta-llama/llama-4-scout
   developer: Meta
 
 meta-llama/llama-4-maverick:
   model_name: Llama 4 Maverick
   provider: openrouter
   release_date: 2025-04-05
-  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-4-maverick
+  provider_routing: [Groq] # https://openrouter.ai/meta-llama/llama-4-maverick
   developer: Meta
 
 # Llama 3.X models
@@ -286,7 +292,7 @@ qwen/qwen2.5-32b-instruct:
   model_name: Qwen 2.5 32B
   provider: openrouter
   release_date: 2024-09-19
-  provider_routing: [Groq]
+  provider_routing: []
   developer: Alibaba
 
 qwen/qwen-2.5-72b-instruct:
@@ -628,6 +634,50 @@ x-ai/grok-3-mini-beta:
   temperature: 0.7
   max_completion_tokens: 16384
   developer: xAI
+
+# Cohere models
+cohere/command-r:
+  model_name: Command R
+  provider: openrouter
+  release_date: 2024-03-14
+  provider_routing: [Cohere] # https://openrouter.ai/cohere/command-r
+  developer: Cohere
+
+cohere/command-r-plus:
+  model_name: Command R+
+  provider: openrouter
+  release_date: 2024-04-04
+  provider_routing: [Cohere] # https://openrouter.ai/cohere/command-r-plus
+  developer: Cohere
+
+# Mistral models
+mistralai/mistral-7b-instruct-v0.1:
+  model_name: Mistral 7B Instruct v0.1
+  provider: openrouter
+  release_date: 2023-09-28
+  provider_routing: [Together] # https://openrouter.ai/mistralai/mistral-7b-instruct-v0.1
+  developer: Mistral
+
+mistralai/mistral-7b-instruct-v0.3:
+  model_name: Mistral 7B Instruct v0.3
+  provider: openrouter
+  release_date: 2024-05-27
+  provider_routing: [DeepInfra] # https://openrouter.ai/mistralai/mistral-7b-instruct-v0.3
+  developer: Mistral
+
+mistralai/mixtral-8x7b-instruct:
+  model_name: Mixtral 8x7B Instruct (fp8)
+  provider: openrouter
+  release_date: 2023-12-10
+  provider_routing: [DeepInfra] # https://openrouter.ai/mistralai/mixtral-8x7b-instruct
+  developer: Mistral
+
+mistralai/mixtral-8x22b-instruct:
+  model_name: Mixtral 8x22B Instruct (fp8)
+  provider: openrouter
+  release_date: 2024-04-17
+  provider_routing: [Fireworks] # https://openrouter.ai/mistralai/mixtral-8x22b-instruct
+  developer: Mistral
 
 
 # ------------------------------
