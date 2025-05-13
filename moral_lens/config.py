@@ -39,6 +39,7 @@ class ModelConfig:
     provider: str
     release_date: datetime.date
     developer: str
+    parameter_count: float
 
     reasoning_model: bool
     accepts_system_message: bool
