@@ -40,6 +40,8 @@ class ModelConfig:
     release_date: datetime.date
     developer: str
     parameter_count: float
+    model_type: str
+    model_base: str
 
     reasoning_model: bool
     accepts_system_message: bool

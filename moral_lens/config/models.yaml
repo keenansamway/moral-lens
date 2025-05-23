@@ -110,52 +110,52 @@ o3-mini-2025-01-31:high:
 # Anthropic
 # ------------------------------
 # Claude 3 models
-claude-3-haiku-20240307:
-  model_name: Claude 3 Haiku
-  provider: anthropic
-  release_date: 2024-03-07
-  developer: Anthropic
+# claude-3-haiku-20240307:
+#   model_name: Claude 3 Haiku
+#   provider: anthropic
+#   release_date: 2024-03-07
+#   developer: Anthropic
 
-claude-3-sonnet-20240229:
-  model_name: Claude 3 Sonnet
-  provider: anthropic
-  release_date: 2024-02-29
-  developer: Anthropic
+# claude-3-sonnet-20240229:
+#   model_name: Claude 3 Sonnet
+#   provider: anthropic
+#   release_date: 2024-02-29
+#   developer: Anthropic
 
-# Claude 3.5 models
-claude-3-5-haiku-20241022:
-  model_name: Claude 3.5 Haiku
-  provider: anthropic
-  release_date: 2024-10-22
-  developer: Anthropic
+# # Claude 3.5 models
+# claude-3-5-haiku-20241022:
+#   model_name: Claude 3.5 Haiku
+#   provider: anthropic
+#   release_date: 2024-10-22
+#   developer: Anthropic
 
-claude-3-5-sonnet-20240620:
-  model_name: Claude 3.5 Sonnet
-  provider: anthropic
-  release_date: 2024-06-20
-  developer: Anthropic
+# claude-3-5-sonnet-20240620:
+#   model_name: Claude 3.5 Sonnet
+#   provider: anthropic
+#   release_date: 2024-06-20
+#   developer: Anthropic
 
-claude-3-5-sonnet-20241022:
-  model_name: Claude 3.5 Sonnet v2
-  provider: anthropic
-  release_date: 2024-10-22
-  developer: Anthropic
+# claude-3-5-sonnet-20241022:
+#   model_name: Claude 3.5 Sonnet v2
+#   provider: anthropic
+#   release_date: 2024-10-22
+#   developer: Anthropic
 
-# Claude 3.7 models
-claude-3-7-sonnet-20250219:
-  model_name: Claude 3.7 Sonnet
-  provider: anthropic
-  release_date: 2025-02-19
-  developer: Anthropic
+# # Claude 3.7 models
+# claude-3-7-sonnet-20250219:
+#   model_name: Claude 3.7 Sonnet
+#   provider: anthropic
+#   release_date: 2025-02-19
+#   developer: Anthropic
 
-claude-3-7-sonnet-20250219:thinking:
-  model_name: Claude 3.7 Sonnet (thinking)
-  provider: anthropic
-  release_date: 2025-02-19
-  reasoning_model: true
-  temperature: 1.0
-  max_completion_tokens: 16000
-  developer: Anthropic
+# claude-3-7-sonnet-20250219:thinking:
+#   model_name: Claude 3.7 Sonnet (thinking)
+#   provider: anthropic
+#   release_date: 2025-02-19
+#   reasoning_model: true
+#   temperature: 1.0
+#   max_completion_tokens: 16000
+#   developer: Anthropic
 
 
 # ------------------------------
@@ -264,6 +264,7 @@ meta-llama/llama-3.1-8b-instruct:
   provider_routing: [Lambda, InferenceNet] # https://openrouter.ai/meta-llama/llama-3.1-8b-instruct
   developer: Meta
   parameter_count: 8
+  model_base: llama-3.1-8b-instruct
 
 meta-llama/llama-3.1-70b-instruct:
   model_name: Llama 3.1 70B
@@ -272,9 +273,10 @@ meta-llama/llama-3.1-70b-instruct:
   provider_routing: [Novita] # https://openrouter.ai/meta-llama/llama-3.1-70b-instruct
   developer: Meta
   parameter_count: 70
+  model_base: llama-3.1-70b-instruct
 
 meta-llama/llama-3.1-405b-instruct:
-  model_name: Llama 3.1 405B (fp8)
+  model_name: Llama 3.1 405B FP8
   provider: openrouter
   release_date: 2024-07-23
   provider_routing: [Lambda, DeepInfra] # https://openrouter.ai/meta-llama/llama-3.1-405b-instruct
@@ -289,7 +291,40 @@ meta-llama/llama-3.3-70b-instruct:
   developer: Meta
   parameter_count: 70
 
+meta-llama/llama-3.2-11b-vision-instruct:
+  model_name: Llama 3.2 11B Vision
+  provider: openrouter
+  release_date: 2024-09-25
+  provider_routing: [Lambda] # https://openrouter.ai/meta-llama/llama-3.2-11b-vision-instruct
+  developer: Meta
+  parameter_count: 11
+
+meta-llama/llama-3.2-90b-vision-instruct:
+  model_name: Llama 3.2 90B Vision
+  provider: openrouter
+  release_date: 2024-09-25
+  provider_routing: [DeepInfra] # https://openrouter.ai/meta-llama/llama-3.2-90b-vision-instruct
+  developer: Meta
+  parameter_count: 90
+
+# Llama 2 models
+meta-llama/llama-2-70b-chat:
+  model_name: Llama 2 70B
+  provider: openrouter
+  release_date: 2023-07-18
+  provider_routing: [Together] # https://openrouter.ai/meta-llama/llama-2-70b-chat
+  developer: Meta
+  parameter_count: 70
+
 # Qwen models
+qwen/qwen-2-72b-instruct:
+  model_name: Qwen 2 72B
+  provider: openrouter
+  release_date: 2024-06-07
+  provider_routing: [Together] # https://openrouter.ai/qwen/qwen-2-72b-instruct
+  developer: Alibaba
+  parameter_count: 72
+
 qwen/qwen-2.5-7b-instruct:
   model_name: Qwen 2.5 7B
   provider: openrouter
@@ -345,10 +380,11 @@ qwen/qwq-32b:
   max_completion_tokens: 16384
   developer: Alibaba
   parameter_count: 32
+  model_base: qwen-2.5-32b-instruct
 
 # Qwen 3 models
 qwen/qwen3-8b:
-  model_name: Qwen 3 8B (fp8)
+  model_name: Qwen 3 8B FP8
   provider: openrouter
   release_date: 2025-04-28
   provider_routing: [Novita] # https://openrouter.ai/qwen/qwen3-8b
@@ -356,31 +392,57 @@ qwen/qwen3-8b:
   parameter_count: 8
 
 qwen/qwen3-14b:
-  model_name: Qwen 3 14B (fp8)
+  model_name: Qwen 3 14B FP8
   provider: openrouter
   release_date: 2025-04-28
   provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-14b
   developer: Alibaba
   parameter_count: 14
 
-qwen/qwen3-32b: # uptime issues
-  model_name: Qwen 3 32B (fp8)
+qwen/qwen3-32b:nothink:
+  model_name: Qwen 3 32B FP8
   provider: openrouter
   release_date: 2025-04-28
-  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-32b
+  provider_routing: [Cerebras] # https://openrouter.ai/qwen/qwen3-32b
   developer: Alibaba
   parameter_count: 32
+  model_base: qwen3-32b
 
-qwen/qwen3-30b-a3b:
-  model_name: Qwen 3 30B A3B (fp8)
+qwen/qwen3-32b:think:
+  model_name: Qwen 3 32B (thinking) FP8
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [Cerebras] # https://openrouter.ai/qwen/qwen3-32b
+  developer: Alibaba
+  temperature: 0.6
+  reasoning_model: true
+  max_completion_tokens: 16384
+  parameter_count: 32
+  model_base: qwen3-32b
+
+qwen/qwen3-30b-a3b:nothink:
+  model_name: Qwen 3 30B A3B FP8
   provider: openrouter
   release_date: 2025-04-28
   provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-30b-a3b
   developer: Alibaba
   parameter_count: 30
+  model_base: qwen3-30b-a3b
+
+qwen/qwen3-30b-a3b:think:
+  model_name: Qwen 3 30B A3B (thinking) FP8
+  provider: openrouter
+  release_date: 2025-04-28
+  provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-30b-a3b
+  developer: Alibaba
+  temperature: 0.6
+  reasoning_model: true
+  max_completion_tokens: 16384
+  parameter_count: 30
+  model_base: qwen3-30b-a3b
 
 qwen/qwen3-235b-a22b:
-  model_name: Qwen 3 235B A22B (fp8)
+  model_name: Qwen 3 235B A22B FP8
   provider: openrouter
   release_date: 2025-04-28
   provider_routing: [DeepInfra, Novita] # https://openrouter.ai/qwen/qwen3-235b-a22b
@@ -451,17 +513,40 @@ microsoft/phi-3-mini-128k-instruct:
   developer: Microsoft
   parameter_count: 3.8
 
+# Amazon models
+amazon/nova-micro-v1:
+  model_name: Nova Micro
+  provider: openrouter
+  release_date: 2024-12-05
+  provider_routing: [Amazon Bedrock] # https://openrouter.ai/amazon/nova-micro-v1
+  developer: Amazon
+
+amazon/nova-lite-v1:
+  model_name: Nova Lite
+  provider: openrouter
+  release_date: 2024-12-05
+  provider_routing: [Amazon Bedrock] # https://openrouter.ai/amazon/nova-lite-v1
+  developer: Amazon
+
+amazon/nova-pro-v1:
+  model_name: Nova Pro
+  provider: openrouter
+  release_date: 2024-12-05
+  provider_routing: [Amazon Bedrock] # https://openrouter.ai/amazon/nova-pro-v1
+  developer: Amazon
+
 # DeepSeek models
 deepseek/deepseek-chat:
-  model_name: DeepSeek V3 (fp8)
+  model_name: DeepSeek V3 FP8
   provider: openrouter
   release_date: 2024-12-26
   provider_routing: [DeepInfra, Novita] # https://openrouter.ai/deepseek/deepseek-chat
   developer: DeepSeek
   parameter_count: 671
+  model_base: deepseek-chat
 
 deepseek/deepseek-chat-v3-0324:
-  model_name: DeepSeek V3 0324 (fp8)
+  model_name: DeepSeek V3 0324 FP8
   provider: openrouter
   release_date: 2025-03-24
   provider_routing: [GMICloud, Lambda] # https://openrouter.ai/deepseek/deepseek-chat-v3-0324
@@ -469,7 +554,7 @@ deepseek/deepseek-chat-v3-0324:
   parameter_count: 671
 
 deepseek/deepseek-prover-v2:
-  model_name: DeepSeek Prover V2 (fp8)
+  model_name: DeepSeek Prover V2 FP8
   provider: openrouter
   release_date: 2025-04-30
   reasoning_model: true
@@ -477,7 +562,7 @@ deepseek/deepseek-prover-v2:
   developer: DeepSeek
 
 deepseek/deepseek-r1:
-  model_name: DeepSeek R1
+  model_name: DeepSeek R1 FP8
   provider: openrouter
   release_date: 2025-01-20
   reasoning_model: true
@@ -486,6 +571,7 @@ deepseek/deepseek-r1:
   max_completion_tokens: 16384
   developer: DeepSeek
   parameter_count: 671
+  model_base: deepseek-chat
 
 deepseek/deepseek-r1-distill-qwen-1.5b:
   model_name: DeepSeek R1 Distill Qwen 1.5B
@@ -508,6 +594,7 @@ deepseek/deepseek-r1-distill-llama-8b:
   max_completion_tokens: 16384
   developer: DeepSeek
   parameter_count: 8
+  model_base: llama-3.1-8b-instruct
 
 deepseek/deepseek-r1-distill-qwen-14b:
   model_name: DeepSeek R1 Distill Qwen 14B
@@ -521,7 +608,7 @@ deepseek/deepseek-r1-distill-qwen-14b:
   parameter_count: 14
 
 deepseek/deepseek-r1-distill-qwen-32b:
-  model_name: DeepSeek R1 Distill Qwen 32B (fp8)
+  model_name: DeepSeek R1 Distill Qwen 32B FP8
   provider: openrouter
   release_date: 2025-01-20
   reasoning_model: true
@@ -541,6 +628,7 @@ deepseek/deepseek-r1-distill-llama-70b:
   max_completion_tokens: 16384
   developer: DeepSeek
   parameter_count: 70
+  model_base: llama-3.1-70b-instruct
 
 
 # Google models via OpenRouter
@@ -623,6 +711,22 @@ google/gemma-3-27b-it:
   provider_routing: [DeepInfra] # https://openrouter.ai/google/gemma-3-27b-it
   developer: Google
   parameter_count: 27
+
+google/gemma-2-27b-it:
+  model_name: Gemma 2 27B
+  provider: openrouter
+  release_date: 2024-07-13
+  provider_routing: [Together] # https://openrouter.ai/google/gemma-2-27b-it
+  developer: Google
+  parameter_count: 27
+
+google/gemma-2-9b-it:
+  model_name: Gemma 2 9B
+  provider: openrouter
+  release_date: 2024-07-13
+  provider_routing: [Together] # https://openrouter.ai/google/gemma-2-9b-it
+  developer: Google
+  parameter_count: 9
 
 # Anthropic model via OpenRouter
 anthropic/claude-3-haiku:beta:
@@ -714,7 +818,7 @@ mistralai/mistral-7b-instruct-v0.3:
   parameter_count: 7
 
 mistralai/mixtral-8x7b-instruct:
-  model_name: Mixtral 8x7B Instruct (fp8)
+  model_name: Mixtral 8x7B Instruct FP8
   provider: openrouter
   release_date: 2023-12-10
   provider_routing: [DeepInfra] # https://openrouter.ai/mistralai/mixtral-8x7b-instruct
@@ -722,13 +826,54 @@ mistralai/mixtral-8x7b-instruct:
   parameter_count: 56
 
 mistralai/mixtral-8x22b-instruct:
-  model_name: Mixtral 8x22B Instruct (fp8)
+  model_name: Mixtral 8x22B Instruct FP8
   provider: openrouter
   release_date: 2024-04-17
   provider_routing: [Fireworks] # https://openrouter.ai/mistralai/mixtral-8x22b-instruct
   developer: Mistral
   parameter_count: 176
 
+mistralai/mistral-large-2407:
+  model_name: Mistral Large 2407
+  provider: openrouter
+  release_date: 2024-05-27
+  provider_routing: [Mistral] # https://openrouter.ai/mistralai/mistral-large-2407
+  developer: Mistral
+  parameter_count: 123
+
+mistralai/mistral-large:
+  model_name: Mistral Large
+  provider: openrouter
+  release_date: 2024-02-26
+  provider_routing: [Mistral] # https://openrouter.ai/mistralai/mistral-large
+  developer: Mistral
+  parameter_count: 123
+
+mistralai/mistral-small:
+  model_name: Mistral Small
+  provider: openrouter
+  release_date: 2024-07-10
+  provider_routing: [Mistral] # https://openrouter.ai/mistralai/mistral-small
+  developer: Mistral
+  parameter_count: 22
+
+mistralai/mistral-nemo:
+  model_name: Mistral Nemo
+  provider: openrouter
+  release_date: 2024-07-19
+  provider_routing: [Mistral] # https://openrouter.ai/mistralai/mistral-nemo
+  developer: Mistral
+  parameter_count: 12
+
+
+# OLMo models (openrouter)
+allenai/olmo-7b-instruct:
+  model_name: Olmo 7B Instruct
+  provider: openrouter
+  release_date: 2024-05-10
+  provider_routing: [Nebius] # https://openrouter.ai/allenai/olmo-7b-instruct
+  developer: AllenAI
+  parameter_count: 7
 
 # ------------------------------
 # Hugging Face
@@ -825,28 +970,29 @@ Qwen/Qwen2.5-32B-Instruct:
   release_date: 2024-09-19
   developer: Alibaba
   parameter_count: 32
+  model_base: qwen-2.5-32b-instruct
 
 # Gemma 2 models
-google/gemma-2-2b-it:
-  model_name: Gemma 2 2B
-  provider: huggingface
-  release_date: 2024-06-27
-  developer: Google
-  parameter_count: 2
+# google/gemma-2-2b-it:
+#   model_name: Gemma 2 2B
+#   provider: huggingface
+#   release_date: 2024-06-27
+#   developer: Google
+#   parameter_count: 2
 
-google/gemma-2-9b-it:
-  model_name: Gemma 2 9B
-  provider: huggingface
-  release_date: 2024-06-27
-  developer: Google
-  parameter_count: 9
+# google/gemma-2-9b-it:
+#   model_name: Gemma 2 9B
+#   provider: huggingface
+#   release_date: 2024-06-27
+#   developer: Google
+#   parameter_count: 9
 
-google/gemma-2-27b-it:
-  model_name: Gemma 2 27B
-  provider: huggingface
-  release_date: 2024-07-31
-  developer: Google
-  parameter_count: 27
+# google/gemma-2-27b-it:
+#   model_name: Gemma 2 27B
+#   provider: huggingface
+#   release_date: 2024-07-31
+#   developer: Google
+#   parameter_count: 27
 
 # Gemma 3 models
 google/gemma-3-1b-it:
@@ -896,6 +1042,8 @@ allenai/OLMo-2-1124-7B-SFT:
   release_date: 2024-11-24
   developer: AllenAI
   parameter_count: 7
+  model_type: sft
+  model_base: OLMo-2-1124-7B
 
 allenai/OLMo-2-1124-7B-DPO:
   model_name: OLMo 2 7B DPO
@@ -903,6 +1051,8 @@ allenai/OLMo-2-1124-7B-DPO:
   release_date: 2024-11-24
   developer: AllenAI
   parameter_count: 7
+  model_type: dpo
+  model_base: OLMo-2-1124-7B
 
 allenai/OLMo-2-1124-7B:
   model_name: OLMo 2 7B RLVR
@@ -918,6 +1068,8 @@ allenai/OLMo-2-1124-13B-SFT:
   release_date: 2024-11-24
   developer: AllenAI
   parameter_count: 13
+  model_type: sft
+  model_base: OLMo-2-1124-13B
 
 allenai/OLMo-2-1124-13B-DPO:
   model_name: OLMo 2 13B DPO
@@ -925,6 +1077,8 @@ allenai/OLMo-2-1124-13B-DPO:
   release_date: 2024-11-24
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: OLMo-2-1124-13B
 
 allenai/OLMo-2-1124-13B-Instruct:
   model_name: OLMo 2 13B RLVR
@@ -940,6 +1094,8 @@ allenai/OLMo-2-0325-32B-SFT:
   release_date: 2025-03-25
   developer: AllenAI
   parameter_count: 32
+  model_type: sft
+  model_base: OLMo-2-0325-32B
 
 allenai/OLMo-2-0325-32B-DPO:
   model_name: OLMo 2 32B DPO
@@ -947,6 +1103,8 @@ allenai/OLMo-2-0325-32B-DPO:
   release_date: 2025-03-25
   developer: AllenAI
   parameter_count: 32
+  model_type: dpo
+  model_base: OLMo-2-0325-32B
 
 allenai/OLMo-2-0325-32B-Instruct:
   model_name: OLMo 2 32B RLVR
@@ -962,6 +1120,8 @@ allenai/Llama-3.1-Tulu-3-8B-SFT:
   release_date: 2024-11-21
   developer: AllenAI
   parameter_count: 8
+  model_type: sft
+  model_base: Llama-3.1-Tulu-3-8B
 
 allenai/Llama-3.1-Tulu-3-8B-DPO:
   model_name: Tülu 3 8B DPO
@@ -969,6 +1129,8 @@ allenai/Llama-3.1-Tulu-3-8B-DPO:
   release_date: 2024-11-21
   developer: AllenAI
   parameter_count: 8
+  model_type: dpo
+  model_base: Llama-3.1-Tulu-3-8B
 
 allenai/Llama-3.1-Tulu-3-8B:
   model_name: Tülu 3 8B RLVR
@@ -984,6 +1146,8 @@ allenai/Llama-3.1-Tulu-3-70B-SFT:
   release_date: 2024-11-21
   developer: AllenAI
   parameter_count: 70
+  model_type: sft
+  model_base: Llama-3.1-Tulu-3-70B
 
 allenai/Llama-3.1-Tulu-3-70B-DPO:
   model_name: Tülu 3 70B DPO
@@ -991,6 +1155,8 @@ allenai/Llama-3.1-Tulu-3-70B-DPO:
   release_date: 2024-11-21
   developer: AllenAI
   parameter_count: 70
+  model_type: dpo
+  model_base: Llama-3.1-Tulu-3-70B
 
 allenai/Llama-3.1-Tulu-3-70B:
   model_name: Tülu 3 70B RLVR
@@ -1006,6 +1172,8 @@ allenai/tulu-v2.5-ppo-13b-hh-rlhf-60k:
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: ppo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-ppo-13b-chatbot-arena-2023:
   model_name: Tülu V2.5 13B PPO ChatbotArena 2023
@@ -1013,6 +1181,8 @@ allenai/tulu-v2.5-ppo-13b-chatbot-arena-2023:
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: ppo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-ppo-13b-stackexchange-60k:
   model_name: Tülu V2.5 13B PPO StackExchange (60k)
@@ -1020,6 +1190,8 @@ allenai/tulu-v2.5-ppo-13b-stackexchange-60k:
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: ppo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-ppo-13b-nectar-60k:
   model_name: Tülu V2.5 13B PPO Nectar (60k)
@@ -1027,134 +1199,172 @@ allenai/tulu-v2.5-ppo-13b-nectar-60k:
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: ppo
+  model_base: tulu-2-13b
 
 # Tülu V2.5 DPO  (60k) models
 allenai/tulu-v2.5-dpo-13b-hh-rlhf-60k:
-  model_name: Tülu V2.5 13B DPO HH RLHF (60k)
+  model_name: Tülu V2.5 HH RLHF (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-chatbot-arena-2023:
-  model_name: Tülu V2.5 13B DPO ChatbotArena 2023
+  model_name: Tülu V2.5 ChatbotArena 2023
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-stackexchange-60k:
-  model_name: Tülu V2.5 13B DPO StackExchange (60k)
+  model_name: Tülu V2.5 StackExchange (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-nectar-60k:
-  model_name: Tülu V2.5 13B DPO Nectar (60k)
+  model_name: Tülu V2.5 Nectar (60k)
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 # Tülu V2.5 models
 allenai/tulu-v2.5-dpo-13b-uf-mean:
-  model_name: Tülu V2.5 13B DPO UltraFeedback Mean
+  model_name: Tülu V2.5 UltraFeedback Mean
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-helpsteer:
-  model_name: Tülu V2.5 13B DPO HelpSteer
+  model_name: Tülu V2.5 HelpSteer
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-shp2:
-  model_name: Tülu V2.5 13B DPO SHP2
+  model_name: Tülu V2.5 SHP2
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-stackexchange:
-  model_name: Tülu V2.5 13B DPO StackExchange
+  model_name: Tülu V2.5 StackExchange
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-uf-overall:
-  model_name: Tülu V2.5 13B DPO UltraFeedback Overall
+  model_name: Tülu V2.5 UltraFeedback Overall
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-capybara:
-  model_name: Tülu V2.5 13B DPO Capybara 7k
+  model_name: Tülu V2.5 Capybara 7k
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-prm-phase-2:
-  model_name: Tülu V2.5 13B DPO PRM800k Phase 2
+  model_name: Tülu V2.5 PRM800k Phase 2
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-hh-rlhf:
-  model_name: Tülu V2.5 13B DPO HH RLHF
+  model_name: Tülu V2.5 HH RLHF
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-nectar:
-  model_name: Tülu V2.5 13B DPO Nectar
+  model_name: Tülu V2.5 Nectar
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-chatbot-arena-2023:
-  model_name: Tülu V2.5 13B DPO ChatbotArena 2023
+  model_name: Tülu V2.5 ChatbotArena 2023
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-chatbot-arena-2024:
-  model_name: Tülu V2.5 13B DPO ChatbotArena 2024
+  model_name: Tülu V2.5 ChatbotArena 2024
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-alpacafarm-human-pref:
-  model_name: Tülu V2.5 13B DPO AlpacaFarm Human Preferences
+  model_name: Tülu V2.5 AlpacaFarm Human
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-alpacafarm-gpt4-pref:
-  model_name: Tülu V2.5 13B DPO AlpacaFarm GPT-4 Preferences
+  model_name: Tülu V2.5 AlpacaFarm GPT-4
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 allenai/tulu-v2.5-dpo-13b-argilla-orca-pairs:
-  model_name: Tülu V2.5 13B DPO Argilla Orca Pairs
+  model_name: Tülu V2.5 Argilla Orca
   provider: huggingface
   release_date: 2024-06-11
   developer: AllenAI
   parameter_count: 13
+  model_type: dpo
+  model_base: tulu-2-13b
 
 # Tülu V2 model
 allenai/tulu-2-13b:
@@ -1163,6 +1373,8 @@ allenai/tulu-2-13b:
   release_date: 2023-11-13
   developer: AllenAI
   parameter_count: 13
+  model_type: sft
+  model_base: tulu-2-13b
 
 # Nous-Hermes models
 NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT:
@@ -1171,6 +1383,8 @@ NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT:
   release_date: 2024-04-15
   developer: NousResearch
   parameter_count: 56
+  model_type: sft
+  model_base: Nous-Hermes-2-Mixtral-8x7B
 
 NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO:
   model_name: Hermes 2 Mixtral 8x7B DPO
@@ -1178,6 +1392,8 @@ NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO:
   release_date: 2024-04-15
   developer: NousResearch
   parameter_count: 56
+  model_type: dpo
+  model_base: Nous-Hermes-2-Mixtral-8x7B
 
 # AMD models
 amd/Instella-3B-SFT:
@@ -1186,6 +1402,8 @@ amd/Instella-3B-SFT:
   release_date: 2025-03-05
   developer: AMD
   parameter_count: 3
+  model_type: sft
+  model_base: Instella-3B
 
 amd/Instella-3B-Instruct:
   model_name: Instella 3B DPO
@@ -1193,5 +1411,7 @@ amd/Instella-3B-Instruct:
   release_date: 2025-03-05
   developer: AMD
   parameter_count: 3
+  model_type: dpo
+  model_base: Instella-3B
 
 

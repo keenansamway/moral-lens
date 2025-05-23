@@ -109,6 +109,12 @@ class DilemmaRunner:
         self.system_prompt_template = prompts_template_obj['system_prompt_template']
         self.dilemma_template = prompts_template_obj['dilemma_template']
 
+        if "qwen3-" in model_id:
+            if ":think" in model_id:
+                self.system_prompt_template += "\n\\think"
+            elif ":nothink" in model_id:
+                self.system_prompt_template += "\n\\no_think"
+
         self.data: Optional[pd.DataFrame] = None
         self.batch_size = batch_size
 

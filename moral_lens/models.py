@@ -758,6 +758,8 @@ def load_model_config(model_id: str, path: str = "moral_lens/config/models.yaml"
         release_date=model_data['release_date'],
         developer=model_data.get('developer', "Unknown"),
         parameter_count=model_data.get('parameter_count', None),
+        model_type=model_data.get('model_type', "final"),
+        model_base=model_data.get('model_base', None),
 
         reasoning_model=model_data.get('reasoning_model', MODEL_DEFAULTS['reasoning_model']),
         accepts_system_message=model_data.get('accepts_system_message', MODEL_DEFAULTS['accepts_system_message']),
