@@ -642,7 +642,16 @@ google/gemini-2.5-pro-preview-03-25:
   developer: Google
   # provider_routing: [Google AI Studio]
 
-google/gemini-2.5-flash-preview:
+google/gemini-2.5-flash-preview: # Keep for backwards compatibility when loading data (running this model will use a newer model)
+  model_name: Gemini 2.5 Flash Preview
+  provider: openrouter
+  release_date: 2025-04-17
+  developer: Google
+  num_concurrent: 30
+  max_rate: 20
+  period: 1
+
+google/gemini-2.5-flash-preview-04-17:
   model_name: Gemini 2.5 Flash Preview
   provider: openrouter
   release_date: 2025-04-17
