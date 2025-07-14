@@ -1,8 +1,8 @@
 # Moral Lens
- Decomposing Moral Reasoning in Language Models with Trolley Problems
+ Are Language Models Consequentialist or Deontological Moral Reasoners?
 
 ## Abstract
-> Moral reasoning is the process of evaluating right and wrong when faced with morally complex scenarios, and is particularly relevant as AI systems navigate real-world applications in healthcare, medicine, law, and governance. Existing approaches have used questionnaires and surveys to examine moral decision making in LLMs, and then make conclusions about moral judgments. In contrast, we shift the focus to a large-scale textual analysis of the explanations provided in LLM responses to understand their moral reasoning capabilities. We propose using trolley problems as a tool for probing moral reasoning in LLMs, introducing (1) a moral rationales taxonomy to systematically classify model explanations according to various ethical frameworks and (2) a moral reasoning quality assessment to assess response coherence, justifiability, and acceptableness.
+> As AI systems increasingly navigate applications in healthcare, law, and governance, understanding how they handle ethically complex scenarios becomes critical. Previous work has mainly examined the moral judgments in large language models (LLMs), rather than their underlying moral reasoning process. In contrast, we focus on a large-scale analysis of the moral reasoning traces provided by LLMs. Furthermore, unlike prior work that attempted to draw inferences from only a handful of moral dilemmas, our study leverages over 600 distinct trolley problems as probes for revealing the reasoning patterns that emerge within different LLMs. We introduce and test a taxonomy of moral rationales to systematically classify reasoning traces according to two main normative ethical theories: consequentialism and deontology. Our analysis reveals that LLM chains-of-thought tend to favor deontological principles based on moral obligations, while post-hoc explanations shift notably toward consequentialist rationales that emphasize utility. Our framework provides a foundation for understanding how LLMs process and articulate ethical considerations, an important step toward safe and interpretable deployment of LLMs in high-stakes decision-making environments.
 
 
 ![Figure 1](assets/figure1.png)
@@ -30,10 +30,21 @@ source .venv/bin/activate
 ```
 
 ## Usage
-### API
-TODO
 
-### Compute Canada
+> **A Quick Note**: Currently, this repository consists of research code and as such, there is much work that could be done to improve its usability and readability. If you have any questions, please feel free to open an issue or contact me directly, and I would be happy to help out as best I can.
+
+### Data
+You can download the full compiled data from the following google drive link and save it in the `data/` directory:
+- all_model_runs.parquet (https://drive.google.com/file/d/1Y56QBjnw5Y-E7FjHi0isSRPdtOX4-xtt/view?usp=share_link)
+
+### Run Models via API
+> TODO: Update this section with the latest usage instructions.
+
+See `notebooks/decisions_and_judge.ipynb` for usage examples with OpenAI and OpenRouter APIs (uses functionality in the `dilemma.py` and `judge.py` files).
+
+See `plots/compile_data.ipynb` for how to compile the data from the API and generate various plots.
+
+### Run Models via Compute Canada
 Use `salloc` to test out model inference and determine appropriate resources.
 
 1. Begin by requesting a GPU node with the following command:
@@ -94,4 +105,19 @@ After dialing in the necessary resources, we can submit an `sbatch` job.
 1. Edit and launch the following script:
 ```bash
 sbatch scripts/launch_job.sh
+```
+
+
+## Citation
+If you find this work useful, please cite the following paper:
+```bibtex
+@misc{samway2025language,
+      title={Are Language Models Consequentialist or Deontological Moral Reasoners?},
+      author={Keenan Samway and Max Kleiman-Weiner and David Guzman Piedrahita and Rada Mihalcea and Bernhard Schölkopf and Zhijing Jin},
+      year={2025},
+      eprint={2505.21479},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.21479},
+}
 ```
